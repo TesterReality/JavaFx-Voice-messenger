@@ -1,0 +1,256 @@
+#stageWindow {
+    -fx-background-size: 800 600;
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius: 20 20 20 20;
+    -fx-background-color: linear-gradient(to bottom left, #2E3339, #1C2027);
+}
+
+.turn{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../resource/img/Xtest.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 12px 12px;
+    -fx-background-position: center;
+
+}
+
+.turn:hover{
+    -fx-background-image: url("../resource/img/Xtest.png");
+    -fx-background-color: red;
+    -fx-background-size: 12px 12px;
+    -fx-background-radius: 12 12 12 12;
+    -fx-border-radius: 12 12 12 12;
+    -fx-background-position: center;
+}
+
+.quad{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../resource/img/resizetest.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 12px 12px;
+}
+
+.quad:hover{
+    -fx-background-image: url("../resource/img/resize.png");
+    -fx-background-color: #7E8389;
+    -fx-background-size: 12px 12px;
+    -fx-background-radius: 12 12 12 12;
+    -fx-border-radius: 12 12 12 12;
+    -fx-background-position: center;
+}
+
+.tray{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../resource/img/minusTest.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 12px 12px;
+    -fx-background-position: center;
+
+}
+
+.tray:hover{
+    -fx-background-image: url("../resource/img/minusTest.png");
+    -fx-background-color: #7E8389;
+    -fx-background-size: 12px 12px;
+    -fx-background-radius: 12 12 12 12;
+    -fx-border-radius: 12 12 12 12;
+    -fx-background-position: center;
+}
+ .systemElements{
+     /* это вроде удалить можно*/
+     -fx-border-color: #494C52;
+     -fx-border-width: 0 0 0 0;
+ }
+
+
+.lineUp *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #494C52;
+}
+
+ .circleFromImage
+ {
+     -fx-stroke: #494C52;
+     -fx-fill: rgba(0,0,0,0);
+ }
+.circleImage
+{
+    -fx-stroke:  rgba(0,0,0,0);
+    -fx-fill: url("../resource/img/lady.jpg");
+}
+
+.settings
+{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../resource/img/settings.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 16px 16px;
+}
+.settings:hover{
+    -fx-background-color: #7E8389;
+    -fx-background-radius: 12 12 12 12;
+    -fx-border-radius: 12 12 12 12;
+}
+
+.notification
+{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../resource/img/notification.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 16px 16px;
+}
+.notification:hover{
+    -fx-background-color: #7E8389;
+    -fx-background-radius: 12 12 12 12;
+    -fx-border-radius: 12 12 12 12;
+}
+
+.NewNotification
+{
+    -fx-background-color:  transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/test.png");
+}
+
+.find{
+    -fx-text-fill: #44474C;
+    -fx-prompt-text-fill: #44474C;
+    -fx-background-color:  transparent;
+    -fx-border-color: #2F3339;     /* цвет обводки*/
+    -fx-border-width: 0 0 1 0;
+
+    -fx-background-image: url("../resource/img/search.png");
+    -fx-background-radius: 0 ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right top;
+    -fx-background-size: 26px 16px;
+
+    -fx-padding: 0 0 15 0;
+}
+
+.find:focused{
+
+}
+
+/* Блок друганов*/
+.friend
+{
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-color: #2E3338;
+}
+
+.isOnline
+{
+    -fx-background-color:  transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/online.png");
+}
+/*Дата в друганах*/
+
+.msgData
+{
+    -fx-text-fill: #44474C;
+}
+
+.newMsg
+{
+    -fx-stroke:  rgba(0,0,0,0);
+    -fx-fill: #478BF0;
+}
+
+.closeDialog{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../resource/img/XCloseDialog.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 12px 12px;
+    -fx-background-position: center;
+
+}
+
+.closeDialog:hover{
+    -fx-background-image: url("../resource/img/XCloseDialog.png");
+    -fx-background-color: red;
+    -fx-background-size: 12px 12px;
+    -fx-background-radius: 12 12 12 12;
+    -fx-border-radius: 12 12 12 12;
+    -fx-background-position: center;
+}
+
+/*Ниже текстовое поле для сообщения*/
+.textMsg
+
+{    -fx-border-color: transparent;
+    -fx-background-radius: 10 0 0 10;
+    -fx-border-radius: 10 0 0 10;
+    -fx-background-color: transparent, transparent, transparent, transparent;
+    -fx-text-inner-color: white;
+}
+
+.textMsg .content
+{
+    -fx-border-color: transparent;
+    -fx-background-radius: 5 0 0 5;
+    -fx-border-radius: 5 0 0 5;
+    -fx-background-color: #2E3338;
+    -fx-text-fill: white;
+}
+
+.textMsg .scroll-pane {
+    -fx-background-color: transparent;
+}
+.textMsg .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.textMsg .scroll-bar:vertical {
+    -fx-opacity: 0;
+}
+.textMsg .scroll-bar:vertical:disabled {
+    -fx-opacity: 0;
+}
+
+
+
+.sendSmileArea
+{
+    -fx-background-color: #2E3338;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-radius: 10 10 10 10;
+}
+
+.send
+{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../resource/img/sendSize.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 17px 17px;
+    -fx-background-position: center;
+}
+.send:hover{
+    -fx-background-image: url("../resource/img/sendSizeFocus.png");
+
+}
+
+.smile
+{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../resource/img/smile.png");
+
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 17px 17px;
+    -fx-background-position: center;
+}
+
+.testLabel
+{
+    -fx-background-color: #1C2027;
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-background-position: center;
+    -fx-padding: 5px 5px 5px 5px;
+    -fx-font-family: Roboto;
+}

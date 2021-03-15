@@ -1,0 +1,15 @@
+.boxElem
+{
+    -fx-background-color: transparent;
+}
+
+.smileElem
+{
+    -fx-background-color: transparent;
+}
+
+.smileElem:hover
+{
+    -fx-background-color: #7E8389;
+    -fx-background-radius: 6px;
+}

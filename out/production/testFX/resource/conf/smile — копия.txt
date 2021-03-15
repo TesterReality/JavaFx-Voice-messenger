@@ -1,0 +1,5 @@
+src/resource/img/smile/emojisprite_0.png
+src/resource/img/smile/emojisprite_1.png
+src/resource/img/smile/emojisprite_2.png
+src/resource/img/smile/emojisprite_3.png
+src/resource/img/smile/emojisprite_4.png
