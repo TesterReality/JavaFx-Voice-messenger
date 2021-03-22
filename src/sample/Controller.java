@@ -1,19 +1,14 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -21,9 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -32,10 +24,8 @@ import org.json.simple.parser.ParseException;
 import java.awt.image.BufferedImage;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Controller {
     public TextArea testTextArea;
@@ -55,7 +45,7 @@ public class Controller {
         SmileController smileController = new SmileController();
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "smile.fxml"
+                        "fxml/smile.fxml"
                 )
         );
         loader.setController(smileController);
@@ -152,7 +142,7 @@ public class Controller {
 
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "smileElem.fxml"
+                        "fxml/smileElem.fxml"
                 )
         );
         int temp = 0;
@@ -197,7 +187,7 @@ public class Controller {
                             loader1 = new FXMLLoader();
                             loader1 = new FXMLLoader(
                                     getClass().getResource(
-                                            "smileElem.fxml"
+                                            "fxml/smileElem.fxml"
                                     )
                             );
                             smileElemController = new SmileElemController(flow,flowPosition);

@@ -11,25 +11,32 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
 
     Stage testStage;
+    static ClientMsgThread clientMsgThread;	//Объект побочного потока
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Scene mainScene;
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        mainScene = new Scene(root,800,600);
+        clientMsgThread = new ClientMsgThread();
+        clientMsgThread.setDaemon(true);
+        clientMsgThread.start();
 
-        /*
+
+        /*Scene mainScene;
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
+        primaryStage.setTitle("Hello World");
+        mainScene = new Scene(root,800,600);*/
+
+        /*//////
         SmileCreater smile = new SmileCreater("src/resource/conf/smile.txt");
         smile.getAllSpritePathFromConf();
         smile.loadAllSmile();*/
-
+/*
         mainScene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(mainScene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
 
-        testStage = primaryStage;
+        testStage = primaryStage;*/
         System.out.println();
     }
 

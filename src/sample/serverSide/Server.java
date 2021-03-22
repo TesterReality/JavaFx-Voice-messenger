@@ -1,0 +1,162 @@
+package sample.serverSide;
+
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.math.BigInteger;
+import java.net.InetAddress;
+
+import java.io.*;
+import java.net.*;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Server extends Thread {
+    private String TEMPL_MSG =
+            "The client '%d' sent me message : \n\t";
+    private String TEMPL_CONN =
+            "The client '%d' closed the connection";
+
+    private Socket socket;
+    private static int num;
+    private byte[] inputMsg;
+    private byte[] outputMsg;
+    public PublicKey publicKeyUser;
+    private boolean havePublicKeyUser = false;
+    private boolean clientHaveMyPublicKey = false;
+   // private ParseProtocol parser;
+    private Server thisObj;
+    private ArrayList<Integer> ports = new ArrayList<>();
+    InputStream sin;
+    OutputStream sout;
+    DataInputStream dis;
+    DataOutputStream dos;
+    DHServer diffieServer;
+
+    boolean haveDH = false;
+    boolean isHaveSharedData = false;
+    private String sha256DH1;
+    public Server getThisObj() {
+        return thisObj;
+    }
+
+    public void setThisObj(Server thisObj) {
+        this.thisObj = thisObj;
+    }
+
+    public Server() {
+    }
+
+    public void setSocket(int num, Socket socket) {
+        this.num = num;
+        this.socket = socket;
+        setDaemon(true);
+        setPriority(NORM_PRIORITY);
+        start();
+    }
+/*
+    public void sendMsgNow(String msg) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
+        outputMsg = SingletonServerCryproRSA.getInstance().encryptMsg(msg, publicKeyUser);//шифруем ответ
+        dos.writeInt(outputMsg.length);
+        dos.write(outputMsg, 0, outputMsg.length);
+        System.out.println("Сервер отправил клиенту сообщение");
+    }*/
+
+    public void setPorts(int port) {
+        ports.add(port);
+    }
+
+    public void run() {
+        try {
+            // Определяем входной и выходной потоки сокета
+            // для обмена данными с клиентом
+            sin = socket.getInputStream();
+            sout = socket.getOutputStream();
+            dis = new DataInputStream(sin);
+            dos = new DataOutputStream(sout);
+           // parser = new ParseProtocol(thisObj);
+            String line = null;
+            while (true) {
+                if (sin.available() > 0) { //если есть что считывать
+                    System.out.println("[Пришли данные от клиента]:");
+                    int num = dis.readInt();
+                    if (num < 1024) {
+                        inputMsg = new byte[num];
+                        dis.readFully(inputMsg);
+                        line = new String(inputMsg);
+                        System.out.println(line);
+
+                        if(!haveDH)//Еслю ключи по DH не были получены (первое подключение)
+                        {
+                            if(!isHaveSharedData) { //если мы не получили p g, то получаем их
+                                String[] sharedData = line.split(":");//p:g:sha256(dh1)
+                                sha256DH1 = sharedData[2];
+                                System.out.println("SHA256(DH1): " + sha256DH1);
+                                diffieServer = new DHServer(new BigInteger(sharedData[0]), new BigInteger(sharedData[1]));
+
+                                System.out.println("[Сервер] Отправил свой публичный ключ (DH2) клиенту");
+                                outputMsg = String.valueOf( diffieServer.getPublicB()).getBytes(); //Сервер отправляет клиенту свой публичный DH (DH2)
+                                dos.writeInt(outputMsg.length);
+                                dos.write(outputMsg, 0, outputMsg.length);
+                                isHaveSharedData=true;
+                            }else //если p и g мы уже получили, но еще не получили публичный ключ клиента
+                            {
+                               if (diffieServer.setPublicA(new BigInteger(line),sha256DH1))
+                               {
+                                   haveDH = true;
+
+                                   String halfSharedkeyBytes = diffieServer.getSHA256(diffieServer.getSharedKeyB().toString());
+                                   System.out.println("[Сервер] SHA256(общий ключ) ="+ halfSharedkeyBytes);
+                                   halfSharedkeyBytes = halfSharedkeyBytes.substring(0,halfSharedkeyBytes.length()/2);
+                                   System.out.println("[Сервер] SHA256(общий ключ)/2 ="+ halfSharedkeyBytes);
+
+                                   outputMsg = halfSharedkeyBytes.getBytes(); //Сервер отправляет клиенту sha256(общего ключа) (половину)
+                                   System.out.println("[Сервер] Отправили клиенту "+ halfSharedkeyBytes.length()/2 +" символов в sha256 от общего ключа");
+                                   dos.writeInt(outputMsg.length);
+                                   dos.write(outputMsg, 0, outputMsg.length);
+                               }
+                            }
+                        }
+
+                    }
+                }
+
+                Thread.sleep(500);
+            }
+        } catch (Exception e) {
+            System.out.println("ЭТО В ПОТОКЕ ГДЕ ЧИТАЮ : " + e);
+        }
+    }
+/*
+    private byte[] decrypt() throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
+        Cipher gg = SingletonServerCryproRSA.getInstance().getCipher();
+        try {
+            gg.init(Cipher.DECRYPT_MODE, SingletonServerCryproRSA.getInstance().getPrivateKey());
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+        byte[] y = gg.doFinal(inputMsg);
+
+        return y;
+    }*/
+
+    private void parseProtocol(String msg) {
+        System.out.println("ЭТОТ НОМЕР КЛИЕНТА" + num);
+        Pattern p = Pattern.compile("\"([^\"]*)\"");
+        Matcher m = p.matcher(msg);
+        while (m.find()) {
+            System.out.println(m.group(1));
+        }
+        String[] strings1 = p.split(msg);
+    }
+}
