@@ -12,7 +12,6 @@ public class Main extends Application {
 
     Stage testStage;
     static ClientMsgThread clientMsgThread;	//Объект побочного потока
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 

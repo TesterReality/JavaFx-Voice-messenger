@@ -87,6 +87,26 @@ public class DHServer {
 
         return "";
     }
+
+    public byte[] getByteSHA256(String msg)
+    {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+
+            md.update(msg.getBytes());
+
+            byte byteData[] = md.digest();
+
+            return  byteData;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
     public BigInteger getPublicB() {
         return publicB;
     }

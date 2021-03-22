@@ -46,6 +46,8 @@ public class Server extends Thread {
     boolean haveDH = false;
     boolean isHaveSharedData = false;
     private String sha256DH1;
+    private AES256Serv aes256Serv;
+    private boolean isAesOk = false; //client aes == server aes?
     public Server getThisObj() {
         return thisObj;
     }
@@ -124,9 +126,31 @@ public class Server extends Thread {
                                    System.out.println("[Сервер] Отправили клиенту "+ halfSharedkeyBytes.length()/2 +" символов в sha256 от общего ключа");
                                    dos.writeInt(outputMsg.length);
                                    dos.write(outputMsg, 0, outputMsg.length);
+
+                                   System.out.println("[Сервер] Сохранили ключ для AES256");
+                                   aes256Serv = new AES256Serv(diffieServer.getByteSHA256(diffieServer.getSharedKeyB().toString()));
                                }
                             }
                         }
+                        else
+                        {
+                            //Когда обменялись ключами
+                            //Нам нужно убедиться что ключи сошлись
+                            if(!isAesOk)
+                            {
+                                String clientMsg =new String( aes256Serv.makeAes(inputMsg, Cipher.DECRYPT_MODE));
+                                if(clientMsg.equals("AES-OK"))
+                                {
+                                    isAesOk = true;
+                                }else//если ключи разные
+                                {
+
+                                }
+
+                            }
+                        }
+
+
 
                     }
                 }

@@ -3,6 +3,7 @@ package sample;
 import javafx.scene.control.Alert;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.*;
@@ -45,6 +46,7 @@ public class ClientMsgThread extends Thread {
     private boolean isDHFully = false; // значит что нет полной пары ключей DH
     private DH diffie;
     private boolean firstStep = false;
+    private AES256 aes256;
 
     public boolean isUserLogin() {
         return userLogin;
@@ -107,7 +109,7 @@ public class ClientMsgThread extends Thread {
     }
 
     private static final int serverPort = 5000;
-    private static final String localhost = "185.156.42.223";
+    private static final String localhost = "localhost";
     public boolean starting() {
         try {
             try {
@@ -185,6 +187,25 @@ public class ClientMsgThread extends Thread {
 
         return "";
     }
+    private byte[] getByteSHA256(String msg)
+    {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+
+            md.update(msg.getBytes());
+
+            byte byteData[] = md.digest();
+
+            return  byteData;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
     private void senMsgToServer() {
       /*  try {
             if (!pubKeySend)//если свой публичный мы серваку не отправляли, то
@@ -278,10 +299,28 @@ public class ClientMsgThread extends Thread {
                                 if(halfSha256SharedKey.equals(msgFromServer))
                                 {
                                     System.out.println("[Клиент] Общие секретные ключи совпали!");
+                                    aes256 = new AES256(getByteSHA256(diffie.getSharedKeyA().toString()));
+                                    System.out.println();
+
+                                    /*TestCode*/
+                                    /*
+                                    String mes = "DUDOSINA";
+                                    byte[] shifr = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);
+                                    System.out.println(new String(shifr));
+                                    byte[] src = aes256.makeAes(shifr, Cipher.DECRYPT_MODE);
+                                    System.out.println(new String(src));*/
+
                                 }else
                                 {
                                     System.out.println("[Клиент] Общие секретные НЕ ключи совпали!!");
                                 }
+
+                                String mes = "AES-OK";
+                                bytemsg = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);
+                                len = bytemsg.length;
+                                out.writeInt(len);
+                                out.write(bytemsg, 0, len); // отправляю байты
+                                System.out.println("[Клиент] Отправил AES-OK");
                             }
                         }
 
