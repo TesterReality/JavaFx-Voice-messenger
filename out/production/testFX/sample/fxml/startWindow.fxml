@@ -14,7 +14,7 @@
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #25333d;" StackPane.alignment="CENTER">
                <children>
-                  <Separator layoutX="288.0" layoutY="91.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="0.0" stylesheets="@../../View/separator.css" AnchorPane.bottomAnchor="110.0" AnchorPane.topAnchor="90.0" />
+                  <Separator layoutX="288.0" layoutY="91.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="0.0" stylesheets="@../../resource/css/separator.css" AnchorPane.bottomAnchor="110.0" AnchorPane.topAnchor="90.0" />
                   <ImageView fx:id="LogoImage" fitHeight="350.0" fitWidth="264.0" layoutX="14.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-9.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="322.0" AnchorPane.topAnchor="59.0" />
                   <AnchorPane fx:id="test_change" layoutX="308.0" layoutY="24.0" prefHeight="361.0" prefWidth="264.0" style="-fx-background-color: transperent;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="20.0">
                      <children>
@@ -32,9 +32,9 @@
          <children>
             <HBox layoutX="284.0" layoutY="-29.0" prefHeight="25.0" prefWidth="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="tray" onMouseClicked="#toTary" prefHeight="25.0" prefWidth="25.0" styleClass="tray" stylesheets="@../../View/input.css" />
-                  <Label fx:id="full" onMouseClicked="#fullscreen" prefHeight="25.0" prefWidth="25.0" styleClass="quad" stylesheets="@../../View/input.css" />
-                  <Label fx:id="Exit" onMouseClicked="#Close" prefHeight="25.0" prefWidth="25.0" styleClass="turn" stylesheets="@../../View/input.css" />
+                  <Label fx:id="tray" onMouseClicked="#toTary" prefHeight="25.0" prefWidth="25.0" styleClass="tray" stylesheets="@../../resource/css/input.css" />
+                  <Label fx:id="full" onMouseClicked="#fullscreen" prefHeight="25.0" prefWidth="25.0" styleClass="quad" stylesheets="@../../resource/css/input.css" />
+                  <Label fx:id="Exit" onMouseClicked="#Close" prefHeight="25.0" prefWidth="25.0" styleClass="turn" stylesheets="@../../resource/css/input.css" />
                </children>
             </HBox>
          </children>

@@ -16,5 +16,12 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="postgresql-42.2.19" level="project" />
+    <orderEntry type="library" name="xembly-0.22.1" level="project" />
+    <orderEntry type="library" name="javax.mail-api-1.6.2" level="project" />
+    <orderEntry type="library" name="javax.mail-1.6.2" level="project" />
+    <orderEntry type="library" name="javase-2.2" level="project" />
+    <orderEntry type="library" name="zxing-core-2.0" level="project" />
+    <orderEntry type="library" name="antlr-runtime-3.5.2" level="project" />
   </component>
 </module>

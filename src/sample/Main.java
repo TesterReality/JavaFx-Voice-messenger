@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -17,8 +18,31 @@ public class Main extends Application {
 
         clientMsgThread = new ClientMsgThread();
         clientMsgThread.setDaemon(true);
+        ThreadClientInfoSingleton.getInstance().setClientMsgThread(clientMsgThread);
+
         clientMsgThread.start();
 
+        FXMLLoader loader = new FXMLLoader();
+        StartWindowController startWindowController =
+                new StartWindowController();
+        startWindowController.setController(startWindowController);
+        loader = new FXMLLoader(
+                getClass().getResource(
+                        "fxml/startWindow.fxml"
+                )
+        );
+        loader.setController(startWindowController);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.getIcons().add(new Image("resource/img/TrayLogo.png"));
+        primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setResizable(false);
+        primaryStage.setMinWidth(500);
+        primaryStage.setMinHeight(250);
+        ResizeHelper.addResizeListener(primaryStage);
+        ThreadClientInfoSingleton.getInstance().setClientMsgThread(clientMsgThread);
+        primaryStage.show();
 
         /*Scene mainScene;
         Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));

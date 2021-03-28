@@ -1,0 +1,340 @@
+.input{
+    -fx-background-color:  transparent;
+    -fx-border-color: #5b7383;
+    -fx-border-radius:4px;
+    -fx-text-fill: white;
+
+    -fx-background-image: url("../../resource/img/user.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+    -fx-background-size: 20px 20px;
+    -fx-padding: 0 0 0 30;
+}
+
+.input:focused{
+    -fx-border-color:#00a896;
+}
+
+.pswd{
+    -fx-background-color:  transparent;
+    -fx-border-color: #5b7383;
+    -fx-border-radius:4px;
+    -fx-padding:8px;
+    -fx-text-fill: white;
+
+    -fx-background-image: url("../../resource/img/pswd1.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+    -fx-background-size: 20px 20px;
+    -fx-padding: 0 0 0 30;
+}
+
+.pswd:focused{
+    -fx-border-color:#00a896;
+}
+
+.login-button{
+    -fx-border-radius: 10px;
+    -fx-background-color:#00a896;
+    -fx-padding: 8px 16px;
+    -fx-margin-top:0px;
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+
+}
+
+.login-button:hover {
+    -fx-background-color:#02c39a;
+
+}
+
+.turn{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../../resource/img/X.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 2px;
+    -fx-background-size: 20px 20px;
+
+
+}
+
+.turn:hover{
+    -fx-background-image: url("../../resource/img/X_white.png");
+    -fx-background-color:  red;
+}
+
+.quad{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../../resource/img/quad.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 2px;
+    -fx-background-size: 20px 20px;
+}
+
+.quad:hover{
+    -fx-background-image: url("../../resource/img/quad_white.png");
+    -fx-background-color:  #25333d;
+}
+
+.tray{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../../resource/img/line.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 2px;
+    -fx-background-size: 20px 20px;
+}
+
+.tray:hover{
+    -fx-background-image: url("../../resource/img/line_white.png");
+    -fx-background-color:  #25333d;
+}
+
+.labels{
+    -fx-text-fill: #7c8186;
+}
+
+.labels:hover{
+    -fx-text-fill: white;
+}
+
+.mail{
+    -fx-background-color:  transparent;
+    -fx-border-color: #5b7383;
+    -fx-border-radius:4px;
+    -fx-text-fill: white;
+
+    -fx-background-image: url("../../resource/img/mail.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+    -fx-background-size: 20px 20px;
+    -fx-padding: 0 0 0 30;
+}
+
+.mail:focused{
+    -fx-border-color:#00a896;
+}
+
+.code{
+    -fx-background-color:  transparent;
+    -fx-border-color: #5b7383;
+    -fx-border-radius:4px;
+    -fx-text-fill: white;
+
+    -fx-background-image: url("../../resource/img/key.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+    -fx-background-size: 20px 20px;
+    -fx-padding: 0 0 0 30;
+}
+
+.code:focused{
+    -fx-border-color:#00a896;
+}
+
+
+.try{
+    -fx-text-fill: #7c8186;
+}
+
+.try:hover{
+    -fx-text-fill: white;
+}
+
+.changePasswod{
+    -fx-background-color:  transparent;
+    -fx-border-color: #5b7383;
+    -fx-border-radius:4px;
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+}
+.changePasswod:focused{
+    -fx-border-color:#00a896;
+    -fx-text-alignment: center;
+
+}
+
+.onlineStatus{
+    -fx-background-color:  green;
+    -fx-background-radius: 50%;
+}
+
+.offlineStatus{
+    -fx-background-color:  #354A57;
+    -fx-background-radius: 50%;
+}
+
+.newFriend{
+    -fx-background-color: transparent;
+}
+
+.newFriend:hover{
+    -fx-background-radius: 5px;
+    -fx-background-color: #112937;
+}
+
+.setting{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../../resource/img/setting.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 2px;
+    -fx-background-size: 20px 20px;
+
+}
+
+.setting:hover{
+    -fx-background-color:  #112937;
+}
+
+.microphone{
+    -fx-background-color:  transparent;
+    -fx-background-image: url("../../resource/img/microphone.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 2px;
+    -fx-background-size: 20px 20px;
+
+}
+
+.microphone:hover{
+    -fx-background-color:  #112937;
+}
+
+.find{
+    -fx-text-fill: #7c8186;
+    -fx-background-color:  transparent;
+    -fx-border-color: #5b7383;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 0 ;
+    -fx-background-image: url("../../resource/img/find.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+    -fx-background-size: 20px 20px;
+    -fx-padding: 0 0 0 30;
+}
+
+.find:focused{
+    -fx-border-color:#00a896;
+}
+
+.call-button{
+    -fx-border-radius: 10px;
+    -fx-background-color:#00a896;
+    -fx-padding: 8px 16px;
+    -fx-margin-top:0px;
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+
+    -fx-background-image: url("../../resource/img/call_icon.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+    -fx-background-size: 20px 20px;
+    -fx-padding: 0 0 0 20;
+
+}
+
+.call-button:hover {
+    -fx-background-color:#02c39a;
+
+}
+
+.stop-call-button{
+    -fx-border-radius: 10px;
+    -fx-background-color:#f3433f;
+    -fx-padding: 8px 16px;
+    -fx-margin-top:0px;
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+
+    -fx-background-image: url("../../resource/img/stop_call_icon.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+    -fx-background-size: 20px 20px;
+    -fx-padding: 0 0 0 20;
+
+}
+
+.stop-call-button:hover {
+    -fx-background-color:#d93e3e;
+
+}
+
+.ok-friend{
+    -fx-background-radius: 50%;
+    -fx-background-color:  #00BC96;
+    -fx-border-radius: 50%;
+
+    -fx-background-image: url("../../resource/img/plusik.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 4px;
+    -fx-background-size: 12px 12px;
+
+}
+
+.ok-friend:hover{
+    -fx-border-color: #7c8186;
+    -fx-background-color: transparent;
+}
+
+.not-friend{
+    -fx-background-radius: 50%;
+    -fx-background-color:  #f3433f;
+    -fx-border-radius: 50%;
+
+    -fx-background-image: url("../../resource/img/X_white.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 4px;
+    -fx-background-size: 12px 12px;
+}
+
+.not-friend:hover{
+    -fx-border-color: #7c8186;
+    -fx-background-color: transparent;
+}
+
+.incoming-accept{
+    -fx-background-radius: 50%;
+    -fx-background-color:  #00a896;
+    -fx-border-radius: 50%;
+
+    -fx-background-image: url("../../resource/img/telephone.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px;
+    -fx-background-size: 30px 30px;
+}
+
+.incoming-accept:hover{
+    -fx-border-color: #7c8186;
+    -fx-background-color: transparent;
+}
+
+.incoming-cancel{
+    -fx-background-radius: 50%;
+    -fx-background-color:  #f3433f;
+    -fx-border-radius: 50%;
+
+    -fx-background-image: url("../../resource/img/stop_call_icon.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px;
+    -fx-background-size: 30px 30px;
+}
+
+.incoming-cancel:hover{
+    -fx-border-color: #7c8186;
+    -fx-background-color: transparent;
+}
+
+.del-friend{
+    -fx-background-radius: 50%;
+    -fx-background-color: transparent;
+    -fx-border-radius: 50%;
+
+    -fx-background-image: url("../../resource/img/X_white.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 4px;
+    -fx-background-size: 12px 12px;
+}
+
+.del-friend:hover{
+    -fx-border-color: #7c8186;
+    -fx-background-color: #f3433f;
+}
+

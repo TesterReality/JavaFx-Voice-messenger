@@ -48,6 +48,7 @@ public class Server extends Thread {
     private String sha256DH1;
     private AES256Serv aes256Serv;
     private boolean isAesOk = false; //client aes == server aes?
+    private ParseServerVacoomProtocol parseServerVacoomProtocol;
     public Server getThisObj() {
         return thisObj;
     }
@@ -57,6 +58,14 @@ public class Server extends Thread {
     }
 
     public Server() {
+    }
+
+    public AES256Serv getAes256Serv() {
+        return aes256Serv;
+    }
+
+    public void setAes256Serv(AES256Serv aes256Serv) {
+        this.aes256Serv = aes256Serv;
     }
 
     public void setSocket(int num, Socket socket) {
@@ -86,7 +95,9 @@ public class Server extends Thread {
             sout = socket.getOutputStream();
             dis = new DataInputStream(sin);
             dos = new DataOutputStream(sout);
-           // parser = new ParseProtocol(thisObj);
+
+
+            parseServerVacoomProtocol = new ParseServerVacoomProtocol(thisObj);
             String line = null;
             while (true) {
                 if (sin.available() > 0) { //если есть что считывать
@@ -136,17 +147,31 @@ public class Server extends Thread {
                         {
                             //Когда обменялись ключами
                             //Нам нужно убедиться что ключи сошлись
-                            if(!isAesOk)
-                            {
-                                String clientMsg =new String( aes256Serv.makeAes(inputMsg, Cipher.DECRYPT_MODE));
-                                if(clientMsg.equals("AES-OK"))
-                                {
-                                    isAesOk = true;
-                                }else//если ключи разные
+                            try {
+                                if (!isAesOk) {
+                                    String clientMsg = new String(aes256Serv.makeAes(inputMsg, Cipher.DECRYPT_MODE));
+                                    if (clientMsg.equals("AES-OK")) {
+                                        System.out.println("[Сервер] Клиент отправил AES-OK");
+                                        isAesOk = true;
+                                    } else//если ключи разные
+                                    {
+                                        System.out.println("[Сервер] Клиент !!НЕ!! отправил AES-OK");
+                                        resetFlags();
+                                    }
+
+                                }else
                                 {
 
+                                    //Теперь Просто принимаем команды от сервера
+                                    inputMsg = aes256Serv.makeAes(inputMsg, Cipher.DECRYPT_MODE);
+                                    line = new String(inputMsg);
+                                    parseServerVacoomProtocol.parseRequest(line);
                                 }
-
+                            }catch (NullPointerException nu)//не удастся расшифровать сообщение только 1 случае - если оно были либо неверно зашифрованно, либо не было зашифрованно
+                            {
+                                System.out.println("[СЕРВЕР] ОШИБКА AES ключей");
+                                System.out.println("[Сервер] Клиент !!НЕ!! отправил AES-OK");
+                                resetFlags();
                             }
                         }
 
@@ -160,6 +185,13 @@ public class Server extends Thread {
         } catch (Exception e) {
             System.out.println("ЭТО В ПОТОКЕ ГДЕ ЧИТАЮ : " + e);
         }
+    }
+
+    private void resetFlags()
+    {
+         haveDH = false;
+         isHaveSharedData = false;
+         isAesOk = false;
     }
 /*
     private byte[] decrypt() throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {

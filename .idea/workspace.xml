@@ -7,11 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ClientMsgThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ClientMsgThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/fxml/sample1.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/Server.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ClientMsgThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientMsgThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/serverSide/DHServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/DHServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/fxml/sample1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/fxml/startWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/serverSide/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/serverSide/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/ServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/testFX.iml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,26 +90,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="13" column="69" lean-forward="true" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="69" />
+            <state relative-caret-position="68">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1223#1224#0" expanded="true" />
-                <element signature="e#1255#1256#0" expanded="true" />
-                <element signature="e#1304#1305#0" expanded="true" />
-                <element signature="e#1346#1347#0" expanded="true" />
-                <element signature="e#1392#1393#0" expanded="true" />
-                <element signature="e#1420#1421#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="317" column="52" selection-start-line="317" selection-start-column="52" selection-end-line="317" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -112,8 +102,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+            <state relative-caret-position="119">
+              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="730">
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2295">
+              <caret line="135" column="19" selection-start-line="135" selection-start-column="19" selection-end-line="135" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,10 +136,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/SingletonDatabaseConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="157" selection-start-line="157" selection-end-line="157" />
+            <state relative-caret-position="85">
+              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,106 +148,68 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/DHServer.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+            <state relative-caret-position="118">
+              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#639#640#0" expanded="true" />
-                <element signature="e#676#677#0" expanded="true" />
-                <element signature="e#740#741#0" expanded="true" />
-                <element signature="e#792#793#0" expanded="true" />
-                <element signature="e#833#834#0" expanded="true" />
-                <element signature="e#866#867#0" expanded="true" />
-                <element signature="e#922#923#0" expanded="true" />
-                <element signature="e#966#967#0" expanded="true" />
-                <element signature="e#1004#1005#0" expanded="true" />
-                <element signature="e#1034#1035#0" expanded="true" />
-                <element signature="e#2508#2509#0" expanded="true" />
-                <element signature="e#2538#2539#0" expanded="true" />
-                <element signature="e#2588#2589#0" expanded="true" />
-                <element signature="e#2626#2627#0" expanded="true" />
-                <element signature="e#2664#2665#0" expanded="true" />
-                <element signature="e#2694#2695#0" expanded="true" />
-                <element signature="e#2744#2745#0" expanded="true" />
-                <element signature="e#2782#2783#0" expanded="true" />
-                <element signature="e#2820#2821#0" expanded="true" />
-                <element signature="e#2850#2851#0" expanded="true" />
-                <element signature="e#2900#2901#0" expanded="true" />
-                <element signature="e#2938#2939#0" expanded="true" />
-                <element signature="e#2979#2980#0" expanded="true" />
-                <element signature="e#3012#3013#0" expanded="true" />
-                <element signature="e#3068#3069#0" expanded="true" />
-                <element signature="e#3112#3113#0" expanded="true" />
-                <element signature="e#3153#3154#0" expanded="true" />
-                <element signature="e#3186#3187#0" expanded="true" />
-                <element signature="e#3242#3243#0" expanded="true" />
-                <element signature="e#3286#3287#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/DH.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Mail/MailUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3332">
-              <caret line="61" column="23" lean-forward="true" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+            <state relative-caret-position="408">
+              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1221#1222#0" expanded="true" />
-                <element signature="e#1254#1255#0" expanded="true" />
+                <element signature="e#233#234#0" expanded="true" />
+                <element signature="e#266#267#0" expanded="true" />
+                <element signature="e#318#319#0" expanded="true" />
+                <element signature="e#362#363#0" expanded="true" />
+                <element signature="e#397#398#0" expanded="true" />
+                <element signature="e#428#429#0" expanded="true" />
+                <element signature="e#476#477#0" expanded="true" />
+                <element signature="e#516#517#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/AES256.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+            <state relative-caret-position="153">
+              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#579#580#0" expanded="true" />
-                <element signature="e#632#633#0" expanded="true" />
-                <element signature="e#674#675#0" expanded="true" />
+                <element signature="e#238#239#0" expanded="true" />
+                <element signature="e#278#279#0" expanded="true" />
+                <element signature="e#310#311#0" expanded="true" />
+                <element signature="e#341#342#0" expanded="true" />
+                <element signature="e#368#369#0" expanded="true" />
+                <element signature="e#408#409#0" expanded="true" />
+                <element signature="e#440#441#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/AES256Serv.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#560#561#0" expanded="true" />
-                <element signature="e#592#593#0" expanded="true" />
-                <element signature="e#645#646#0" expanded="true" />
-                <element signature="e#687#688#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="28101">
+              <caret line="1773" selection-start-line="1773" selection-end-line="1773" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resource/conf/smile — копия.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/SmileElemController.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1972">
-              <caret line="135" selection-start-line="135" selection-end-line="135" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1598">
+              <caret line="112" selection-start-line="112" selection-end-line="112" />
             </state>
           </provider>
         </entry>
@@ -266,7 +242,20 @@
       <find>findSmile</find>
       <find>indexToReplace</find>
       <find>image</find>
+      <find>../resource/</find>
+      <find>serv</find>
+      <find>SHA256</find>
+      <find>sha256</find>
+      <find>answer</find>
+      <find>ThreadClientInfoSingleton</find>
+      <find>code</find>
+      <find>nee</find>
+      <find>serverIsOnline</find>
+      <find>starting</find>
     </findStrings>
+    <replaceStrings>
+      <replace>../../resource/</replace>
+    </replaceStrings>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -295,12 +284,32 @@
         <option value="$PROJECT_DIR$/src/sample/SmileElemController.java" />
         <option value="$PROJECT_DIR$/src/sample/DH.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/ServerMain.java" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/AES256.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/AES256Serv.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/DHServer.java" />
-        <option value="$PROJECT_DIR$/src/sample/serverSide/Server.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/TableCreater.java" />
+        <option value="$PROJECT_DIR$/src/sample/startWindowController.java" />
+        <option value="$PROJECT_DIR$/src/resource/css/input.css" />
+        <option value="$PROJECT_DIR$/src/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/sample/ThreadClientInfoSingleton.java" />
+        <option value="$PROJECT_DIR$/src/sample/RegistrationController.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/sample/SHA256Class.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/Mail.java" />
+        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" />
+        <option value="$PROJECT_DIR$/src/sample/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ServerVacoomProtocol.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/RandomStringGenerator.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/QRcodeGenerator/QRgenerate.java" />
+        <option value="$PROJECT_DIR$/src/sample/StartWindowController.java" />
         <option value="$PROJECT_DIR$/src/sample/ClientMsgThread.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/Server.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseUser.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/Database/SingletonDatabaseConnection.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/MailUser.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java" />
       </list>
     </option>
   </component>
@@ -323,7 +332,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -334,38 +342,19 @@
             <path>
               <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="testFX_jar" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
@@ -374,10 +363,43 @@
               <item name="sample" type="462c0819:PsiDirectoryNode" />
               <item name="serverSide" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="serverSide" type="462c0819:PsiDirectoryNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="serverSide" type="462c0819:PsiDirectoryNode" />
+              <item name="Mail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="serverSide" type="462c0819:PsiDirectoryNode" />
+              <item name="QRcodeGenerator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="serverSide" type="462c0819:PsiDirectoryNode" />
+              <item name="ServerXmlProtocol" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -390,11 +412,11 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1616425279895" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1616926196410" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample/fxml" />
+    <property name="last_opened_file_path" value="E:/ДонНТУ (учёба)/6й курс 2й семестр/Тест проектов/JavaFXDropTest" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -404,8 +426,18 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\sample\fxml" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="sample.serverSide.Mail" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="sample" />
+      <recent name="" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\lib" />
+      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\img" />
       <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\sample\fxml" />
+      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\css" />
       <recent name="E:\Java Project\testFX\src\style" />
     </key>
   </component>
@@ -454,6 +486,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Mail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sample.serverSide.Mail.Mail" />
+      <module name="testFX" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.serverSide.Mail.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="testFX" />
@@ -476,7 +522,21 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.serverSide.*" />
+          <option name="PATTERN" value="sample.serverSide.Mail.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TableCreater" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sample.serverSide.TableCreater" />
+      <module name="testFX" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sample.serverSide.Mail.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -522,6 +582,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ServerMain" />
+        <item itemvalue="Application.Mail" />
+        <item itemvalue="Application.TableCreater" />
         <item itemvalue="Application.DH" />
       </list>
     </recent_temporary>
@@ -574,12 +636,16 @@
       <workItem from="1615950749429" duration="12202000" />
       <workItem from="1615978167517" duration="1603000" />
       <workItem from="1616333336101" duration="629000" />
-      <workItem from="1616401285691" duration="8910000" />
+      <workItem from="1616401285691" duration="12910000" />
+      <workItem from="1616487876492" duration="32002000" />
+      <workItem from="1616579883485" duration="954000" />
+      <workItem from="1616678457439" duration="1239000" />
+      <workItem from="1616921528517" duration="1838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256575000" />
+    <option name="totallyTimeSpent" value="296608000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -591,13 +657,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.3139183" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.25416037" />
       <window_info id="Structure" order="5" weight="0.25" />
       <window_info id="Favorites" order="6" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3289689" />
@@ -605,8 +672,8 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="Debug" order="6" visible="true" weight="0.30932897" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.22422259" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.30932897" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.3289689" />
@@ -702,33 +769,105 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Main.java</url>
-          <line>22</line>
+          <line>46</line>
           <properties />
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Main.java</url>
-          <line>19</line>
-          <properties />
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Main.java</url>
-          <line>24</line>
+          <line>48</line>
           <properties />
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ClientMsgThread.java</url>
-          <line>296</line>
+          <line>258</line>
           <properties />
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/serverSide/Server.java</url>
-          <line>141</line>
+          <url>file://$PROJECT_DIR$/src/sample/StartWindowController.java</url>
+          <line>50</line>
           <properties />
-          <option name="timeStamp" value="69" />
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/StartWindowController.java</url>
+          <line>62</line>
+          <properties />
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/QRcodeGenerator/QRgenerate.java</url>
+          <line>70</line>
+          <properties />
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/QRcodeGenerator/QRgenerate.java</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java</url>
+          <line>30</line>
+          <properties />
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java</url>
+          <line>62</line>
+          <properties />
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ClientMsgThread.java</url>
+          <line>197</line>
+          <properties />
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ClientMsgThread.java</url>
+          <line>138</line>
+          <properties />
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ClientMsgThread.java</url>
+          <line>117</line>
+          <properties />
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java</url>
+          <line>14</line>
+          <properties />
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java</url>
+          <line>63</line>
+          <properties />
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java</url>
+          <line>73</line>
+          <properties />
+          <option name="timeStamp" value="93" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -741,6 +880,28 @@
     <expressions id="breakpointCondition">
       <expression>
         <expression-string>if(m==1848)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="setValue">
+      <expression>
+        <expression-string>&quot;&lt;img height=\&quot;250\&quot; width=\&quot;250\&quot;src=\&quot;data:image/png;base64, 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\&quot;/&gt;&quot;</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;1331df919c4f7d7b107026de27b66954f5b0fc78720970499bf58ae77754f60b3&quot;</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;02eca1543913718596be417cc878c5cacaaafb21d24d9938f41a1e139f6be68e4&quot;</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;c42db0b081e87306412e20771a41aa94c96643a28765f2b17b17f0a83013ee637&quot;</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -759,161 +920,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/event/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="197" selection-start-line="197" selection-end-line="197" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/style/ScrollPane.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/layout/Region.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1176" column="24" selection-start-line="1176" selection-start-column="24" selection-end-line="1176" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/SmileElem.java" />
-    <entry file="file://$PROJECT_DIR$/src/style/smile.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/style/smileElem.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41055">
-          <caret line="2569" selection-start-line="2569" selection-end-line="2569" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/style/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4233">
-          <caret line="249" column="34" selection-start-line="249" selection-start-column="34" selection-end-line="249" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/x_0y_18.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/x_0y_0.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/TextUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/img/smile/emojisprite_1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/img/smile/sheet_twitter_16.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/img/smile/emojisprite_4.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/img/smile/emojisprite_3.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/img/smile/emojisprite_0.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/conf/smile.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/fxml/smileElem.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="195" selection-start-line="8" selection-start-column="195" selection-end-line="8" selection-end-column="195" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/img/smile/sheet_twitter_32.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/control/TextInputControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="1333" selection-start-line="1333" selection-end-line="1333" />
-          <folding>
-            <element signature="e#51313#51314#0" expanded="true" />
-            <element signature="e#51383#51384#0" expanded="true" />
-            <element signature="e#51421#51422#0" expanded="true" />
-            <element signature="e#51468#51469#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/fxml/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8432">
-          <caret line="496" column="20" selection-start-line="496" selection-start-column="20" selection-end-line="496" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8126">
-          <caret line="503" selection-start-line="503" selection-end-line="503" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/FlowFieldPositionHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#212#213#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#328#329#0" expanded="true" />
-            <element signature="e#365#366#0" expanded="true" />
-            <element signature="e#401#402#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/SmileCreater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="90" column="12" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2553#2554#0" expanded="true" />
-            <element signature="e#2589#2590#0" expanded="true" />
-            <element signature="e#2635#2636#0" expanded="true" />
-            <element signature="e#2672#2673#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ImageViewHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -925,16 +931,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/smile.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/fxml/sample1.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/SmileController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -956,59 +958,9 @@
     <entry file="file://$PROJECT_DIR$/src/resource/conf/smile — копия.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/SmileElemController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="135" selection-start-line="135" selection-end-line="135" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/AES256Serv.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#560#561#0" expanded="true" />
-            <element signature="e#592#593#0" expanded="true" />
-            <element signature="e#645#646#0" expanded="true" />
-            <element signature="e#687#688#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/DH.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3332">
-          <caret line="61" column="23" lean-forward="true" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1221#1222#0" expanded="true" />
-            <element signature="e#1254#1255#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/AES256.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#579#580#0" expanded="true" />
-            <element signature="e#632#633#0" expanded="true" />
-            <element signature="e#674#675#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/serverSide/DHServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
+        <state relative-caret-position="1258">
           <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1022,41 +974,283 @@
             <element signature="e#966#967#0" expanded="true" />
             <element signature="e#1004#1005#0" expanded="true" />
             <element signature="e#1034#1035#0" expanded="true" />
-            <element signature="e#2508#2509#0" expanded="true" />
-            <element signature="e#2538#2539#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2626#2627#0" expanded="true" />
-            <element signature="e#2664#2665#0" expanded="true" />
-            <element signature="e#2694#2695#0" expanded="true" />
-            <element signature="e#2744#2745#0" expanded="true" />
-            <element signature="e#2782#2783#0" expanded="true" />
-            <element signature="e#2820#2821#0" expanded="true" />
-            <element signature="e#2850#2851#0" expanded="true" />
-            <element signature="e#2900#2901#0" expanded="true" />
-            <element signature="e#2938#2939#0" expanded="true" />
-            <element signature="e#2979#2980#0" expanded="true" />
-            <element signature="e#3012#3013#0" expanded="true" />
-            <element signature="e#3068#3069#0" expanded="true" />
-            <element signature="e#3112#3113#0" expanded="true" />
-            <element signature="e#3153#3154#0" expanded="true" />
-            <element signature="e#3186#3187#0" expanded="true" />
-            <element signature="e#3242#3243#0" expanded="true" />
-            <element signature="e#3286#3287#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/AES256.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/SmileElemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/TableCreater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/fxml/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4553">
+          <caret line="496" column="20" selection-start-line="496" selection-start-column="20" selection-end-line="496" selection-end-column="20" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4017">
+          <caret line="503" selection-start-line="503" selection-end-line="503" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/img/logo5_1.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/img/X_white.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/img/X.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/css/input.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1819">
+          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/css/separator.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/fxml/startWindow.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoginController.java" />
+    <entry file="file://$PROJECT_DIR$/src/resource/img/traylogo_Q3d_icon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/img/TrayLogo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ResizeHelper.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/img/t1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/fxml/workArea.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/sample/fxml/registration.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/RegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+          <folding>
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3317#3318#0" expanded="true" />
+            <element signature="e#3373#3374#0" expanded="true" />
+            <element signature="e#3402#3403#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/fxml/login.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="102" selection-start-line="18" selection-start-column="98" selection-end-line="18" selection-end-column="102" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/XmlProtocol.java" />
+    <entry file="file://$PROJECT_DIR$/src/sample/DH.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1221#1222#0" expanded="true" />
+            <element signature="e#1254#1255#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/SHA256Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/img/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource/img/logo125.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QR.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/AES256Serv.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/RandomStringGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="39" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ServerVacoomProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ThreadClientInfoSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-680">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/StartWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/QRcodeGenerator/QRgenerate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#774#775#0" expanded="true" />
+            <element signature="e#803#804#0" expanded="true" />
+            <element signature="e#854#855#0" expanded="true" />
+            <element signature="e#890#891#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="317" column="52" selection-start-line="317" selection-start-column="52" selection-end-line="317" selection-end-column="52" />
+        <state relative-caret-position="3604">
+          <caret line="258" selection-start-line="258" selection-end-line="258" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2346">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1868#1869#0" expanded="true" />
+            <element signature="e#1901#1902#0" expanded="true" />
+            <element signature="e#1957#1958#0" expanded="true" />
+            <element signature="e#2001#2002#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28101">
+          <caret line="1773" selection-start-line="1773" selection-end-line="1773" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1598">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+        <state relative-caret-position="119">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1065,24 +1259,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="13" column="69" lean-forward="true" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="69" />
+        <state relative-caret-position="68">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1255#1256#0" expanded="true" />
-            <element signature="e#1304#1305#0" expanded="true" />
-            <element signature="e#1346#1347#0" expanded="true" />
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1420#1421#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Mail/MailUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="157" selection-start-line="157" selection-end-line="157" />
+        <state relative-caret-position="408">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="e#233#234#0" expanded="true" />
+            <element signature="e#266#267#0" expanded="true" />
+            <element signature="e#318#319#0" expanded="true" />
+            <element signature="e#362#363#0" expanded="true" />
+            <element signature="e#397#398#0" expanded="true" />
+            <element signature="e#428#429#0" expanded="true" />
+            <element signature="e#476#477#0" expanded="true" />
+            <element signature="e#516#517#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <element signature="e#238#239#0" expanded="true" />
+            <element signature="e#278#279#0" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#341#342#0" expanded="true" />
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#408#409#0" expanded="true" />
+            <element signature="e#440#441#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2295">
+          <caret line="135" column="19" selection-start-line="135" selection-start-column="19" selection-end-line="135" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/SingletonDatabaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1148,6 +1379,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -1155,7 +1387,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>json-simple-1.1.1</last-edited>
+          <last-edited>antlr-runtime-3.5.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -20,7 +20,7 @@ import java.util.Base64;
 
 public class ClientMsgThread extends Thread {
     private volatile String protocolMsg = "";
-    private volatile boolean needSend = true;
+    private volatile boolean needSend = false;
     private volatile String onlineMsg;
     private InetAddress ipAddress;
     private Socket socket = null;
@@ -34,7 +34,7 @@ public class ClientMsgThread extends Thread {
     byte inputMsg[];//входящие сообщение
     int len;
     String msgFromServer;
-    private volatile boolean serverIsOnline = false;
+    public volatile boolean serverIsOnline = false;
   //  ClientParseProtocol parser;
     private volatile int answerGetCode = -1;
     private volatile boolean isRegistreUser = false;
@@ -47,6 +47,8 @@ public class ClientMsgThread extends Thread {
     private DH diffie;
     private boolean firstStep = false;
     private AES256 aes256;
+    private boolean isAESOk=false;//сошлись ли ключи в aes
+    private SHA256Class sha256Class;
 
     public boolean isUserLogin() {
         return userLogin;
@@ -135,7 +137,7 @@ public class ClientMsgThread extends Thread {
                 sout = socket.getOutputStream();
                 in = new DataInputStream(sin);
                 out = new DataOutputStream(sout);
-
+                sha256Class = new SHA256Class();
                 sendDHStartKey();
             } catch (Exception e) {
                 return false;
@@ -162,71 +164,39 @@ public class ClientMsgThread extends Thread {
 
     }
 
-    private String getSHA256(String msg)
-    {
-        MessageDigest md = null;
+
+
+    private void senMsgToServer(String msg) {
         try {
-            md = MessageDigest.getInstance("SHA-256");
-
-            md.update(msg.getBytes());
-
-            byte byteData[] = md.digest();
-            StringBuffer sb = new StringBuffer();
-
-            for(int i=0;i<byteData.length;i++)
+            System.out.println("[Клиент] Отправил сообщение: " +msg);
+            if(isAESOk)//если мы можем шифровать AES (ключи сошлись)
             {
-                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));// ??
-            }
-
-            String getHexValue = sb.toString();
-            System.out.println("SHA256("+msg+") = "+getHexValue);
-            return  getHexValue;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-    }
-    private byte[] getByteSHA256(String msg)
-    {
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-
-            md.update(msg.getBytes());
-
-            byte byteData[] = md.digest();
-
-            return  byteData;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-
-    private void senMsgToServer() {
-      /*  try {
-            if (!pubKeySend)//если свой публичный мы серваку не отправляли, то
+                bytemsg = aes256.makeAes(msg.getBytes(), Cipher.ENCRYPT_MODE);
+                System.out.println("[Клиент] Отправил ЗАШИФРОВАННОЕ сообщение: " +new String(bytemsg));
+                len = bytemsg.length;
+            }else
             {
-                bytemsg = cryptoRSA.getPublicKey().getEncoded();
-                pubKeySend = true;
-            } else {
-                if (!protocolMsg.equals("")) {
-                    bytemsg = cryptoRSA.encryptMsg(protocolMsg, cryptoRSA.getPublicKeyServer());
-                    protocolMsg = "";
-                }
+                bytemsg = msg.getBytes();
+                len = bytemsg.length;
             }
-            len = bytemsg.length;
             out.writeInt(len);
             out.write(bytemsg, 0, len); // отправляю байты
         } catch (IOException e) {
-        }*/
+            System.out.println("[Клиент] Ошибка отправки сообщения");
+            e.printStackTrace();
+        }
     }
 
+    private void resetFlags()
+    {
+        isDHFully = false;
+        firstStep = false;
+        isAESOk=false;
+    }
     @Override
     public void run() {
+        serverIsOnline = false;
+
         do {
             try {
                 Thread.sleep(300);        //Приостановка потока
@@ -234,6 +204,7 @@ public class ClientMsgThread extends Thread {
                 e.printStackTrace();
             }
         } while (!starting());
+        serverIsOnline=true;
 
         do {
             if (!Thread.interrupted())    //Проверка прерывания
@@ -246,22 +217,13 @@ public class ClientMsgThread extends Thread {
                         sec = 30;
                     }
                 }
-              /*  if (socket.isOutputShutdown())//если соединение есть
-                {
-                    serverIsOnline = false;
-                    do {
-                        try {
-                            Thread.sleep(300);        //Приостановка потока
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } while (!starting());
-                    serverIsOnline = true;
-                }*/
+
+
+
 
                 if (needSend)//если что-то нужно отравить
                 {
-                    senMsgToServer();
+                   senMsgToServer(protocolMsg);
                     needSend = false;
                 } else {
                     // return;
@@ -294,12 +256,13 @@ public class ClientMsgThread extends Thread {
                             }else
                             {
                                 isDHFully=true;
-                                String halfSha256SharedKey = getSHA256(diffie.getSharedKeyA().toString());
+                                String halfSha256SharedKey = sha256Class.getSHA256(diffie.getSharedKeyA().toString());
                                 halfSha256SharedKey = halfSha256SharedKey.substring(0,halfSha256SharedKey.length()/2);
                                 if(halfSha256SharedKey.equals(msgFromServer))
                                 {
+                                    isAESOk=true;
                                     System.out.println("[Клиент] Общие секретные ключи совпали!");
-                                    aes256 = new AES256(getByteSHA256(diffie.getSharedKeyA().toString()));
+                                    aes256 = new AES256(sha256Class.getByteSHA256(diffie.getSharedKeyA().toString()));
                                     System.out.println();
 
                                     /*TestCode*/
@@ -309,18 +272,24 @@ public class ClientMsgThread extends Thread {
                                     System.out.println(new String(shifr));
                                     byte[] src = aes256.makeAes(shifr, Cipher.DECRYPT_MODE);
                                     System.out.println(new String(src));*/
+                                    senMsgToServer("AES-OK");
+                                    /*
+                                    String mes = "AES-OK";
+                                    bytemsg = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);
+                                    len = bytemsg.length;
+                                    out.writeInt(len);
+                                    out.write(bytemsg, 0, len); // отправляю байты
+                                    System.out.println("[Клиент] Отправил AES-OK");*/
 
                                 }else
                                 {
                                     System.out.println("[Клиент] Общие секретные НЕ ключи совпали!!");
+                                    resetFlags();
+                                    senMsgToServer("AES-ERR");
+                                    sendDHStartKey();
                                 }
 
-                                String mes = "AES-OK";
-                                bytemsg = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);
-                                len = bytemsg.length;
-                                out.writeInt(len);
-                                out.write(bytemsg, 0, len); // отправляю байты
-                                System.out.println("[Клиент] Отправил AES-OK");
+
                             }
                         }
 
