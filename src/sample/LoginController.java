@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import sample.ClientXmlPorocol.VacoomProtocol;
+import sample.qr.QrCheckController;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class LoginController extends VacoomProtocol {
     public AnchorPane loginXML;
     public Controller crt;
     public AnchorPane registration = null;
-    public AnchorPane refreshPsw = null;
+    public AnchorPane qrCheck = null;
     public PasswordField password;
     StartWindowController parents;
     LoginController thisNode;
@@ -30,7 +31,7 @@ public class LoginController extends VacoomProtocol {
     @FXML
     private void initialize() throws IOException {
         loadRegistration();
-        loadRefreshingPassword();
+        loadQrCheck();
     }
 
     public void setController(Controller controller){
@@ -60,20 +61,20 @@ public class LoginController extends VacoomProtocol {
         }
     }
 
-    public void loadRefreshingPassword()
-    {/*
+    public void loadQrCheck()
+    {
         FXMLLoader loader = new FXMLLoader();
-        RefreshPasswordController refresh = new RefreshPasswordController();
+        QrCheckController refresh = new QrCheckController();
         refresh.setParent(thisNode);
-        refresh.setThisNode(refresh);
-        loader = new FXMLLoader(getClass().getResource("fxmls/refreshingPswd.fxml"));
+        refresh.setNode(refresh);
+        loader = new FXMLLoader(getClass().getResource("fxmls/qrCheck.fxml"));
         loader.setController(refresh);
 
         try {
-            refreshPsw= (AnchorPane) loader.load();
+            qrCheck= (AnchorPane) loader.load();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     public void setParent  (StartWindowController ctr)
@@ -112,6 +113,7 @@ public class LoginController extends VacoomProtocol {
         }
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser(input.getText(),new SHA256Class().getSHA256(password.getText())));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+        loginXML.getChildren().add(qrCheck);
 
         /*
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(autorizationUser
@@ -153,7 +155,7 @@ public class LoginController extends VacoomProtocol {
 
     public void refreshPassword(MouseEvent mouseEvent) {
 
-    loginXML.getChildren().add(refreshPsw);
+    //loginXML.getChildren().add(qrCheck);
     }
 
     public void startRegistration(MouseEvent mouseEvent) {
