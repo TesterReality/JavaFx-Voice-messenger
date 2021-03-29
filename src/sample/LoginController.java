@@ -67,7 +67,7 @@ public class LoginController extends VacoomProtocol {
         QrCheckController refresh = new QrCheckController();
         refresh.setParent(thisNode);
         refresh.setNode(refresh);
-        loader = new FXMLLoader(getClass().getResource("fxmls/qrCheck.fxml"));
+        loader = new FXMLLoader(getClass().getResource("fxml/qrCheck.fxml"));
         loader.setController(refresh);
 
         try {

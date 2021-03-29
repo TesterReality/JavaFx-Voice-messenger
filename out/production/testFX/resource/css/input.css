@@ -15,6 +15,21 @@
     -fx-border-color:#00a896;
 }
 
+.qrCode{
+    -fx-background-color:  transparent;
+    -fx-border-color: #5b7383;
+    -fx-border-radius:4px;
+    -fx-text-fill: white;
+
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+    -fx-background-size: 20px 20px;
+}
+
+.qrCode:focused{
+    -fx-border-color:#00a896;
+}
+
 .pswd{
     -fx-background-color:  transparent;
     -fx-border-color: #5b7383;
