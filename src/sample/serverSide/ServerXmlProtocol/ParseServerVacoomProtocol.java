@@ -1,7 +1,9 @@
-package sample.serverSide;
+package sample.serverSide.ServerXmlProtocol;
 
 import sample.serverSide.Database.DatabaseLogic;
 import sample.serverSide.Mail.Mail;
+import sample.serverSide.RandomStringGenerator;
+import sample.serverSide.Server;
 import sample.serverSide.ServerXmlProtocol.ServerVacoomProtocol;
 
 import javax.crypto.Cipher;

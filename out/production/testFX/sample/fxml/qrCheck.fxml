@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="0.0" prefHeight="350.0" prefWidth="264.0" style="-fx-background-color: #25333d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="thisAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="0.0" prefHeight="350.0" prefWidth="264.0" style="-fx-background-color: #25333d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="YourQrLable" layoutX="88.0" layoutY="118.0" text="Ваш QR-код" textFill="WHITE">
          <font>
@@ -26,12 +26,12 @@
             <Image url="@code.png" />
          </image>
       </ImageView>
-      <Button layoutX="140.0" layoutY="281.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="80.0" styleClass="login-button" stylesheets="@../../resource/css/input.css" text="Далее">
+      <Button fx:id="nextPage" disable="true" layoutX="140.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#toMainUserPage" prefHeight="34.0" prefWidth="80.0" styleClass="login-button" stylesheets="@../../resource/css/input.css" text="Далее">
          <font>
             <Font name="Comic Sans MS" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="46.0" layoutY="281.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="80.0" styleClass="login-button" stylesheets="@../../resource/css/input.css" text="Назад">
+      <Button layoutX="46.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#toLoginPage" prefHeight="34.0" prefWidth="80.0" styleClass="login-button" stylesheets="@../../resource/css/input.css" text="Назад">
          <font>
             <Font name="Comic Sans MS" size="12.0" />
          </font>

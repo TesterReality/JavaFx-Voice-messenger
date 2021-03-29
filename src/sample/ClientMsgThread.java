@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.control.Alert;
+import sample.ClientXmlPorocol.ClientParseProtocol;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -49,6 +50,7 @@ public class ClientMsgThread extends Thread {
     private AES256 aes256;
     private boolean isAESOk=false;//сошлись ли ключи в aes
     private SHA256Class sha256Class;
+    private ClientParseProtocol parserProtocol;
 
     public boolean isUserLogin() {
         return userLogin;
@@ -273,6 +275,7 @@ public class ClientMsgThread extends Thread {
                                     byte[] src = aes256.makeAes(shifr, Cipher.DECRYPT_MODE);
                                     System.out.println(new String(src));*/
                                     senMsgToServer("AES-OK");
+                                    parserProtocol = new ClientParseProtocol();
                                     /*
                                     String mes = "AES-OK";
                                     bytemsg = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);
@@ -291,6 +294,15 @@ public class ClientMsgThread extends Thread {
 
 
                             }
+                        }else
+                        {
+                            //Если мы тут, значит обменялись ключами уже
+                            System.out.println("[Расшифрованное сообщение от сервера]:");
+                            inputMsg=aes256.makeAes(inputMsg,Cipher.DECRYPT_MODE);
+                            msgFromServer = new String(inputMsg);
+                            System.out.println(msgFromServer);
+                            answerGetCode =parserProtocol.parseRequest(msgFromServer);
+
                         }
 
 

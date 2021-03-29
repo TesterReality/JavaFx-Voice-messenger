@@ -1,22 +1,13 @@
 package sample.serverSide;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import sample.serverSide.ServerXmlProtocol.ParseServerVacoomProtocol;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import java.math.BigInteger;
-import java.net.InetAddress;
 
 import java.io.*;
 import java.net.*;
-import java.security.InvalidKeyException;
-import java.security.KeyFactory;
-import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -164,8 +155,9 @@ public class Server extends Thread {
 
                                     //Теперь Просто принимаем команды от сервера
                                     inputMsg = aes256Serv.makeAes(inputMsg, Cipher.DECRYPT_MODE);
-                                    line = new String(inputMsg);
-                                    parseServerVacoomProtocol.parseRequest(line);
+                                    line = new String(inputMsg);//расшифрованное сообщение тут
+                                    line = parseServerVacoomProtocol.parseRequest(line);//тут ответ от сервера
+                                    if(line!=null) sendMessage(line);
                                 }
                             }catch (NullPointerException nu)//не удастся расшифровать сообщение только 1 случае - если оно были либо неверно зашифрованно, либо не было зашифрованно
                             {
@@ -187,6 +179,19 @@ public class Server extends Thread {
         }
     }
 
+    private void sendMessage(String msg)
+    {
+        try {
+            outputMsg = aes256Serv.makeAes(msg.getBytes(), Cipher.ENCRYPT_MODE);
+            dos.writeInt(outputMsg.length);
+            dos.write(outputMsg, 0, outputMsg.length);
+            System.out.println("Сервер отправил клиенту ответ");
+
+        }catch (IOException e) {
+            System.out.println("[СЕРВЕР] Ошибка отправки сообщения");
+            e.printStackTrace();
+        }
+    }
     private void resetFlags()
     {
          haveDH = false;

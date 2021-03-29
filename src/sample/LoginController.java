@@ -113,13 +113,13 @@ public class LoginController extends VacoomProtocol {
         }
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser(input.getText(),new SHA256Class().getSHA256(password.getText())));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
-        loginXML.getChildren().add(qrCheck);
+       // loginXML.getChildren().add(qrCheck);
 
         /*
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(autorizationUser
                 ("127.0.0.1","authorization",input.getText(),md5.md5Custom(password.getText())));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);*/
 
         new Thread(() -> {
 
@@ -131,26 +131,21 @@ public class LoginController extends VacoomProtocol {
                 }
             } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
             ErrorMsg t = new ErrorMsg();
-            if( t.checkUser()==0 )
+            if( t.checkLogin()==0 )
             {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
-                            parents.loadWorkrArea(input.getText());
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
+                        // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
+                        // parents.loadWorkrArea(input.getText());
+                        loginXML.getChildren().add(qrCheck);
                     }
                 });
             }
 
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
         }).start();
-*/
+
     }
 
     public void refreshPassword(MouseEvent mouseEvent) {

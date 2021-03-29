@@ -5,11 +5,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -31,6 +33,10 @@ public class QrCheckController {
     public ImageView qrInside;
     public Label dropHereQrLabel;
     public Label YourQrLable;
+    public Button nextPage;
+    public TextField codeInput;
+    public AnchorPane thisAnchorPane;
+
     Image imgOk = new Image("resource/img/Qr/qrIMGok.png");
     Image imgLoad = new Image("resource/img/Qr/qrIMGload.png");
     ImageChooser chooser;
@@ -62,21 +68,12 @@ public class QrCheckController {
 
     @FXML
     public void initialize() {
-//        FileDrag fd = new FileDrag();
-       // drugs = fd;
+
         chooser = new ImageChooser();
         chooser.setAvailableFormats("*.png"); // Указываем форматы для FileChooser.
-
-
-
-
-
-
         drugs.setOnDragEntered(
                 (DragEvent event) -> {
                     if(event.getSource() == drugs && event.getDragboard().hasFiles()) {
-                       // drugs.setFill(Color.DARKGREEN);
-
                         drugs.setFill(new ImagePattern(imgLoad));
                         qrInside.setImage(null);
                         visibleQrLabel(true);
@@ -145,5 +142,18 @@ public class QrCheckController {
         }
 
 
+    }
+
+    public void toMainUserPage(MouseEvent mouseEvent) {
+    }
+
+    public void toLoginPage(MouseEvent mouseEvent) {
+        /*
+        if(thisAnchorPane.getChildren().size()>1)
+        {
+            thisAnchorPane.getChildren().remove(thisAnchorPane.getChildren().size()-1);
+        }*/
+
+        parents.backToLogin();
     }
 }
