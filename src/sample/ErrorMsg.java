@@ -41,7 +41,7 @@ public class ErrorMsg {
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка кода подтверждения","Неверный код регистрации! (возможно устарел)");
                 return 1;
             case 0:
-                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Код регистрации","Данные из QR-кода верный. Приветствуем Вас!");
+                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Код регистрации","Данные из QR-кода верные");
                 return 0;
         }
         return 1;

@@ -126,9 +126,15 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                         return  sendAnswer(commands[3],"error_code");
                     }
                 }
-                if(suffix[5].equals("email"))//Значит восстанавливаем пароль
+                if(suffix[5].equals("email"))//Значит регистрируемся
                 {
-
+                    if(checkUserUnregisterCode(commands[4],commands[5]))
+                    {
+                        return sendAnswer(commands[3],"ok");
+                    }else
+                    {
+                        return  sendAnswer(commands[3],"error_code");
+                    }
                 }
                 break;
             }

@@ -72,6 +72,26 @@ public class DatabaseLogic {
         refreshConnect();
         return true;
     }
+    /*Вернет true если в таблице незарегестрированных пользователей код соответствует нужному мейлу*/
+    public boolean checkUserUnregisterCode(String code, String mail) {
+        refreshConnect();
+        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+            CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode(?)}");
+            cstmt.setString(1, mail);
+            cstmt.setString(2, code);
+            cstmt.registerOutParameter(1, Types.BOOLEAN);
+            cstmt.execute();
+            boolean isOk = cstmt.getBoolean(1);
+            return isOk;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public boolean checkMailIsUnregister(String mail)
             throws NoSuchPaddingException, NoSuchAlgorithmException {

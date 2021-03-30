@@ -2,6 +2,7 @@ package sample.qr;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,10 +23,7 @@ import javafx.stage.Stage;
 import sample.*;
 import sample.ClientXmlPorocol.VacoomProtocol;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 
 public class QrCheckController extends VacoomProtocol {
 
@@ -49,6 +47,7 @@ public class QrCheckController extends VacoomProtocol {
    // LoginController parents;
 
     QrCheckController thisNode;
+    AnchorPane regUser=null;
     QRscanner qRscanner;
     String code;
 
@@ -225,11 +224,58 @@ public class QrCheckController extends VacoomProtocol {
         }
         if(parents instanceof RegistrationController)
         {
+            RegistrationController registrationController = (RegistrationController) parents;
+
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCode(registrationController.email.getText(), code, true));
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+
+            new Thread(() -> {
+
+                do {
+                    try {
+                        Thread.sleep(400);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                ErrorMsg t = new ErrorMsg();
+                if (t.checkCode() == 0) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("[Клиент] Все прошло хорошо. QR проверен. Переходим к регистрации");
+                            loadRegistrationUser();
+                            thisAnchorPane.getChildren().add(regUser);
+
+                        }
+                    });
+                }
+
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+            }).start();
+
             System.out.println("Мы подтверждает неактивированный мейл");
         }
 
     }
 
+    private void loadRegistrationUser()
+    {
+        FXMLLoader loader = new FXMLLoader();
+        RegistrationUserController register =
+                new RegistrationUserController();
+        register.setParent(thisNode);
+        register.setThisNode(register);
+        loader = new FXMLLoader(getClass().getResource("../fxml/registrationUser.fxml"));
+        loader.setController(register);
+
+        try {
+            regUser = (AnchorPane) loader.load();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void toLoginPage(MouseEvent mouseEvent) {
         /*
         if(thisAnchorPane.getChildren().size()>1)
