@@ -23,6 +23,7 @@ public class LoginController extends VacoomProtocol {
     public PasswordField password;
     StartWindowController parents;
     LoginController thisNode;
+    FXMLLoader loaderQr;
 
     public LoginController() {
 
@@ -63,15 +64,15 @@ public class LoginController extends VacoomProtocol {
 
     public void loadQrCheck()
     {
-        FXMLLoader loader = new FXMLLoader();
+        loaderQr = new FXMLLoader();
         QrCheckController refresh = new QrCheckController();
         refresh.setParent(thisNode);
         refresh.setNode(refresh);
-        loader = new FXMLLoader(getClass().getResource("fxml/qrCheck.fxml"));
-        loader.setController(refresh);
+        loaderQr = new FXMLLoader(getClass().getResource("fxml/qrCheck.fxml"));
+        loaderQr.setController(refresh);
 
         try {
-            qrCheck= (AnchorPane) loader.load();
+            qrCheck= (AnchorPane) loaderQr.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -138,6 +139,7 @@ public class LoginController extends VacoomProtocol {
                     public void run() {
                         // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
                         // parents.loadWorkrArea(input.getText());
+                        loadQrCheck();
                         loginXML.getChildren().add(qrCheck);
                     }
                 });

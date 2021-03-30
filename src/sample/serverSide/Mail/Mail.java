@@ -23,9 +23,9 @@ public class Mail {
     private  String mailServer = "";
     private  String mailPswd="";
     private static int randomNum;
-
+    MailUser mailUser;
     public Mail() {
-        MailUser mailUser = new MailUser();
+         mailUser = new MailUser();
         this.mailServer = mailUser.getMailServer();
         this.mailPswd = mailUser.getMailPswd();
     }
@@ -52,7 +52,7 @@ public class Mail {
         Session session = Session.getInstance(props, null);
         Message msg = new MimeMessage(session);
 
-        msg.setFrom(new InternetAddress("vdiploma@mail.ru"));
+        msg.setFrom(new InternetAddress(mailUser.getMailServer()));
         msg.setSubject("Код активации");
 
         msg.setRecipients(Message.RecipientType.TO,

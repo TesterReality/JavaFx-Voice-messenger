@@ -51,6 +51,16 @@ public class ClientMsgThread extends Thread {
     private boolean isAESOk=false;//сошлись ли ключи в aes
     private SHA256Class sha256Class;
     private ClientParseProtocol parserProtocol;
+    private String QrAnswerDercypto = null;
+
+
+    public String getQrAnswerDercypto() {
+        return QrAnswerDercypto;
+    }
+
+    public void setQrAnswerDercypto(String qrAnswerDercypto) {
+        QrAnswerDercypto = qrAnswerDercypto;
+    }
 
     public boolean isUserLogin() {
         return userLogin;
@@ -189,6 +199,22 @@ public class ClientMsgThread extends Thread {
         }
     }
 
+    public String decryQr(String qrText)//расшифровываем qr
+    {
+
+        byte[] byteText = qrText.getBytes();
+        byte[] decodedString = Base64.getDecoder().decode(byteText);
+        byte[] decryText = null;
+        try {
+            decryText = aes256.makeAes(decodedString,Cipher.DECRYPT_MODE);
+        }catch (Exception e)
+        {
+            return null;
+        }
+        if(decryText==null) return null;
+         return new String(decryText);
+
+    }
     private void resetFlags()
     {
         isDHFully = false;

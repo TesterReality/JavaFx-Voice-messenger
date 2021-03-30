@@ -68,6 +68,7 @@ public class QRgenerate {
 
     private void generateQR(String base64msg)
     {
+        System.out.println("[СЕРВЕР] Код в qr в base64 = ["+base64msg+"]");
         Map hints = new HashMap();
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
         QRCodeWriter writer = new QRCodeWriter();

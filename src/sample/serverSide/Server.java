@@ -153,7 +153,7 @@ public class Server extends Thread {
                                 }else
                                 {
 
-                                    //Теперь Просто принимаем команды от сервера
+                                    //Теперь Просто принимаем команды от клиента
                                     inputMsg = aes256Serv.makeAes(inputMsg, Cipher.DECRYPT_MODE);
                                     line = new String(inputMsg);//расшифрованное сообщение тут
                                     line = parseServerVacoomProtocol.parseRequest(line);//тут ответ от сервера

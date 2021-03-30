@@ -1,8 +1,7 @@
 package sample;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
@@ -29,9 +28,20 @@ public class AES256 {
             cipher.init(cipherMode, this.secretKey);
             byte [] output = cipher.doFinal(rawMessage);
             return output;
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (BadPaddingException e){
+            System.out.println("[КЛИЕНТ] Не удалось расшифровать (вероятнее всего QR)");
             return null;
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
         }
+        System.out.println("[КЛИЕНТ] Возникла ошибка при расшифровке");
+        return null;
+
     }
 }

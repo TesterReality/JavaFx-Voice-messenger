@@ -111,17 +111,16 @@ public class DatabaseLogic {
         return false;
     }
 
-    public boolean checkUserActivatedCode(String code, String mail) {
+    public boolean checkUserActivatedCode(String code, String login) {
         refreshConnect();
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode_activated(?)}");
-            cstmt.setString(1, mail);
+            cstmt.setString(1, login);
             cstmt.setString(2, code);
-            cstmt.registerOutParameter(1, Types.VARCHAR);
-            cstmt.executeUpdate();
-            String answer = cstmt.getString(1);
-            if (answer == null) return false;
-            if (answer.equals(code)) return true;
+            cstmt.registerOutParameter(1, Types.BOOLEAN);
+            cstmt.execute();
+            boolean isCodeEquals = cstmt.getBoolean(1);
+            if (isCodeEquals) return true;
             else return false;
         } catch (SQLException e) {
             e.printStackTrace();

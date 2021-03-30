@@ -1,5 +1,6 @@
 package sample.qr;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,15 +19,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import sample.ClientXmlPorocol.VacoomProtocol;
+import sample.ErrorMsg;
 import sample.LoginController;
 import sample.StartWindowController;
+import sample.ThreadClientInfoSingleton;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class QrCheckController {
+public class QrCheckController extends VacoomProtocol {
 
 
     public Rectangle drugs;
@@ -38,11 +42,16 @@ public class QrCheckController {
     public AnchorPane thisAnchorPane;
 
     Image imgOk = new Image("resource/img/Qr/qrIMGok.png");
+    Image imgErr = new Image("resource/img/Qr/qrIMGErr.png");
     Image imgLoad = new Image("resource/img/Qr/qrIMGload.png");
+    Image imgDefault = new Image("resource/img/Qr/qrIMG.png");
+
     ImageChooser chooser;
     BorderPane root;
     LoginController parents;
     QrCheckController thisNode;
+    QRscanner qRscanner;
+    String code;
 
     private void visibleQrLabel(boolean visible)
     {
@@ -68,7 +77,7 @@ public class QrCheckController {
 
     @FXML
     public void initialize() {
-
+        qRscanner = new QRscanner();
         chooser = new ImageChooser();
         chooser.setAvailableFormats("*.png"); // Указываем форматы для FileChooser.
         drugs.setOnDragEntered(
@@ -86,7 +95,8 @@ public class QrCheckController {
         drugs.setOnDragExited(
                 (DragEvent event) -> {
                    // drugs.setFill(Color.LIGHTGREEN);
-                    drugs.setFill(new ImagePattern(imgOk));
+                    //drugs.setFill(new ImagePattern(imgOk));
+                    //drugs.setFill(new ImagePattern(imgDefault));
 
                     event.consume();
                 }
@@ -111,6 +121,29 @@ public class QrCheckController {
                                 String pathLoadingImg = f.getPath();
                                 File img = new File(pathLoadingImg);
                                 openQrImage(img);
+                                String qrAnswer = qRscanner.scanQr(f.getPath());
+                                if(qrAnswer == null)
+                                {
+                                    System.out.println("[КЛИЕНТ] Неподходящее изображение");
+                                    drugs.setFill(new ImagePattern(imgErr));
+
+                                }else
+                                {
+                                    code =  ThreadClientInfoSingleton.getInstance().getClientMsgThread().decryQr(qrAnswer);
+                                    if(code!=null)
+                                    {
+                                        System.out.println("[КЛИЕНТ] Расшифрованный текст из qr = ["+code+"]");
+                                        drugs.setFill(new ImagePattern(imgOk));
+                                        nextPage.setDisable(false);
+                                        codeInput.setText(code);
+                                    }
+                                    else
+                                    {
+                                        System.out.println("[КЛИЕНТ] Это был QR, но расшифровать его не удалось");
+                                        drugs.setFill(new ImagePattern(imgErr));
+                                    }
+
+                                }
                                 // qrInside.setImage(new Image("file://"+f.getPath()));
                             }
                         }
@@ -119,8 +152,8 @@ public class QrCheckController {
                     event.consume();
                 }
         );
-        Image img = new Image("resource/img/Qr/qrIMG.png");
-        drugs.setFill(new ImagePattern(img));
+       // Image img = new Image("resource/img/Qr/qrIMG.png");
+        drugs.setFill(new ImagePattern(imgDefault));
     }
 
     private void openQrImage(File img) {
@@ -139,12 +172,53 @@ public class QrCheckController {
         if (image != null) {
         File img = new File(image);
         openQrImage(img);
+        String qrAnswer = qRscanner.scanQr(img.getPath());
+            if(qrAnswer == null)
+            {
+                drugs.setFill(new ImagePattern(imgErr));
+
+            }else
+            {
+                drugs.setFill(new ImagePattern(imgOk));
+
+            }
+
         }
 
 
     }
 
     public void toMainUserPage(MouseEvent mouseEvent) {
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCode(parents.input.getText(),code,false));
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+
+        new Thread(() -> {
+
+            do {
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+            ErrorMsg t = new ErrorMsg();
+            if( t.checkCode()==0 )
+            {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
+                        // parents.loadWorkrArea(input.getText());
+                        //loadQrCheck();
+                       // loginXML.getChildren().add(qrCheck);
+                        System.out.println("[Клиент] Все прошло хорошо. QR проверен. Загрузка основной формы");
+                    }
+                });
+            }
+
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+        }).start();
+
     }
 
     public void toLoginPage(MouseEvent mouseEvent) {

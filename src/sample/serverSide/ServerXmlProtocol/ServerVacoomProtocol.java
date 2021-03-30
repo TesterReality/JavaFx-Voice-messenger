@@ -34,4 +34,5 @@ public class ServerVacoomProtocol {
         System.out.print(xml);
         return xml;
     }
+
 }

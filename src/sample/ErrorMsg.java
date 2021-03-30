@@ -38,4 +38,37 @@ public class ErrorMsg {
         }
         return 1;
     }
+
+    public int checkCode()
+    {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+            case 1:
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Ошибка");
+                        alert.setHeaderText("Ошибка кода подтверждения");
+                        alert.setContentText("Неверный код регистрации! (возможно устарел)");
+                        alert.showAndWait();
+                    }
+                });
+                return 1;
+            case 0:
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Успех");
+                        alert.setHeaderText("Код регистрации");
+                        alert.setContentText("Данные из QR-кода верный. Приветствует Вас!");
+                        alert.showAndWait();
+                    }
+                });
+                return 0;
+        }
+        return 1;
+    }
+
+
 }

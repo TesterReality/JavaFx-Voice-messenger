@@ -30,26 +30,43 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
     }
 
     public String parseRequest(String request) {
-        Pattern p = Pattern.compile("\"([^\"]*)\"");
+        Pattern p = Pattern.compile("\"([^\"]*)\""); //Результаты тегов, например: <from to="client".. будет client
+        Pattern p1 = Pattern.compile("\\w+(?=\\=)");//Сами теги, например: <from to="client".. будет to
+        int howNeeds=0;
         Matcher m = p.matcher(request);
+        Matcher m1 = p1.matcher(request);
+
         while (m.find()) {
             System.out.println(m.group(1));
             howNeedString++;
         }
+        while (m1.find()) {
+            System.out.println(m1.group(0));
+            howNeeds++;
+        }
         String[] strings1 = new String[howNeedString];
+        String[] strings2 = new String[howNeeds];
+
         m.reset();
+        m1.reset();
+
         numOfNow = 0;
+       int numOfNow1 = 0;
+
         while (m.find()) {
             strings1[numOfNow++] = m.group(1);
         }
-        return parseCommand(strings1);
+        while (m1.find()) {
+            strings2[numOfNow1++] = m1.group(0);
+        }
+        return parseCommand(strings1,strings2);
     }
 
-    private String parseCommand(String[] commands) {
+    private String parseCommand(String[] commands,String[] suffix) {
         switch (commands[1])//мы должны отправить или получить
         {
             case "set"://значит НАМ подали запрос, мы должны ответить
-                return setCommads(commands);
+                return setCommads(commands,suffix);
             case "result":
                 System.out.print("result от клиента");
                 break;//значит НАМ подали ответ
@@ -57,7 +74,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
         return null;
     }
 
-    private String setCommads(String[] commands) {
+    private String setCommads(String[] commands,String[] suffix) {
 
         switch (commands[3])//содержит код запроса
         {
@@ -94,6 +111,46 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                     return sendAnswer(commands[3], "ok");
                 } else
                     return sendAnswer(commands[3], "error");
+            }
+            case "checkCode": {
+                if(suffix[5].equals("login"))//Значит входим в ЛК
+                {
+                    if(checkUserActivatedCode(commands[4],commands[5]))
+                    {
+                        return sendAnswer(commands[3],"ok");
+                    }else
+                    {
+                        return  sendAnswer(commands[3],"error_code");
+                    }
+                }
+                if(suffix[5].equals("email"))//Значит восстанавливаем пароль
+                {
+
+                }
+
+                /*
+                if (checkUserCode(commands[4], commands[5]))
+                    return sendAnswer(ip, commands[3], "ok");
+                else {
+                    String mailUser;
+                    try {
+                        mailUser = checkLogin(commands[5]);
+                        if (mailUser.equals("")) {
+                            return sendAnswer(ip, commands[3], "error");
+                        }
+                        if (checkUserActivatedCode(commands[4], mailUser)) {
+
+                            return v.sendAnswerLogin(ip, commands[3], "ok", getUserLoginFromMail(mailUser));
+                        } else
+                            return sendAnswer(ip, commands[3], "error");
+                    } catch (NoSuchPaddingException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    }
+                    return sendAnswer(ip, commands[3], "error");
+                }*/
+                break;
             }
 
         }
