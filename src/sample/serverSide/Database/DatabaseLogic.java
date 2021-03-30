@@ -75,16 +75,21 @@ public class DatabaseLogic {
 
     public boolean checkMailIsUnregister(String mail)
             throws NoSuchPaddingException, NoSuchAlgorithmException {
-        try {
-            refreshConnect();
-            rs = stmt.executeQuery("SELECT * FROM activated");
-            while (rs.next()) {
-                if (rs.getString("email").equals(mail))
-                    return true;
-            }
+        refreshConnect();
+        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+            CallableStatement cstmt = conn.prepareCall("{? = CALL check_mail_unregister}");
+            cstmt.setString(1, mail);
+            cstmt.registerOutParameter(1, Types.BOOLEAN);
+            cstmt.execute();
+            boolean canRegisterThisMail = cstmt.getBoolean(1);
+            if (canRegisterThisMail) return true;
+            else return false;
         } catch (SQLException e) {
             e.printStackTrace();
-            return true;
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
         return false;
     }

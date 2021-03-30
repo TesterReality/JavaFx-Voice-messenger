@@ -8,18 +8,21 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import sample.ClientXmlPorocol.VacoomProtocol;
+import sample.qr.QrCheckController;
+import sample.EmailValidator;
 
 import java.io.IOException;
 
 /**
  * Created by user on 27.04.2019.
  */
-public class RegistrationController  {
+public class RegistrationController  extends VacoomProtocol {
     public volatile AnchorPane rgistrationXML; // сама форма
     public TextField email; // ввод мейла
-    public AnchorPane codeAnchor = null;
+    public AnchorPane QRcodeAnchor = null;
     public ProgressBar progressCode;
-  //  EmailValidator checkMail;
+    EmailValidator checkMail = null;
     public int num;
     public RegistrationController() {
     }
@@ -27,7 +30,7 @@ public class RegistrationController  {
     @FXML
     private void initialize() throws IOException {
         loadCode();
-       // checkMail = new EmailValidator();
+        checkMail = new EmailValidator();
         progressCode.setVisible(false);
     }
 
@@ -45,7 +48,7 @@ public class RegistrationController  {
     }
 
     public void getCode(MouseEvent mouseEvent) {
-/*
+
        if(!checkMail.validate(email.getText())) {
            Alert alert = new Alert(Alert.AlertType.ERROR);
            alert.setTitle("Ошибка Ввода");
@@ -60,7 +63,7 @@ public class RegistrationController  {
        // ThreadClientInfoSingleton.getInstance().getCleintMsgThread().
 
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setRegistreUser(false);
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(sendCodeToEmail("127.0.0.1","getcode",email.getText()));
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getCodeMsg(email.getText()));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
 
@@ -75,14 +78,15 @@ public class RegistrationController  {
                             }
                         } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
                         ErrorMsg t = new ErrorMsg();
-                       if( t.checkMailIsValidation()==0 )
+                       if( t.getCode()==0 )
                        {
                            Platform.runLater(new Runnable() {
                                @Override
                                public void run() {
-                                   thisNode.test();
+                                   loadQrCheck();
                                    progressCode.setProgress(0);
                                    thisNode.progressCode.setVisible(false);
+                                   thisNode.addQrForms();
 
                                }
                            });
@@ -90,12 +94,32 @@ public class RegistrationController  {
 
                         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
         }).start();
-*/
+
     }
 
-    public void test()
+    public void back()
     {
-        rgistrationXML.getChildren().add(codeAnchor);
+        rgistrationXML.getChildren().remove(rgistrationXML.getChildren().size()-1);
+
+    }
+    public void loadQrCheck()
+    {
+        FXMLLoader loaderQr = new FXMLLoader();
+        QrCheckController refresh = new QrCheckController();
+        refresh.setParent(thisNode);
+        refresh.setNode(refresh);
+        loaderQr = new FXMLLoader(getClass().getResource("fxml/qrCheck.fxml"));
+        loaderQr.setController(refresh);
+
+        try {
+            QRcodeAnchor= (AnchorPane) loaderQr.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addQrForms()
+    {
+        rgistrationXML.getChildren().add(QRcodeAnchor);
     }
 
     public void returnToStart(MouseEvent mouseEvent) {

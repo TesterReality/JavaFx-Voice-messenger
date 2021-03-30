@@ -74,6 +74,14 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
         return null;
     }
 
+    private String sendQR() throws MessagingException {
+        String random = new RandomStringGenerator().generateString();
+        byte[] aesByte = objServer.getAes256Serv().makeAes(random.getBytes(), Cipher.ENCRYPT_MODE);
+        byte[] encoded = Base64.getEncoder().encode(aesByte);
+        mail.sendCode(new String(encoded));
+
+        return random;
+    }
     private String setCommads(String[] commands,String[] suffix) {
 
         switch (commands[3])//содержит код запроса
@@ -85,19 +93,14 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                         mailUser = checkLogin(commands[4]);
                         mail.setMailTo(mailUser);//это мейл
 
-                        String random = new RandomStringGenerator().generateString();
-                        byte[] aesByte = objServer.getAes256Serv().makeAes(random.getBytes(), Cipher.ENCRYPT_MODE);
-                        byte[] encoded = Base64.getEncoder().encode(aesByte);
-
-                        mail.sendCode(new String(encoded));
-                        upadteCodeActivated(mailUser, random);
+                        upadteCodeActivated(mailUser,  sendQR());
 
                     } catch (NoSuchPaddingException e) {
                         e.printStackTrace();
                     } catch (NoSuchAlgorithmException e) {
                         e.printStackTrace();
                     } catch (MessagingException e) {
-                        e.printStackTrace();
+                        return sendAnswer(commands[3], "error");
                     }
                     /*
                     try {
@@ -127,29 +130,28 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                 {
 
                 }
+                break;
+            }
+            case "getCode":
+            {
+                mail.setMailTo(commands[4]);//установить емейл
+                try {
 
-                /*
-                if (checkUserCode(commands[4], commands[5]))
-                    return sendAnswer(ip, commands[3], "ok");
-                else {
-                    String mailUser;
-                    try {
-                        mailUser = checkLogin(commands[5]);
-                        if (mailUser.equals("")) {
-                            return sendAnswer(ip, commands[3], "error");
-                        }
-                        if (checkUserActivatedCode(commands[4], mailUser)) {
-
-                            return v.sendAnswerLogin(ip, commands[3], "ok", getUserLoginFromMail(mailUser));
-                        } else
-                            return sendAnswer(ip, commands[3], "error");
-                    } catch (NoSuchPaddingException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchAlgorithmException e) {
-                        e.printStackTrace();
+                    if (checkMailIsUnregister(commands[4])==false)// если на емейл зарегистрирован человек
+                    {
+                        return sendAnswer(commands[3], "mail_error");//если мейл зареган
                     }
-                    return sendAnswer(ip, commands[3], "error");
-                }*/
+
+                    addCodeAnonymusDatabase(sendQR(), commands[4]);
+                    return sendAnswer(commands[3], "ok");//все хорошо
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                    return sendAnswer(commands[3], "error");//если что-то пошло не так с сообщением
+                } catch (NoSuchPaddingException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
                 break;
             }
 

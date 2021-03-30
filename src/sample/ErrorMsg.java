@@ -8,32 +8,27 @@ public class ErrorMsg {
     public ErrorMsg() {
     }
 
+    private void showErrorWindow(Alert.AlertType type,String title, String header, String content)
+    {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert alert = new Alert(type);
+                alert.setTitle(title);
+                alert.setHeaderText(header);
+                alert.setContentText(content);
+                alert.showAndWait();
+            }
+        });
+    }
     public int checkLogin()
     {
         switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
             case 1:
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Ошибка");
-                        alert.setHeaderText("Ошибка отправки");
-                        alert.setContentText("Не удалось отправить код регистрации");
-                        alert.showAndWait();
-                    }
-                });
+                showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка отправки","Не удалось отправить код регистрации");
                 return 1;
             case 0:
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Успех");
-                        alert.setHeaderText("Отправка кода подтверждения");
-                        alert.setContentText("На Ваш email выслан код подтверждения действия");
-                        alert.showAndWait();
-                    }
-                });
+                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Отправка кода подтверждения","На Ваш email выслан код подтверждения действия");
                 return 0;
         }
         return 1;
@@ -43,28 +38,26 @@ public class ErrorMsg {
     {
         switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
             case 1:
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Ошибка");
-                        alert.setHeaderText("Ошибка кода подтверждения");
-                        alert.setContentText("Неверный код регистрации! (возможно устарел)");
-                        alert.showAndWait();
-                    }
-                });
+                showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка кода подтверждения","Неверный код регистрации! (возможно устарел)");
                 return 1;
             case 0:
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Успех");
-                        alert.setHeaderText("Код регистрации");
-                        alert.setContentText("Данные из QR-кода верный. Приветствует Вас!");
-                        alert.showAndWait();
-                    }
-                });
+                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Код регистрации","Данные из QR-кода верный. Приветствуем Вас!");
+                return 0;
+        }
+        return 1;
+    }
+
+    public int getCode()
+    {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+            case 2:
+                showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка отправки почты","Сервер не смог отправить данные на указанную почту");
+                return 2;
+            case 1:
+                showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка почты","На данную почту уже зарегестрирован пользователь!");
+                return 1;
+            case 0:
+                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Код регистрации","На указанную почту выслан QR-код проверки");
                 return 0;
         }
         return 1;

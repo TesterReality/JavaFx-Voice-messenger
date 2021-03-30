@@ -9,6 +9,13 @@ public class VacoomProtocol {
     public VacoomProtocol() {
     }
 
+    public static String prtocolToString(String xml) {
+        byte[] gg = xml.getBytes();
+        int index = xml.indexOf(">");
+        xml = xml.substring(index + 3, xml.length());
+        System.out.print(xml);
+        return xml;
+    }
     /*Авторизация пользователя на первой странице. Проверяет пароль и логин*/
     public String authorizationUser(String userLogin, String pswd) {
         String xml = null;
@@ -73,11 +80,26 @@ public class VacoomProtocol {
         return prtocolToString(xml);
     }
 
-    public static String prtocolToString(String xml) {
-        byte[] gg = xml.getBytes();
-        int index = xml.indexOf(">");
-        xml = xml.substring(index + 3, xml.length());
-        System.out.print(xml);
-        return xml;
+    /*Запросить у сервера код на mail*/
+    public String getCodeMsg(String mail)
+    {
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "server")
+                            .attr("type", "set")
+                            .add("vacoom")
+                            .attr("action", "getCode")
+                            .attr("email", mail)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
     }
+
 }

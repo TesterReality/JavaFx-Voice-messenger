@@ -19,11 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import sample.*;
 import sample.ClientXmlPorocol.VacoomProtocol;
-import sample.ErrorMsg;
-import sample.LoginController;
-import sample.StartWindowController;
-import sample.ThreadClientInfoSingleton;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,7 +45,9 @@ public class QrCheckController extends VacoomProtocol {
 
     ImageChooser chooser;
     BorderPane root;
-    LoginController parents;
+    Object parents;
+   // LoginController parents;
+
     QrCheckController thisNode;
     QRscanner qRscanner;
     String code;
@@ -68,6 +67,10 @@ public class QrCheckController extends VacoomProtocol {
     public void setParent  (LoginController login)
     {
         parents = login;
+    }
+    public void setParent  (RegistrationController register)
+    {
+        parents = register;
     }
 
     public void setNode (QrCheckController qr)
@@ -189,35 +192,41 @@ public class QrCheckController extends VacoomProtocol {
     }
 
     public void toMainUserPage(MouseEvent mouseEvent) {
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCode(parents.input.getText(),code,false));
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+        if(parents instanceof LoginController) {
+            LoginController login = (LoginController) parents;
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCode(login.input.getText(), code, false));
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
 
-        new Thread(() -> {
+            new Thread(() -> {
 
-            do {
-                try {
-                    Thread.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
-            ErrorMsg t = new ErrorMsg();
-            if( t.checkCode()==0 )
-            {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
-                        // parents.loadWorkrArea(input.getText());
-                        //loadQrCheck();
-                       // loginXML.getChildren().add(qrCheck);
-                        System.out.println("[Клиент] Все прошло хорошо. QR проверен. Загрузка основной формы");
+                do {
+                    try {
+                        Thread.sleep(400);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                });
-            }
+                } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                ErrorMsg t = new ErrorMsg();
+                if (t.checkCode() == 0) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
+                            // login.loadWorkrArea(input.getText());
+                            //loadQrCheck();
+                            // loginXML.getChildren().add(qrCheck);
+                            System.out.println("[Клиент] Все прошло хорошо. QR проверен. Загрузка основной формы");
+                        }
+                    });
+                }
 
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
-        }).start();
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+            }).start();
+        }
+        if(parents instanceof RegistrationController)
+        {
+            System.out.println("Мы подтверждает неактивированный мейл");
+        }
 
     }
 
@@ -227,7 +236,18 @@ public class QrCheckController extends VacoomProtocol {
         {
             thisAnchorPane.getChildren().remove(thisAnchorPane.getChildren().size()-1);
         }*/
+        if(parents instanceof LoginController)
+        {
+            LoginController login = (LoginController) parents;
+            login.backToLogin();
 
-        parents.backToLogin();
+        }
+        if(parents instanceof RegistrationController)
+        {
+            RegistrationController registrationController = (RegistrationController) parents;
+            registrationController.back();
+
+        }
+
     }
 }
