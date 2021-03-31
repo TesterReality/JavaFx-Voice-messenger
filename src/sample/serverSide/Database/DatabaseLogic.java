@@ -400,54 +400,58 @@ public class DatabaseLogic {
 */
     public boolean registrationUser(String code, String login, String pswd) {
         refreshConnect();
-        try {
-            rs = stmt.executeQuery("SELECT * FROM users");
-            while (rs.next()) {
-                if (rs.getString("user_name").equals(login)) {
-                    return false;
-                }
-            }
-            try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
-                CallableStatement cstmt = conn.prepareCall("{? = CALL addnewuser(?)}");
-                cstmt.setString(1, login);
-                cstmt.setString(2, pswd);
-                cstmt.execute();
-                cstmt.cancel();
-                cstmt = conn.prepareCall("{?= CALL get_id_user_from_login }");
-                cstmt.setString(1, login);
-                cstmt.registerOutParameter(1, Types.INTEGER);
-                cstmt.execute();
-                int idUser = cstmt.getInt(1);
-                cstmt = conn.prepareCall("{?= CALL email_unregister_from_code }");
-                cstmt.setString(1, code);
-                cstmt.registerOutParameter(1, Types.VARCHAR);
-                cstmt.execute();
-                String mailuser = cstmt.getString(1);
-                cstmt = conn.prepareCall("{?= CALL from_unregister_to_register(?,?) }");
-                cstmt.setInt(1, idUser);
-                cstmt.setString(2, mailuser);
-                cstmt.setString(3, code);
-                cstmt.execute();
-                cstmt = conn.prepareCall("{? = CALL del_repeat_unregister_code}");
-                cstmt.setString(1, mailuser);
-                cstmt.execute();
-                cstmt = conn.prepareCall("{? = CALL add_online}");
-                cstmt.setString(1, login);
-                cstmt.execute();
-                return true;
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return false;
-            } catch (NoSuchPaddingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
+
+        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+            CallableStatement cstmt = conn.prepareCall("{? = CALL check_free_username}");
+            cstmt.setString(1, login);
+            cstmt.registerOutParameter(1, Types.BOOLEAN);
+            cstmt.execute();
+            boolean isFreeusername = cstmt.getBoolean(1);
+            if (!isFreeusername) return false;
+
+            cstmt = conn.prepareCall("{? = CALL addnewuser(?)}");
+            cstmt.setString(1, login);
+            cstmt.setString(2, pswd);
+            cstmt.execute();
+            //cstmt.cancel();
+
+            cstmt = conn.prepareCall("{?= CALL get_id_user_from_login }");
+            cstmt.setString(1, login);
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.execute();
+            int idUser = cstmt.getInt(1);
+
+            cstmt = conn.prepareCall("{?= CALL email_unregister_from_code }");
+            cstmt.setString(1, code);
+            cstmt.registerOutParameter(1, Types.VARCHAR);
+            cstmt.execute();
+            String mailuser = cstmt.getString(1);
+
+            cstmt = conn.prepareCall("{?= CALL from_unregister_to_register(?,?) }");
+            cstmt.setInt(1, idUser);
+            cstmt.setString(2, mailuser);
+            cstmt.setString(3, code);
+            cstmt.execute();
+
+            cstmt = conn.prepareCall("{? = CALL del_repeat_unregister_code}");
+            cstmt.setString(1, mailuser);
+            cstmt.execute();
+
+            cstmt = conn.prepareCall("{? = CALL add_online}");
+            cstmt.setString(1, login);
+            cstmt.execute();
+
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     public String checkLogin(String login) throws NoSuchPaddingException, NoSuchAlgorithmException {

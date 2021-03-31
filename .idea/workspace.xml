@@ -8,14 +8,10 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/META-INF/testFX.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ErrorMsg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ErrorMsg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/qr/QrCheckController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/qr/QrCheckController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/qr/QrCheckController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/qr/QrCheckController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/Database/DatabaseLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/Database/DatabaseLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ErrorMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ErrorMsg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/qr/QrCheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/qr/QrCheckController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/RegistrationUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RegistrationUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" afterDir="false" />
     </list>
@@ -89,30 +85,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/fxml/registration.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/src/sample/RegistrationUserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+            <state relative-caret-position="308">
+              <caret line="99" column="101" selection-start-line="99" selection-start-column="101" selection-end-line="99" selection-end-column="101" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/fxml/registrationUser.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/RegistrationController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="26" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="26" />
+            <state relative-caret-position="17">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,28 +106,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sample/qr/QrCheckController.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="268" column="56" lean-forward="true" selection-start-line="268" selection-start-column="56" selection-end-line="268" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/LoginController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-254">
-              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="71" selection-start-line="71" selection-end-line="71" />
+            <state relative-caret-position="123">
+              <caret line="184" selection-start-line="184" selection-end-line="184" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -151,29 +118,75 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2805">
-              <caret line="208" selection-start-line="208" selection-end-line="208" />
+            <state relative-caret-position="238">
+              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding>
-                <element signature="e#1939#1940#0" expanded="true" />
-                <element signature="e#1978#1979#0" expanded="true" />
-                <element signature="e#2042#2043#0" expanded="true" />
-                <element signature="e#2093#2094#0" expanded="true" />
-                <element signature="e#2707#2708#0" expanded="true" />
-                <element signature="e#2752#2753#0" expanded="true" />
-                <element signature="e#2789#2790#0" expanded="true" />
-                <element signature="e#2825#2826#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/AES256.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="272">
+              <caret line="115" column="57" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="57" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="165" selection-start-line="165" selection-end-line="165" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="444" selection-start-line="444" selection-end-line="444" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1058#1059#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1004">
+              <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -181,8 +194,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ErrorMsg.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="325">
+              <caret line="65" column="27" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -289,15 +302,15 @@
         <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ServerVacoomProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Server.java" />
-        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" />
-        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/RegistrationController.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/MailUser.java" />
-        <option value="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java" />
+        <option value="$PROJECT_DIR$/src/sample/qr/QrCheckController.java" />
+        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java" />
+        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/ErrorMsg.java" />
         <option value="$PROJECT_DIR$/src/sample/RegistrationUserController.java" />
-        <option value="$PROJECT_DIR$/src/sample/qr/QrCheckController.java" />
       </list>
     </option>
   </component>
@@ -319,6 +332,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -414,8 +429,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -428,10 +441,10 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617139468637" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617214627909" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Diploma" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -661,12 +674,13 @@
       <workItem from="1616921528517" duration="2704000" />
       <workItem from="1617021324712" duration="14373000" />
       <workItem from="1617080611172" duration="30850000" />
-      <workItem from="1617138961101" duration="265000" />
+      <workItem from="1617138961101" duration="685000" />
+      <workItem from="1617208949879" duration="3553000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="342962000" />
+    <option name="totallyTimeSpent" value="346935000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,13 +693,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.24886535" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.2526475" />
       <window_info id="Structure" order="5" weight="0.25" />
       <window_info id="Favorites" order="6" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3289689" />
@@ -693,8 +706,8 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.22422259" />
-      <window_info anchor="bottom" id="Debug" order="6" weight="0.30932897" />
+      <window_info anchor="bottom" id="Run" order="5" weight="0.22422259" />
+      <window_info active="true" anchor="bottom" id="Debug" order="6" visible="true" weight="0.30932897" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.3289689" />
@@ -911,12 +924,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
-          <line>32</line>
-          <properties />
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
           <line>46</line>
           <properties />
           <option name="timeStamp" value="116" />
@@ -926,18 +933,6 @@
           <line>61</line>
           <properties />
           <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/serverSide/Server.java</url>
-          <line>158</line>
-          <properties />
-          <option name="timeStamp" value="118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/serverSide/Server.java</url>
-          <line>157</line>
-          <properties />
-          <option name="timeStamp" value="119" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/serverSide/Server.java</url>
@@ -968,6 +963,12 @@
           <line>263</line>
           <properties />
           <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java</url>
+          <line>405</line>
+          <properties />
+          <option name="timeStamp" value="125" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1039,16 +1040,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1221#1222#0" expanded="true" />
             <element signature="e#1254#1255#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/SHA256Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1171,16 +1162,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/scene/Scene.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1226,25 +1207,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/login.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resource/css/porgress-bar.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/EmailValidator.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1257,28 +1228,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="158" selection-start-line="158" selection-end-line="158" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1058#1059#0" expanded="true" />
-            <element signature="e#1094#1095#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Mail/MailUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1286,54 +1235,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="75" column="42" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="135" column="69" selection-start-line="135" selection-start-column="69" selection-end-line="135" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/RegistrationUserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-          <folding>
-            <element signature="e#1056#1057#0" expanded="true" />
-            <element signature="e#1094#1095#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/qrCheck.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="15" lean-forward="true" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/stage/Stage.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1343,24 +1251,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/registration.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/registrationUser.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/RegistrationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="153">
           <caret line="21" column="26" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1368,10 +1276,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
+        <state relative-caret-position="153">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/AES256.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/qr/QrCheckController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="264" column="25" selection-start-line="264" selection-start-column="25" selection-end-line="264" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/SHA256Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1380,8 +1309,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2805">
-          <caret line="208" selection-start-line="208" selection-end-line="208" />
+        <state relative-caret-position="373">
+          <caret line="329" column="33" lean-forward="true" selection-start-line="329" selection-start-column="33" selection-end-line="329" selection-end-column="33" />
           <folding>
             <element signature="e#1939#1940#0" expanded="true" />
             <element signature="e#1978#1979#0" expanded="true" />
@@ -1395,34 +1324,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/AES256.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ErrorMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="272">
+          <caret line="115" column="57" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/LoginController.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-254">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        <state relative-caret-position="-1004">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/qr/QrCheckController.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/ErrorMsg.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="268" column="56" lean-forward="true" selection-start-line="268" selection-start-column="56" selection-end-line="268" selection-end-column="56" />
+        <state relative-caret-position="325">
+          <caret line="65" column="27" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/RegistrationUserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="99" column="101" selection-start-line="99" selection-start-column="101" selection-end-line="99" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="444" selection-start-line="444" selection-end-line="444" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="165" selection-start-line="165" selection-end-line="165" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

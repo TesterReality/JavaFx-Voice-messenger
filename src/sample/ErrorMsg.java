@@ -63,5 +63,18 @@ public class ErrorMsg {
         return 1;
     }
 
+    public int registration()
+    {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+            case 1:
+                showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка регистрации","Пользователь с таким логином уже существует. Выберите другой логин.");
+                return 1;
+            case 0:
+                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Регистрация","Поздравляем! Вы успешно зарегистрированы");
+                return 0;
+        }
+        return 1;
+    }
+
 
 }

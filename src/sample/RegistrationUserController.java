@@ -75,8 +75,8 @@ public class RegistrationUserController extends VacoomProtocol {
             alert.showAndWait();
             return;
         }
-/*
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(registrationUser("127.0.0.1","registration",user_login.getText(),md5.md5Custom(password.getText()),parent.codeInput.getText()));
+
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(registrationUser(user_login.getText(),new SHA256Class().getSHA256(password.getText()),parent.codeInput.getText()));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
 
@@ -92,12 +92,13 @@ public class RegistrationUserController extends VacoomProtocol {
                 }
             } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
             ErrorMsg t = new ErrorMsg();
-            if( t.checkRegistration()==0 )
+            if( t.registration()==0 )
             {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        parent.toStartPages();
+                        System.out.println("[Клиент] Пользователь зареган. Можно открывать новое окно");
+                        //parent.toStartPages();
 
                     }
                 });
@@ -107,6 +108,6 @@ public class RegistrationUserController extends VacoomProtocol {
         }).start();
 
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
-*/
+
     }
 }

@@ -101,6 +101,16 @@ public class ClientParseProtocol extends VacoomProtocol {
                 }
                 break;
             }
+            case "registration":
+            {
+                switch (commands[4]) {
+                    case "ok":
+                        return 0;
+                    case "error_user":
+                        return 1;
+                }
+                break;
+            }
         }
         return 1;
     }

@@ -160,9 +160,16 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                 }
                 break;
             }
+            case"registration":
+            {
+                if (registrationUser(commands[4], commands[5], commands[6]))
+                    return sendAnswer(commands[3], "ok");
+                else
+                    return sendAnswer(commands[3], "error_user");
+            }
 
         }
-        return null;
+        return sendAnswer(commands[3], "error");//в любой непонятной ситуации отвечаем ошибкой
     }
 
     private String sendAnswer(String action, String status) {

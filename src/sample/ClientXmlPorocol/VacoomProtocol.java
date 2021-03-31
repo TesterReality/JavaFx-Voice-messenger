@@ -102,4 +102,28 @@ public class VacoomProtocol {
         return prtocolToString(xml);
     }
 
+    /*Регистрация пользователя*/
+    public String registrationUser( String userLogin, String pswd, String code) {
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "server")
+                            .attr("type", "set")
+                            .add("vacoom")
+                            .attr("action", "registration")
+                            .attr("login", userLogin)
+                            .attr("pswd", pswd)
+                            .attr("code", code)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+
+    }
+
 }
