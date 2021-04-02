@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Set;
 
 public class StartWindowController {
 
@@ -31,7 +32,7 @@ public class StartWindowController {
     AnchorPane p;
     Node node;
     StartWindowController controller;
-
+    Thread myThread;
     public StartWindowController() {
     }
 
@@ -52,26 +53,34 @@ public class StartWindowController {
         loadLogin();
 
         Runnable r = ()->{
+            try {
 
-            do {
-                do {
-                    if(!ThreadClientInfoSingleton.getInstance().getClientMsgThread().isServerIsOnline())
-                    {
-                        serverStatus.setText("Недоступен");
-                        serverStatus.setStyle("-fx-fill: #b22222");
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().isServerIsOnline());
-               // System.out.println(ThreadClientInfoSingleton.getInstance().getClientMsgThread().isServerIsOnline());
-                serverStatus.setText("Доступен");
-                serverStatus.setStyle("-fx-fill: #00a896");
-            }while (true);
+                if (!Thread.currentThread().isInterrupted()) {
+
+                    do {
+                        do {
+                            if (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().isServerIsOnline()) {
+                                serverStatus.setText("Недоступен");
+                                serverStatus.setStyle("-fx-fill: #b22222");
+                            }
+
+                                Thread.sleep(1000);
+
+                        } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().isServerIsOnline());
+                        // System.out.println(ThreadClientInfoSingleton.getInstance().getClientMsgThread().isServerIsOnline());
+                        serverStatus.setText("Доступен");
+                        serverStatus.setStyle("-fx-fill: #00a896");
+                    } while (true);
+                }
+
+            }catch (InterruptedException ie)
+            {
+                ie.printStackTrace();
+                System.out.println("Поток окна состояния серва закрыт");
+                Thread.currentThread().interrupt();
+            }
         };
-        Thread myThread = new Thread(r,"MyThread");
+         myThread = new Thread(r,"MyThread");
         myThread.start();
     }
 
@@ -129,10 +138,14 @@ public class StartWindowController {
     }
 
     public void Close(MouseEvent mouseEvent) {
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().interrupt();
+        myThread.interrupt();
         Stage stage = (Stage) Exit.getScene().getWindow();
         stage.close();
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().interrupt();
 
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        System.out.println(threadSet.size());
+        //return;
     }
 
     public void test(MouseEvent mouseEvent) {

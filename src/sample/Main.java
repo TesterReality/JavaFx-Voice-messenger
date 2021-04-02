@@ -41,7 +41,7 @@ public class Main extends Application {
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(250);
         ResizeHelper.addResizeListener(primaryStage);
-        ThreadClientInfoSingleton.getInstance().setClientMsgThread(clientMsgThread);
+       // ThreadClientInfoSingleton.getInstance().setClientMsgThread(clientMsgThread);
         primaryStage.show();
 
         /*Scene mainScene;
@@ -60,7 +60,7 @@ public class Main extends Application {
         primaryStage.show();
 
         testStage = primaryStage;*/
-        System.out.println();
+        System.out.println("Конец");
     }
 
     public Stage getTestStage() {

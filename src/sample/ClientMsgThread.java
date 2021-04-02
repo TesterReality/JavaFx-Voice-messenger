@@ -18,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import java.util.Set;
 
 public class ClientMsgThread extends Thread {
     private volatile String protocolMsg = "";
@@ -29,14 +30,14 @@ public class ClientMsgThread extends Thread {
     private OutputStream sout;
     private DataInputStream in;
     private DataOutputStream out;
-  //  ClientCryptoRSA cryptoRSA;
+    //  ClientCryptoRSA cryptoRSA;
     boolean pubKeySend = false;
     byte bytemsg[];//исходящие
     byte inputMsg[];//входящие сообщение
     int len;
     String msgFromServer;
     public volatile boolean serverIsOnline = false;
-  //  ClientParseProtocol parser;
+    //  ClientParseProtocol parser;
     private volatile int answerGetCode = -1;
     private volatile boolean isRegistreUser = false;
     private volatile boolean userLogin = false;//пользлватель зашел?
@@ -48,7 +49,7 @@ public class ClientMsgThread extends Thread {
     private DH diffie;
     private boolean firstStep = false;
     private AES256 aes256;
-    private boolean isAESOk=false;//сошлись ли ключи в aes
+    private boolean isAESOk = false;//сошлись ли ключи в aes
     private SHA256Class sha256Class;
     private ClientParseProtocol parserProtocol;
     private String QrAnswerDercypto = null;
@@ -124,46 +125,51 @@ public class ClientMsgThread extends Thread {
 
     private static final int serverPort = 5000;
     private static final String localhost = "localhost";
+
     public boolean starting() {
-        try {
+        if (!isInterrupted()) {
+
             try {
-                System.out.println("Welcome to Clients side\n" +
-                        "Connecting to the server\n\t" +
-                        "(IP address " + localhost +
-                        ", port " + serverPort + ")");
-                ipAddress = InetAddress.getByName(localhost);
-                socket = new Socket(ipAddress, serverPort);
-                System.out.println(
-                        "The connection is established.");
-                System.out.println(
-                        "\tLocalPort = " +
-                                socket.getLocalPort() +
-                                "\n\tInetAddress.HostAddress = " +
-                                socket.getInetAddress()
-                                        .getHostAddress() +
-                                "\n\tReceiveBufferSize (SO_RCVBUF) = "
-                                + socket.getReceiveBufferSize());
-                // Получаем входной и выходной потоки
-                // сокета для обмена сообщениями с сервером
-                sin = socket.getInputStream();
-                sout = socket.getOutputStream();
-                in = new DataInputStream(sin);
-                out = new DataOutputStream(sout);
-                sha256Class = new SHA256Class();
-                sendDHStartKey();
-            } catch (Exception e) {
-                return false;
+                try {
+                    System.out.println("Welcome to Clients side\n" +
+                            "Connecting to the server\n\t" +
+                            "(IP address " + localhost +
+                            ", port " + serverPort + ")");
+                    ipAddress = InetAddress.getByName(localhost);
+                    socket = new Socket(ipAddress, serverPort);
+                    System.out.println(
+                            "The connection is established.");
+                    System.out.println(
+                            "\tLocalPort = " +
+                                    socket.getLocalPort() +
+                                    "\n\tInetAddress.HostAddress = " +
+                                    socket.getInetAddress()
+                                            .getHostAddress() +
+                                    "\n\tReceiveBufferSize (SO_RCVBUF) = "
+                                    + socket.getReceiveBufferSize());
+                    // Получаем входной и выходной потоки
+                    // сокета для обмена сообщениями с сервером
+                    sin = socket.getInputStream();
+                    sout = socket.getOutputStream();
+                    in = new DataInputStream(sin);
+                    out = new DataOutputStream(sout);
+                    sha256Class = new SHA256Class();
+                    sendDHStartKey();
+                } catch (Exception e) {
+                    return false;
+                }
+            } finally {
             }
-        } finally {
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
-    private void sendDHStartKey()
-    {
+    private void sendDHStartKey() {
         try {
             diffie = new DH();
-            String gg = diffie.getPrimeValue().toString()+":"+diffie.getGeneratorValue().toString()+":"+diffie.getPublicSHA256();
+            String gg = diffie.getPrimeValue().toString() + ":" + diffie.getGeneratorValue().toString() + ":" + diffie.getPublicSHA256();
             bytemsg = gg.getBytes();
             len = bytemsg.length;
             out.writeInt(len);
@@ -177,17 +183,15 @@ public class ClientMsgThread extends Thread {
     }
 
 
-
     private void senMsgToServer(String msg) {
         try {
-            System.out.println("[Клиент] Отправил сообщение: " +msg);
-            if(isAESOk)//если мы можем шифровать AES (ключи сошлись)
+            System.out.println("[Клиент] Отправил сообщение: " + msg);
+            if (isAESOk)//если мы можем шифровать AES (ключи сошлись)
             {
                 bytemsg = aes256.makeAes(msg.getBytes(), Cipher.ENCRYPT_MODE);
-                System.out.println("[Клиент] Отправил ЗАШИФРОВАННОЕ сообщение: " +new String(bytemsg));
+                System.out.println("[Клиент] Отправил ЗАШИФРОВАННОЕ сообщение: " + new String(bytemsg));
                 len = bytemsg.length;
-            }else
-            {
+            } else {
                 bytemsg = msg.getBytes();
                 len = bytemsg.length;
             }
@@ -206,102 +210,108 @@ public class ClientMsgThread extends Thread {
         byte[] decodedString = Base64.getDecoder().decode(byteText);
         byte[] decryText = null;
         try {
-            decryText = aes256.makeAes(decodedString,Cipher.DECRYPT_MODE);
-        }catch (Exception e)
-        {
+            decryText = aes256.makeAes(decodedString, Cipher.DECRYPT_MODE);
+        } catch (Exception e) {
             return null;
         }
-        if(decryText==null) return null;
-         return new String(decryText);
+        if (decryText == null) return null;
+        return new String(decryText);
 
     }
-    private void resetFlags()
-    {
+
+    private void resetFlags() {
         isDHFully = false;
         firstStep = false;
-        isAESOk=false;
+        isAESOk = false;
     }
+
     @Override
     public void run() {
-        serverIsOnline = false;
 
-        do {
+        serverIsOnline = false;
+        if (!isInterrupted()) {
             try {
-                Thread.sleep(300);        //Приостановка потока
+                do {
+
+
+                    Thread.sleep(300);        //Приостановка потока
+
+
+                } while (!starting());
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
+                // Thread.currentThread().interrupt();
+
             }
-        } while (!starting());
-        serverIsOnline=true;
-
-        do {
-            if (!Thread.interrupted())    //Проверка прерывания
-            {
-                if (userLogin) {
-                    sec--;
-                    if (sec == 0) {
-                        needSend = true;
-                        protocolMsg = onlineMsg;
-                        sec = 30;
-                    }
-                }
 
 
+            serverIsOnline = true;
 
-
-                if (needSend)//если что-то нужно отравить
+            do {
+                if (!Thread.interrupted())    //Проверка прерывания
                 {
-                   senMsgToServer(protocolMsg);
-                    needSend = false;
-                } else {
-                    // return;
-                }
-                try {
-                    if (sin.available() > 0)//если что-то нам пришло
+                    if (userLogin) {
+                        sec--;
+                        if (sec == 0) {
+                            needSend = true;
+                            protocolMsg = onlineMsg;
+                            sec = 30;
+                        }
+                    }
+
+
+                    if (needSend)//если что-то нужно отравить
                     {
-                        int num = in.readInt();
-
-                        inputMsg = new byte[num];
-                        in.readFully(inputMsg);
-                        msgFromServer = new String(inputMsg);
-
-                        System.out.println("[Клиент получил такое сообщение]:");
-                        System.out.print(msgFromServer);
-
-                        if(!isDHFully)//если ключи не были получены от сервера
+                        senMsgToServer(protocolMsg);
+                        needSend = false;
+                    } else {
+                        // return;
+                    }
+                    try {
+                        if (sin.available() > 0)//если что-то нам пришло
                         {
-                            if(!firstStep) { //якобы первый шаг. Означает что отправили хеш DH, но не отправили сам ключ
-                              //  isDHFully = true;
-                                diffie.setPublicB(new BigInteger(msgFromServer));
+                            int num = in.readInt();
 
-                                //ниже отправляю свой публичный (ранее отправлял его хеш)
-                                bytemsg = diffie.getPublicA().toString().getBytes();
-                                len = bytemsg.length;
-                                out.writeInt(len);
-                                out.write(bytemsg, 0, len); // отправляю байты
-                                System.out.println("[Клиент] Отправил свой публичный DH1");
-                                firstStep=true;
-                            }else
+                            inputMsg = new byte[num];
+                            in.readFully(inputMsg);
+                            msgFromServer = new String(inputMsg);
+
+                            System.out.println("[Клиент получил такое сообщение]:");
+                            System.out.print(msgFromServer);
+
+                            if (!isDHFully)//если ключи не были получены от сервера
                             {
-                                isDHFully=true;
-                                String halfSha256SharedKey = sha256Class.getSHA256(diffie.getSharedKeyA().toString());
-                                halfSha256SharedKey = halfSha256SharedKey.substring(0,halfSha256SharedKey.length()/2);
-                                if(halfSha256SharedKey.equals(msgFromServer))
-                                {
-                                    isAESOk=true;
-                                    System.out.println("[Клиент] Общие секретные ключи совпали!");
-                                    aes256 = new AES256(sha256Class.getByteSHA256(diffie.getSharedKeyA().toString()));
-                                    System.out.println();
+                                if (!firstStep) { //якобы первый шаг. Означает что отправили хеш DH, но не отправили сам ключ
+                                    //  isDHFully = true;
+                                    diffie.setPublicB(new BigInteger(msgFromServer));
 
-                                    /*TestCode*/
+                                    //ниже отправляю свой публичный (ранее отправлял его хеш)
+                                    bytemsg = diffie.getPublicA().toString().getBytes();
+                                    len = bytemsg.length;
+                                    out.writeInt(len);
+                                    out.write(bytemsg, 0, len); // отправляю байты
+                                    System.out.println("[Клиент] Отправил свой публичный DH1");
+                                    firstStep = true;
+                                } else {
+                                    isDHFully = true;
+                                    String halfSha256SharedKey = sha256Class.getSHA256(diffie.getSharedKeyA().toString());
+                                    halfSha256SharedKey = halfSha256SharedKey.substring(0, halfSha256SharedKey.length() / 2);
+                                    if (halfSha256SharedKey.equals(msgFromServer)) {
+                                        isAESOk = true;
+                                        System.out.println("[Клиент] Общие секретные ключи совпали!");
+                                        aes256 = new AES256(sha256Class.getByteSHA256(diffie.getSharedKeyA().toString()));
+                                        System.out.println();
+
+                                        /*TestCode*/
                                     /*
                                     String mes = "DUDOSINA";
                                     byte[] shifr = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);
                                     System.out.println(new String(shifr));
                                     byte[] src = aes256.makeAes(shifr, Cipher.DECRYPT_MODE);
                                     System.out.println(new String(src));*/
-                                    senMsgToServer("AES-OK");
-                                    parserProtocol = new ClientParseProtocol();
+                                        senMsgToServer("AES-OK");
+                                        parserProtocol = new ClientParseProtocol();
                                     /*
                                     String mes = "AES-OK";
                                     bytemsg = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);
@@ -310,48 +320,49 @@ public class ClientMsgThread extends Thread {
                                     out.write(bytemsg, 0, len); // отправляю байты
                                     System.out.println("[Клиент] Отправил AES-OK");*/
 
-                                }else
-                                {
-                                    System.out.println("[Клиент] Общие секретные НЕ ключи совпали!!");
-                                    resetFlags();
-                                    senMsgToServer("AES-ERR");
-                                    sendDHStartKey();
-                                }
+                                    } else {
+                                        System.out.println("[Клиент] Общие секретные НЕ ключи совпали!!");
+                                        resetFlags();
+                                        senMsgToServer("AES-ERR");
+                                        sendDHStartKey();
+                                    }
 
+
+                                }
+                            } else {
+                                //Если мы тут, значит обменялись ключами уже
+                                System.out.println("[Расшифрованное сообщение от сервера]:");
+                                inputMsg = aes256.makeAes(inputMsg, Cipher.DECRYPT_MODE);
+                                msgFromServer = new String(inputMsg);
+                                System.out.println(msgFromServer);
+                                answerGetCode = parserProtocol.parseRequest(msgFromServer);
 
                             }
-                        }else
-                        {
-                            //Если мы тут, значит обменялись ключами уже
-                            System.out.println("[Расшифрованное сообщение от сервера]:");
-                            inputMsg=aes256.makeAes(inputMsg,Cipher.DECRYPT_MODE);
-                            msgFromServer = new String(inputMsg);
-                            System.out.println(msgFromServer);
-                            answerGetCode =parserProtocol.parseRequest(msgFromServer);
+
 
                         }
-
-
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } else {
+                    try {
+                        if (socket != null)
+                            socket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                   // return;        //Завершение потока
+                    break;
                 }
-            } else {
                 try {
-                    if (socket != null)
-                        socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    Thread.sleep(1000);        //Приостановка потока на 1 сек.
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return;    //Завершение потока после прерывания
                 }
-                return;        //Завершение потока
             }
-            try {
-                Thread.sleep(1000);        //Приостановка потока на 1 сек.
-            } catch (InterruptedException e) {
-                return;    //Завершение потока после прерывания
-            }
-        }
-        while (true);
+            while (true);
+
 
         /*
         try {
@@ -459,5 +470,8 @@ public class ClientMsgThread extends Thread {
         }
         while (true);
         */
+        }
+
+
     }
 }

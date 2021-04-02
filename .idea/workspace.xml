@@ -8,15 +8,12 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ErrorMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ErrorMsg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/qr/QrCheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/qr/QrCheckController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ServerVacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ServerVacoomProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ClientMsgThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ClientMsgThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/StartWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/StartWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ClientMsgThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientMsgThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/StartWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StartWindowController.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,15 +88,84 @@
         <entry file="file://$PROJECT_DIR$/src/sample/qr/QrCheckController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="334">
-              <caret line="389" column="49" lean-forward="true" selection-start-line="389" selection-start-column="49" selection-end-line="389" selection-end-column="49" />
+              <caret line="389" column="49" selection-start-line="389" selection-start-column="49" selection-end-line="389" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/StartWindowController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="360" selection-start-line="359" selection-end-line="360" />
+              <folding>
+                <element signature="e#1939#1940#0" expanded="true" />
+                <element signature="e#1978#1979#0" expanded="true" />
+                <element signature="e#2042#2043#0" expanded="true" />
+                <element signature="e#2093#2094#0" expanded="true" />
+                <element signature="e#2707#2708#0" expanded="true" />
+                <element signature="e#2752#2753#0" expanded="true" />
+                <element signature="e#2789#2790#0" expanded="true" />
+                <element signature="e#2825#2826#0" expanded="true" />
+                <element signature="e#3336#3337#0" expanded="true" />
+                <element signature="e#3382#3383#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/ThreadClientInfoSingleton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding>
+                <element signature="e#462#463#0" expanded="true" />
+                <element signature="e#500#501#0" expanded="true" />
+                <element signature="e#572#573#0" expanded="true" />
+                <element signature="e#626#627#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/RefreshingPasswordController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
+            <state relative-caret-position="971">
               <caret line="123" column="16" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
             </state>
           </provider>
@@ -117,8 +183,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/RegistrationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="101" column="29" selection-start-line="101" selection-end-line="102" />
+            <state relative-caret-position="634">
+              <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,70 +196,10 @@
         <entry file="file://$PROJECT_DIR$/src/sample/ChangePasswordController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="113" column="33" lean-forward="true" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
+              <caret line="113" column="33" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
               <folding>
                 <element signature="e#1488#1489#0" expanded="true" />
                 <element signature="e#1526#1527#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="75" column="55" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="271" column="19" selection-start-line="271" selection-start-column="19" selection-end-line="271" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="217" column="28" selection-start-line="217" selection-start-column="18" selection-end-line="217" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="142" column="31" selection-start-line="142" selection-start-column="31" selection-end-line="142" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ErrorMsg.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="31" column="110" selection-start-line="31" selection-start-column="110" selection-end-line="31" selection-end-column="110" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -279,24 +285,20 @@
         <option value="$PROJECT_DIR$/src/sample/SHA256Class.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Mail.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/RandomStringGenerator.java" />
-        <option value="$PROJECT_DIR$/src/sample/StartWindowController.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/ParseServerVacoomProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseUser.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Database/SingletonDatabaseConnection.java" />
         <option value="$PROJECT_DIR$/src/sample/qr/Controller.java" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/resource/css/input.css" />
         <option value="$PROJECT_DIR$/src/sample/fxml/qrCheck.fxml" />
         <option value="$PROJECT_DIR$/src/sample/qr/QRscanner.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/QRcodeGenerator/QRgenerate.java" />
-        <option value="$PROJECT_DIR$/src/sample/ClientMsgThread.java" />
         <option value="$PROJECT_DIR$/src/sample/AES256.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Server.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/MailUser.java" />
         <option value="$PROJECT_DIR$/src/sample/RegistrationUserController.java" />
         <option value="$PROJECT_DIR$/src/sample/RefreshPasswordController.java" />
-        <option value="$PROJECT_DIR$/src/sample/RegistrationController.java" />
         <option value="$PROJECT_DIR$/src/sample/fxml/refreshingPswd.fxml" />
         <option value="$PROJECT_DIR$/src/sample/LoginController.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ServerVacoomProtocol.java" />
@@ -308,11 +310,15 @@
         <option value="$PROJECT_DIR$/src/sample/RefreshingPasswordController.java" />
         <option value="$PROJECT_DIR$/src/sample/ChangePasswordController.java" />
         <option value="$PROJECT_DIR$/src/sample/qr/QrCheckController.java" />
+        <option value="$PROJECT_DIR$/src/sample/RegistrationController.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/sample/ClientMsgThread.java" />
+        <option value="$PROJECT_DIR$/src/sample/StartWindowController.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -438,7 +444,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617359361477" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617387454185" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Diploma" />
@@ -674,12 +680,12 @@
       <workItem from="1617138961101" duration="685000" />
       <workItem from="1617208949879" duration="4901000" />
       <workItem from="1617271691813" duration="1942000" />
-      <workItem from="1617341186572" duration="15887000" />
+      <workItem from="1617341186572" duration="20887000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="366112000" />
+    <option name="totallyTimeSpent" value="371112000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -691,14 +697,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.2602118" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.2602118" />
       <window_info id="Structure" order="5" weight="0.25" />
       <window_info id="Favorites" order="6" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3289689" />
@@ -706,7 +712,7 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.22422259" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.22422259" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.30932897" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -816,15 +822,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ClientMsgThread.java</url>
-          <line>286</line>
+          <line>297</line>
           <properties />
           <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/StartWindowController.java</url>
-          <line>62</line>
-          <properties />
-          <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
@@ -876,7 +876,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ClientMsgThread.java</url>
-          <line>205</line>
+          <line>209</line>
           <properties />
           <option name="timeStamp" value="103" />
         </line-breakpoint>
@@ -900,7 +900,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ClientMsgThread.java</url>
-          <line>208</line>
+          <line>212</line>
           <properties />
           <option name="timeStamp" value="110" />
         </line-breakpoint>
@@ -969,6 +969,12 @@
           <line>209</line>
           <properties />
           <option name="timeStamp" value="128" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ClientMsgThread.java</url>
+          <line>242</line>
+          <properties />
+          <option name="timeStamp" value="130" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1156,19 +1162,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ThreadClientInfoSingleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#462#463#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-            <element signature="e#626#627#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/fxml/login.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1238,16 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8126">
@@ -1255,13 +1238,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/StartWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
@@ -1302,35 +1278,6 @@
           <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="329" column="58" selection-start-line="329" selection-start-column="58" selection-end-line="329" selection-end-column="58" />
-          <folding>
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1978#1979#0" expanded="true" />
-            <element signature="e#2042#2043#0" expanded="true" />
-            <element signature="e#2093#2094#0" expanded="true" />
-            <element signature="e#2707#2708#0" expanded="true" />
-            <element signature="e#2752#2753#0" expanded="true" />
-            <element signature="e#2789#2790#0" expanded="true" />
-            <element signature="e#2825#2826#0" expanded="true" />
-            <element signature="e#3336#3337#0" expanded="true" />
-            <element signature="e#3382#3383#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1414,20 +1361,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/RegistrationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="101" column="29" selection-start-line="101" selection-end-line="102" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ChangePasswordController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="113" column="33" lean-forward="true" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
+          <caret line="113" column="33" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
           <folding>
             <element signature="e#1488#1489#0" expanded="true" />
             <element signature="e#1526#1527#0" expanded="true" />
@@ -1438,14 +1375,83 @@
     <entry file="file://$PROJECT_DIR$/src/sample/qr/QrCheckController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
-          <caret line="389" column="49" lean-forward="true" selection-start-line="389" selection-start-column="49" selection-end-line="389" selection-end-column="49" />
+          <caret line="389" column="49" selection-start-line="389" selection-start-column="49" selection-end-line="389" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/RefreshingPasswordController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
+        <state relative-caret-position="971">
           <caret line="123" column="16" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/RegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ThreadClientInfoSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="360" selection-start-line="359" selection-end-line="360" />
+          <folding>
+            <element signature="e#1939#1940#0" expanded="true" />
+            <element signature="e#1978#1979#0" expanded="true" />
+            <element signature="e#2042#2043#0" expanded="true" />
+            <element signature="e#2093#2094#0" expanded="true" />
+            <element signature="e#2707#2708#0" expanded="true" />
+            <element signature="e#2752#2753#0" expanded="true" />
+            <element signature="e#2789#2790#0" expanded="true" />
+            <element signature="e#2825#2826#0" expanded="true" />
+            <element signature="e#3336#3337#0" expanded="true" />
+            <element signature="e#3382#3383#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/StartWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
