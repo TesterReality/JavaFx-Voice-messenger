@@ -38,10 +38,57 @@ public class VacoomProtocol {
         return prtocolToString(xml);
     }
 
-    /*Когда клиент получил код из qr, отправляет его на проверку*/
-    public String checkCode(String param, String code, boolean isRfresh) {
+    /*Отправляет на проверку код из qr, когда мы ввостанавливаем пароль*/
+    public String checkCodeRefresh(String param, String code) {
         String xml = "";
-        if (isRfresh)//false - значит запрос бы в контексте возобновления пароля
+
+            try {
+                xml = new Xembler(
+                        new Directives()
+                                .add("from")
+                                .attr("who", "client")
+                                .attr("to", "server")
+                                .attr("type", "set")
+                                .add("vacoom")
+                                .attr("action", "checkCodeRefresh")
+                                .attr("email", param)
+                                .attr("code", code)
+                                .set("")
+                ).xml();
+            } catch (ImpossibleModificationException e) {
+                e.printStackTrace();
+            }
+
+        return prtocolToString(xml);
+    }
+
+    /*запрос изменения пароля*/
+    public String changePswd( String userLogin, String pswd) {
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "server")
+                            .attr("type", "set")
+                            .add("vacoom")
+                            .attr("action", "changePswd")
+                            .attr("login", userLogin)
+                            .attr("pswd", pswd)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
+
+
+    /*Когда клиент получил код из qr, отправляет его на проверку*/
+    public String checkCode(String param, String code, boolean isReg) {
+        String xml = "";
+        if (isReg)//false - значит запрос бы в контексте входа в ЛК true - регистрация
         {
             try {
                 xml = new Xembler(
@@ -81,23 +128,44 @@ public class VacoomProtocol {
     }
 
     /*Запросить у сервера код на mail*/
-    public String getCodeMsg(String mail)
+    public String getCodeMsg(String mail,boolean isRegistration)
     {
         String xml = null;
-        try {
-            xml = new Xembler(
-                    new Directives()
-                            .add("from")
-                            .attr("who", "client")
-                            .attr("to", "server")
-                            .attr("type", "set")
-                            .add("vacoom")
-                            .attr("action", "getCode")
-                            .attr("email", mail)
-                            .set("")
-            ).xml();
-        } catch (ImpossibleModificationException e) {
-            e.printStackTrace();
+        if(isRegistration) {//регистрируемся или ввост. пароль
+            try {
+                xml = new Xembler(
+                        new Directives()
+                                .add("from")
+                                .attr("who", "client")
+                                .attr("to", "server")
+                                .attr("type", "set")
+                                .add("vacoom")
+                                .attr("action", "getCode")
+                                .attr("mode", "registration")
+                                .attr("email", mail)
+                                .set("")
+                ).xml();
+            } catch (ImpossibleModificationException e) {
+                e.printStackTrace();
+            }
+        }else
+        {
+            try {
+                xml = new Xembler(
+                        new Directives()
+                                .add("from")
+                                .attr("who", "client")
+                                .attr("to", "server")
+                                .attr("type", "set")
+                                .add("vacoom")
+                                .attr("action", "getCode")
+                                .attr("mode", "refresh")
+                                .attr("email", mail)
+                                .set("")
+                ).xml();
+            } catch (ImpossibleModificationException e) {
+                e.printStackTrace();
+            }
         }
         return prtocolToString(xml);
     }
@@ -123,7 +191,27 @@ public class VacoomProtocol {
             e.printStackTrace();
         }
         return prtocolToString(xml);
-
     }
+    /*Получить логин пользователя по мейлу*/
+    public String getUserLoginFromMail( String userMail) {
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "server")
+                            .attr("type", "set")
+                            .add("vacoom")
+                            .attr("action", "getMailLogin")
+                            .attr("login", userMail)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
+
 
 }

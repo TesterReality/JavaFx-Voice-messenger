@@ -63,7 +63,7 @@ public class RegistrationController  extends VacoomProtocol {
        // ThreadClientInfoSingleton.getInstance().getCleintMsgThread().
 
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setRegistreUser(false);
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getCodeMsg(email.getText()));
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getCodeMsg(email.getText(),true));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
 

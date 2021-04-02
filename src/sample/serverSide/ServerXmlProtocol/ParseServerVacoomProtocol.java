@@ -138,27 +138,64 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                 }
                 break;
             }
+            case "checkCodeRefresh":
+            {
+                if(checkUserActivatedMailCode(commands[4],commands[5]))
+                {
+                    return sendAnswer(commands[3],"ok");
+                }else
+                {
+                    return  sendAnswer(commands[3],"error_code");
+                }
+            }
             case "getCode":
             {
-                mail.setMailTo(commands[4]);//установить емейл
-                try {
+                switch (commands[5])
+                {
+                    case "registration": {
+                        mail.setMailTo(commands[4]);//установить емейл
+                        try {
 
-                    if (checkMailIsUnregister(commands[4])==false)// если на емейл зарегистрирован человек
-                    {
-                        return sendAnswer(commands[3], "mail_error");//если мейл зареган
+                            if (checkMailIsUnregister(commands[4])==false)// если на емейл зарегистрирован человек
+                            {
+                                return sendAnswer(commands[3], "mail_error");//если мейл зареган
+                            }
+
+                            addCodeAnonymusDatabase(sendQR(), commands[4]);
+                            return sendAnswer(commands[3], "ok");//все хорошо
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                            return sendAnswer(commands[3], "error");//если что-то пошло не так с сообщением
+                        } catch (NoSuchPaddingException e) {
+                            e.printStackTrace();
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                     }
+                    case "refresh": {
+                        mail.setMailTo(commands[4]);//установить емейл
+                        try {
+                            if (checkMailIsUnregister(commands[4])==true)// если на емейл НЕ зарегистрирован человек
+                            {
+                                return sendAnswer(commands[3], "mail_unreg");//если мейл НЕ зареган
+                            }
+                            upadteCodeActivated(commands[4],  sendQR());
+                            return sendAnswer(commands[3], "ok");//все хорошо
 
-                    addCodeAnonymusDatabase(sendQR(), commands[4]);
-                    return sendAnswer(commands[3], "ok");//все хорошо
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                    return sendAnswer(commands[3], "error");//если что-то пошло не так с сообщением
-                } catch (NoSuchPaddingException e) {
-                    e.printStackTrace();
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
+                        } catch (NoSuchPaddingException e) {
+                            e.printStackTrace();
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                            return sendAnswer(commands[3], "error");//если что-то пошло не так с сообщением
+
+                        }
+                        break;
+                    }
                 }
-                break;
+
             }
             case"registration":
             {
@@ -166,6 +203,24 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                     return sendAnswer(commands[3], "ok");
                 else
                     return sendAnswer(commands[3], "error_user");
+            }
+            case "getMailLogin":
+            {
+                try {
+                    String userLogin= getUserLoginFromMail(commands[4]);
+                    return sendAnswer(commands[3], "ok:"+userLogin);
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+            case "changePswd":
+            {
+                if (changePswd(commands[4], commands[5]))
+                    return sendAnswer(commands[3], "ok");
+                else
+                    return sendAnswer(commands[3], "error");
             }
 
         }

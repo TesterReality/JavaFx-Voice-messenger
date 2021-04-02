@@ -1,5 +1,6 @@
 package sample.qr;
 
+import com.sun.org.apache.regexp.internal.RE;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +49,7 @@ public class QrCheckController extends VacoomProtocol {
 
     QrCheckController thisNode;
     AnchorPane regUser=null;
+    AnchorPane changePass = null;
     QRscanner qRscanner;
     String code;
 
@@ -71,6 +73,11 @@ public class QrCheckController extends VacoomProtocol {
     {
         parents = register;
     }
+    public void setParent  (RefreshingPasswordController refreshing)
+    {
+        parents = refreshing;
+    }
+
 
     public void setNode (QrCheckController qr)
     {
@@ -193,6 +200,7 @@ public class QrCheckController extends VacoomProtocol {
     public void toMainUserPage(MouseEvent mouseEvent) {
         if(parents instanceof LoginController) {
             LoginController login = (LoginController) parents;
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCode(login.input.getText(), code, false));
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
 
@@ -226,6 +234,7 @@ public class QrCheckController extends VacoomProtocol {
         {
             RegistrationController registrationController = (RegistrationController) parents;
 
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCode(registrationController.email.getText(), code, true));
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
 
@@ -256,9 +265,79 @@ public class QrCheckController extends VacoomProtocol {
 
             System.out.println("Мы подтверждает неактивированный мейл");
         }
+        if(parents instanceof RefreshingPasswordController)
+        {
+            RefreshingPasswordController RefreshingPasswordController = (RefreshingPasswordController) parents;
+
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCodeRefresh(RefreshingPasswordController.email.getText(), code));
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+
+            new Thread(() -> {
+
+                do {
+                    try {
+                        Thread.sleep(400);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                ErrorMsg t = new ErrorMsg();
+                if (t.checkCode() == 0) {
+                    //Если Qr подошел, возьмем имя пользователя
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getUserLoginFromMail(((RefreshingPasswordController) parents).email.getText()));
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+
+                    do {
+                        try {
+                            Thread.sleep(400);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                    String userName =  ThreadClientInfoSingleton.getInstance().getClientMsgThread().getUser_name();
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("[Клиент] Все прошло хорошо. QR проверен. Переходим к ввостановлению пароля");
+                            System.out.println("[Клиент] Имя пользователя:"+userName);
+                            loadChangePswd(userName);
+                            thisAnchorPane.getChildren().add(changePass);
+                          //  loadRegistrationUser();
+                           // ss
+                          //  thisAnchorPane.getChildren().add(regUser);
+
+                        }
+                    });
+                }
+
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+            }).start();
+
+            System.out.println("Мы подтверждает неактивированный мейл");
+        }
 
     }
 
+    private void loadChangePswd(String username)
+    {
+        FXMLLoader loader = new FXMLLoader();
+        ChangePasswordController changePasswordController =
+                new ChangePasswordController(username);
+        changePasswordController.setParent(thisNode);
+        changePasswordController.setThisNode(changePasswordController);
+        loader = new FXMLLoader(getClass().getResource("../fxml/changePassword.fxml"));
+        loader.setController(changePasswordController);
+
+        try {
+            changePass = (AnchorPane) loader.load();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void loadRegistrationUser()
     {
         FXMLLoader loader = new FXMLLoader();
@@ -293,6 +372,22 @@ public class QrCheckController extends VacoomProtocol {
             RegistrationController registrationController = (RegistrationController) parents;
             registrationController.back();
 
+        }
+        if(parents instanceof RefreshingPasswordController)
+        {
+            RefreshingPasswordController refreshingPasswordController = (RefreshingPasswordController) parents;
+            refreshingPasswordController.back();
+        }
+
+    }
+
+    public void toStartPage()
+    {
+        thisAnchorPane.getChildren().remove(thisAnchorPane.getChildren().size()-1);
+        if(parents instanceof RefreshingPasswordController) {
+
+            RefreshingPasswordController refreshingPasswordController = (RefreshingPasswordController) parents;
+            refreshingPasswordController.toLoginPage();
         }
 
     }

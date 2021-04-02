@@ -12,6 +12,35 @@ public class ServerVacoomProtocol {
 
     // ответ от сервера по коду и статусу
     public String sendAnswer(String action, String status) {
+
+        if(status.contains(":"))//если нам ответить много чего
+        {
+            String [] codes;
+            codes = status.split(":");
+            String xml = null;
+            try {
+                xml = new Xembler(
+                        new Directives()
+                                .add("from")
+                                .attr("who", "server")
+                                .attr("to", "client")
+                                .attr("type", "result")
+                                .add("vacoom")
+                                .attr("action", action)
+                                .attr("status", codes[0])
+                                .attr("login",codes[1])
+                                .set("")
+                ).xml();
+            } catch (ImpossibleModificationException e) {
+                e.printStackTrace();
+            }
+            byte[] gg = xml.getBytes();
+            int index = xml.indexOf(">");
+            xml = xml.substring(index + 3, xml.length());
+            System.out.print(xml);
+            return xml;
+        }
+
         String xml = null;
         try {
             xml = new Xembler(

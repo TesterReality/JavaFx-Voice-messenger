@@ -21,6 +21,20 @@ public class ErrorMsg {
             }
         });
     }
+
+    public int changerPswd()
+    {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+            case 1:
+                showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Произошла ошибка","Ошибка изменения пароля");
+                return 1;
+            case 0:
+                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Изменение пароля","Пароль успешно изменен");
+                return 0;
+        }
+        return 1;
+    }
+
     public int checkLogin()
     {
         switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
@@ -50,6 +64,9 @@ public class ErrorMsg {
     public int getCode()
     {
         switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+            case 3:
+                showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка отправки почты","На данную почту не зарегистрирован пользователь");
+                return 3;
             case 2:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка отправки почты","Сервер не смог отправить данные на указанную почту");
                 return 2;
@@ -57,7 +74,7 @@ public class ErrorMsg {
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка почты","На данную почту уже зарегестрирован пользователь!");
                 return 1;
             case 0:
-                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Код регистрации","На указанную почту выслан QR-код проверки");
+                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Код выслан","На указанную почту выслан QR-код проверки");
                 return 0;
         }
         return 1;

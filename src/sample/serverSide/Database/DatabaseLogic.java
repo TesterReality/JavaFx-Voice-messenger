@@ -135,7 +135,25 @@ public class DatabaseLogic {
         }
         return false;
     }
-
+    public boolean checkUserActivatedMailCode(String code, String mail) {
+        refreshConnect();
+        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+            CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode_active_mail(?)}");
+            cstmt.setString(1, mail);
+            cstmt.setString(2, code);
+            cstmt.registerOutParameter(1, Types.BOOLEAN);
+            cstmt.execute();
+            boolean isCodeEquals = cstmt.getBoolean(1);
+            return isCodeEquals;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public boolean checkUserActivatedCode(String code, String login) {
         refreshConnect();
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {

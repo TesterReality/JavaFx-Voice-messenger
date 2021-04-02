@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.ClientMsgThread;
 import sample.ResizeHelper;
 import sample.ThreadClientInfoSingleton;
 
@@ -89,6 +90,16 @@ public class ClientParseProtocol extends VacoomProtocol {
                     }
                     break;
                 }
+            case "checkCodeRefresh":
+                {
+                    switch (commands[4]) {
+                        case "ok":
+                            return 0;
+                        case "error_code":
+                            return 1;
+                    }
+                    break;
+                }
             case "getCode":
             {
                 switch (commands[4]) {
@@ -98,6 +109,8 @@ public class ClientParseProtocol extends VacoomProtocol {
                         return 1;
                     case "error":
                         return 2;
+                    case "mail_unreg":
+                        return 3;
                 }
                 break;
             }
@@ -107,6 +120,27 @@ public class ClientParseProtocol extends VacoomProtocol {
                     case "ok":
                         return 0;
                     case "error_user":
+                        return 1;
+                }
+                break;
+            }
+            case "getMailLogin":
+            {
+                switch (commands[5])
+                {
+                    case "ok":
+                        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUser_name(commands[4]);
+                        return 0;
+                    case "error":
+                        return 1;
+                }
+            }
+            case "changePswd":
+            {
+                switch (commands[4]) {
+                    case "ok":
+                        return 0;
+                    case "error":
                         return 1;
                 }
                 break;

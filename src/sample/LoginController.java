@@ -20,6 +20,8 @@ public class LoginController extends VacoomProtocol {
     public Controller crt;
     public AnchorPane registration = null;
     public AnchorPane qrCheck = null;
+    public AnchorPane refreshingForm = null;
+
     public PasswordField password;
     StartWindowController parents;
     LoginController thisNode;
@@ -78,6 +80,22 @@ public class LoginController extends VacoomProtocol {
         }
     }
 
+    public void loadRefreshingPassword()
+    {
+        FXMLLoader loaderRefreshPswd = new FXMLLoader();
+        RefreshingPasswordController refresh = new RefreshingPasswordController();
+        refresh.setParent(thisNode);
+        refresh.setThisNode(refresh);
+        loaderRefreshPswd = new FXMLLoader(getClass().getResource("fxml/refreshingPswd.fxml"));
+        loaderRefreshPswd.setController(refresh);
+
+        try {
+            refreshingForm= (AnchorPane) loaderRefreshPswd.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setParent  (StartWindowController ctr)
     {
         parents = ctr;
@@ -112,6 +130,7 @@ public class LoginController extends VacoomProtocol {
             alert.showAndWait();
             return;
         }
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser(input.getText(),new SHA256Class().getSHA256(password.getText())));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
        // loginXML.getChildren().add(qrCheck);
@@ -151,11 +170,12 @@ public class LoginController extends VacoomProtocol {
     }
 
     public void refreshPassword(MouseEvent mouseEvent) {
-
-    //loginXML.getChildren().add(qrCheck);
+        loadRefreshingPassword();
+        loginXML.getChildren().add(refreshingForm);
     }
 
     public void startRegistration(MouseEvent mouseEvent) {
+        loadRegistration();
         loginXML.getChildren().add(registration);
 
     }
