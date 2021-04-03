@@ -12,8 +12,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Set;
@@ -151,36 +154,65 @@ public class StartWindowController {
     public void test(MouseEvent mouseEvent) {
     }
 
-    public void loadWorkrArea(String user_name) throws IOException {
-      /*  Stage stage = (Stage) Exit.getScene().getWindow();
+    public void loadWorkArea(String user_name) throws IOException {
+        Stage stage1 = (Stage) Exit.getScene().getWindow();
         firstWindow.getChildren().clear();
-        stage.close();
+        stage1.close();
+        myThread.interrupt();
+
 
         FXMLLoader loader = new FXMLLoader();
-        WorkAreaController workinArea =
-                new WorkAreaController();
-        workinArea.setParent(controller);
-        workinArea.setThisNode(workinArea);
+        Controller controller =
+                new Controller();
+      //  controller.setParent(controller);
+       // controller.setThisNode(workinArea);
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "fxml/workArea.fxml"
+                        "fxml/sample.fxml"
                 )
         );
-        workinArea.setUser_name(user_name);
-        loader.setController(workinArea);
+       // workinArea.setUser_name(user_name);
+        loader.setController(controller);
 
+/*
+       FXMLLoader loader = new FXMLLoader();
+       Controller controller =
+               new Controller();
+       controller.setController(controller);
+       loader = new FXMLLoader(
+               getClass().getResource(
+                       "fxmls/workArea.fxml"
+               )
+       );
+       // Parent root = loader.load(getClass().getResource("sample1.fxml"));
+
+       loader.setController(controller);*/
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
         stage.setScene(scene);
+
         //stage.setResizable(false);
         stage.setMinWidth(800);
-        stage.setMinHeight(500);
+        stage.setMinHeight(600);
         stage.setWidth(800);
-        stage.setHeight(500);
+        stage.setHeight(600);
         ResizeHelper.addResizeListener(stage);
-        stage.show();*/
+        stage.setTitle("Hello World");
+      stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
 
     }
 
 
+    public void openTestWindow(MouseEvent mouseEvent) {
+        try {
+            loadWorkArea("test");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

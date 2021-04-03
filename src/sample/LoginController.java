@@ -135,12 +135,6 @@ public class LoginController extends VacoomProtocol {
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
        // loginXML.getChildren().add(qrCheck);
 
-        /*
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(autorizationUser
-                ("127.0.0.1","authorization",input.getText(),md5.md5Custom(password.getText())));
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);*/
-
         new Thread(() -> {
 
             do {

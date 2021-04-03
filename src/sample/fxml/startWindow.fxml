@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
@@ -24,6 +25,7 @@
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>
+                  <Button layoutX="274.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#openTestWindow" text="Button" />
                </children>
             </AnchorPane>
          </children>
