@@ -7,7 +7,7 @@ import java.io.File;
 import java.net.URI;
 import java.util.List;
 
-class ImageChooser {
+public class ImageChooser {
 
     private final FileChooser chooser;
 

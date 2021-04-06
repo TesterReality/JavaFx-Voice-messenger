@@ -78,7 +78,11 @@
 .circleImage
 {
     -fx-stroke:  rgba(0,0,0,0);
-    -fx-fill: url("../resource/img/lady.jpg");
+}
+.circleImage:hover
+{
+    -fx-fill: url("../resource/img/settings.png");
+
 }
 
 .settings

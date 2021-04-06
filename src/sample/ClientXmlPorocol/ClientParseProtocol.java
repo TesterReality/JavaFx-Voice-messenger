@@ -73,6 +73,17 @@ public class ClientParseProtocol extends VacoomProtocol {
         switch (commands[3])//содержит код запроса
         {
             case "authorization":
+                if(commands[4].equals("error"))
+                    return 1;
+                if(commands[8].equals("ok"))
+                {
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setCloudinaryApiKey(commands[4]);
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setCloudinaryApiSecret(commands[5]);
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setCloudinaryCloudName(commands[7]);
+
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAvatarsId(commands[6]);
+                    return 0;
+                }
                 switch (commands[4]) {
                     case "ok":
                         return 0;
@@ -134,8 +145,19 @@ public class ClientParseProtocol extends VacoomProtocol {
                     case "error":
                         return 1;
                 }
+                break;
             }
             case "changePswd":
+            {
+                switch (commands[4]) {
+                    case "ok":
+                        return 0;
+                    case "error":
+                        return 1;
+                }
+                break;
+            }
+            case "updateAvatars":
             {
                 switch (commands[4]) {
                     case "ok":

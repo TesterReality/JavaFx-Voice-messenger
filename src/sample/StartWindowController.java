@@ -17,11 +17,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.ClientXmlPorocol.VacoomProtocol;
 
 import java.io.IOException;
 import java.util.Set;
 
-public class StartWindowController {
+public class StartWindowController extends VacoomProtocol {
 
     public Label Exit;
     public AnchorPane test_change;
@@ -155,6 +156,10 @@ public class StartWindowController {
     }
 
     public void loadWorkArea(String user_name) throws IOException {
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser("tester",new SHA256Class().getSHA256("")));
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+
         Stage stage1 = (Stage) Exit.getScene().getWindow();
         firstWindow.getChildren().clear();
         stage1.close();
@@ -163,7 +168,7 @@ public class StartWindowController {
 
         FXMLLoader loader = new FXMLLoader();
         Controller controller =
-                new Controller();
+                new Controller(user_name);
       //  controller.setParent(controller);
        // controller.setThisNode(workinArea);
         loader = new FXMLLoader(
@@ -210,7 +215,7 @@ public class StartWindowController {
 
     public void openTestWindow(MouseEvent mouseEvent) {
         try {
-            loadWorkArea("test");
+            loadWorkArea("tester");
         } catch (IOException e) {
             e.printStackTrace();
         }

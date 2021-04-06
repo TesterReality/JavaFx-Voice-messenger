@@ -16,6 +16,29 @@ public class VacoomProtocol {
         System.out.print(xml);
         return xml;
     }
+
+    public String updateAvatars(String login,String avatarID)
+    {
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "server")
+                            .attr("type", "set")
+                            .add("vacoom")
+                            .attr("action", "updateAvatars")
+                            .attr("login", login)
+                            .attr("avatarID", avatarID)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
+
     /*Авторизация пользователя на первой странице. Проверяет пароль и логин*/
     public String authorizationUser(String userLogin, String pswd) {
         String xml = null;

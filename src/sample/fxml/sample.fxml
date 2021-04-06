@@ -21,15 +21,15 @@
          <children>
             <HBox layoutX="284.0" layoutY="-29.0" prefHeight="75.0" prefWidth="72.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="tray" prefHeight="24.0" prefWidth="20.0" styleClass="tray">
+                  <Label fx:id="tray" onMouseClicked="#toTray" prefHeight="24.0" prefWidth="20.0" styleClass="tray">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin></Label>
-                  <Label fx:id="full" prefHeight="24.0" prefWidth="20.0" styleClass="quad">
+                  <Label fx:id="full" onMouseClicked="#fullScreenWindow" prefHeight="24.0" prefWidth="20.0" styleClass="quad">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin></Label>
-                  <Label fx:id="Exit" alignment="CENTER" prefHeight="24.0" prefWidth="20.0" styleClass="turn" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="Exit" alignment="CENTER" onMouseClicked="#closeWindow" prefHeight="24.0" prefWidth="20.0" styleClass="turn" textAlignment="CENTER" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin></Label>
@@ -48,16 +48,17 @@
       </AnchorPane>
       <AnchorPane layoutX="67.0" layoutY="146.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
          <children>
-            <AnchorPane prefHeight="20.0" prefWidth="400.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="34.0">
+            <AnchorPane prefHeight="40.0" prefWidth="400.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="34.0">
                <children>
-                  <Circle fill="DODGERBLUE" radius="20.0" stroke="RED" strokeType="INSIDE" styleClass="circleFromImage" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Circle fill="DODGERBLUE" radius="16.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleImage" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0" />
+                  <Circle fill="DODGERBLUE" radius="24.0" stroke="RED" strokeType="INSIDE" styleClass="circleFromImage" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Circle fx:id="userImg" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleImage" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0" />
+                  <Circle fx:id="newAvatars" fill="#ff1f3a" onMouseClicked="#loadNewAvatarClick" onMouseEntered="#mouseInsideAvatar" onMouseExited="#mouseLeaveAvatar" opacity="0.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleImage" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0" />
                   <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane prefHeight="40.0" prefWidth="25.0">
                            <children>
                               <Label fx:id="Exit11" prefHeight="24.0" prefWidth="24.0" styleClass="notification" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0" />
-                              <Label fx:id="Exit111" layoutX="11.0" layoutY="12.0" prefHeight="10.0" prefWidth="10.0" styleClass="NewNotification" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0" />
+                              <Label fx:id="isNewNews" layoutX="11.0" layoutY="12.0" prefHeight="10.0" prefWidth="10.0" styleClass="NewNotification" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0" />
                            </children>
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
@@ -68,7 +69,7 @@
                               <Insets />
                            </opaqueInsets>
                            <HBox.margin>
-                              <Insets bottom="8.0" left="5.0" right="5.0" top="8.0" />
+                              <Insets bottom="8.0" left="5.0" right="5.0" top="12.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -90,7 +91,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="20.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <Label text="Имя Пользователя" textFill="WHITE">
+                              <Label fx:id="userName" text="Имя Пользователя" textFill="WHITE">
                                  <font>
                                     <Font name="Roboto" size="12.0" />
                                  </font>

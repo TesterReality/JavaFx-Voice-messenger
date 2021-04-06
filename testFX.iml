@@ -23,5 +23,12 @@
     <orderEntry type="library" name="javase-2.2" level="project" />
     <orderEntry type="library" name="zxing-core-2.0" level="project" />
     <orderEntry type="library" name="antlr-runtime-3.5.2" level="project" />
+    <orderEntry type="library" name="cloudinary-http44-1.29.0" level="project" />
+    <orderEntry type="library" name="cloudinary-core-1.29.0" level="project" />
+    <orderEntry type="library" name="httpclient-4.5.13" level="project" />
+    <orderEntry type="library" name="httpclient-cache-4.5.13" level="project" />
+    <orderEntry type="library" name="httpcore-4.4.14" level="project" />
+    <orderEntry type="library" name="commons-logging-1.2" level="project" />
+    <orderEntry type="library" name="httpmime-4.5.13" level="project" />
   </component>
 </module>

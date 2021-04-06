@@ -53,8 +53,34 @@ public class ClientMsgThread extends Thread {
     private SHA256Class sha256Class;
     private ClientParseProtocol parserProtocol;
     private String QrAnswerDercypto = null;
+    private volatile CloudinaryConfig cloudinaryConfig;
+    private volatile String avatarsId;
 
 
+    public String getAvatarsId() {
+        return avatarsId;
+    }
+    public void setAvatarsId(String avatarsId) {
+        this.avatarsId = avatarsId;
+    }
+    public void setCloudinaryApiSecret(String api_secret)
+    {
+        cloudinaryConfig.setApi_secret(api_secret);
+    }
+
+    public void setCloudinaryCloudName(String cloudname)
+    {
+        cloudinaryConfig.setCloud_name(cloudname);
+    }
+
+    public void setCloudinaryApiKey(String api_key)
+    {
+        cloudinaryConfig.setApi_key(api_key);
+    }
+
+    public CloudinaryConfig getCloudinaryConfig() {
+        return cloudinaryConfig;
+    }
     public String getQrAnswerDercypto() {
         return QrAnswerDercypto;
     }
@@ -312,6 +338,7 @@ public class ClientMsgThread extends Thread {
                                     System.out.println(new String(src));*/
                                         senMsgToServer("AES-OK");
                                         parserProtocol = new ClientParseProtocol();
+                                        cloudinaryConfig = new CloudinaryConfig();
                                     /*
                                     String mes = "AES-OK";
                                     bytemsg = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);

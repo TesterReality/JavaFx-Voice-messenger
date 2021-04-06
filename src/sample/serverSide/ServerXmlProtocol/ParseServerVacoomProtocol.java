@@ -111,7 +111,8 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                         e.printStackTrace();
                     }*/
 
-                    return sendAnswer(commands[3], "ok");
+                    return serverVacoomProtocol.sendOkAnswerAuthorization(getAvatarFromUsername(commands[4]));
+                  //  return sendAnswer(commands[3], "ok");
                 } else
                     return sendAnswer(commands[3], "error");
             }
@@ -218,6 +219,14 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
             case "changePswd":
             {
                 if (changePswd(commands[4], commands[5]))
+                    return sendAnswer(commands[3], "ok");
+                else
+                    return sendAnswer(commands[3], "error");
+            }
+            case "updateAvatars":
+            {
+
+                if (changeAvatar(commands[5],commands[4]))
                     return sendAnswer(commands[3], "ok");
                 else
                     return sendAnswer(commands[3], "error");

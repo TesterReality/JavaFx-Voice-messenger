@@ -1,5 +1,8 @@
 package sample;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
@@ -16,28 +19,227 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.*;
 import javafx.scene.image.Image;
+import sample.ClientXmlPorocol.VacoomProtocol;
+import sample.qr.ImageChooser;
+import sun.misc.BASE64Encoder;
 
-public class Controller {
+import javax.imageio.ImageIO;
+
+public class Controller extends VacoomProtocol {
     public TextArea testTextArea;
     public AnchorPane containerTextArea;
     public AnchorPane smileDialog;
     public FlowPane flow;
+    public AnchorPane stageWindow;
+    public Circle userImg;
+    public Label isNewNews;
+    public Label userName;
+    public Label Exit;
+    public Circle newAvatars;
+
+    private String userNameString;
+    private Map configImg;
+    private CloudinaryConfig cloudinaryConfig;
+    Stage stage;
     int index =0;
     Map<String, BufferedImage> hashMap = new HashMap<String, BufferedImage>();
     FlowFieldPositionHelper flowPosition;
+    private String urlPathToImg = "https://res.cloudinary.com/diplomaimgdpi/image/upload/";
+    ImageChooser chooser;
+    BufferedImage newImage = null;
+
+    public Controller(String username) {
+        this.userNameString = username;
+    }
+    public String encodeToString(BufferedImage image, String type) {
+        String imageString = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+        try {
+            ImageIO.write(image, type, bos);
+            byte[] imageBytes = bos.toByteArray();
+
+            BASE64Encoder encoder = new BASE64Encoder();
+            imageString = encoder.encode(imageBytes);
+
+            bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageString;
+    }
+
+
+    public BufferedImage scale(BufferedImage img, int targetWidth, int targetHeight) {
+
+        int type = (img.getTransparency() == Transparency.OPAQUE) ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
+        BufferedImage ret = img;
+        BufferedImage scratchImage = null;
+        Graphics2D g2 = null;
+
+        int w = img.getWidth();
+        int h = img.getHeight();
+
+        int prevW = w;
+        int prevH = h;
+
+        do {
+            if (w > targetWidth) {
+                w /= 2;
+                w = (w < targetWidth) ? targetWidth : w;
+            }
+
+            if (h > targetHeight) {
+                h /= 2;
+                h = (h < targetHeight) ? targetHeight : h;
+            }
+
+            if (scratchImage == null) {
+                scratchImage = new BufferedImage(w, h, type);
+                g2 = scratchImage.createGraphics();
+            }
+
+            g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g2.drawImage(ret, 0, 0, w, h, 0, 0, prevW, prevH, null);
+
+            prevW = w;
+            prevH = h;
+            ret = scratchImage;
+        } while (w != targetWidth || h != targetHeight);
+
+        if (g2 != null) {
+            g2.dispose();
+        }
+
+        if (targetWidth != ret.getWidth() || targetHeight != ret.getHeight()) {
+            scratchImage = new BufferedImage(targetWidth, targetHeight, type);
+            g2 = scratchImage.createGraphics();
+            g2.drawImage(ret, 0, 0, null);
+            g2.dispose();
+            ret = scratchImage;
+        }
+
+        return ret;
+
+    }
+
+    public String changeAvatar(BufferedImage buffImg)
+    {
+        Cloudinary cloudinary = new Cloudinary(configImg);
+        Map uploadInfo =null;
+        try {
+            BufferedImage in = buffImg;
+            in = scale(in, 50, 50);
+            File outputfile = new File("src/resource/img/temp.png");
+            ImageIO.write(in, "png", outputfile);
+            uploadInfo = cloudinary.uploader().upload(outputfile.getPath(), ObjectUtils.emptyMap());
+            outputfile.delete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return (String) uploadInfo.get("public_id");
+    }
+
+    private BufferedImage getImgFromUrl(String urlStr)
+    {
+        URLConnection uc;
+        String tmpUrl = urlPathToImg +urlStr+".png";
+        BufferedImage imageAvatars =null;
+        try {
+            URL url = new URL(tmpUrl);
+            uc = url.openConnection();
+            uc.setRequestProperty("User-Agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+            uc.connect();
+
+            InputStream urlStream = uc.getInputStream();
+            imageAvatars = ImageIO.read(urlStream);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageAvatars;
+    }
     @FXML
     private void initialize() throws IOException {
 
+
+        userName.setText(userNameString);
+/*
+         URL url = new URL("https://api.multiavatar.com/"+userNameString+".png");
+        uc = url.openConnection();
+        uc.setRequestProperty("User-Agent",
+                "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+        uc.connect();
+
+        InputStream urlStream = uc.getInputStream();
+       BufferedImage image1 = ImageIO.read(urlStream);
+       image1 = scale(image1,50,50);*/
+       // System.out.println(encodeToString(image1,"png"));
+
+        configImg = new HashMap();
+
+        //https://res.cloudinary.com/diplomaimgdpi/image/upload/k2tx9q47isouxxfnvdbr.png
+
+
+
+
+
+
+
+        // Map testUrl =cloudinary.uploader().upload("src/resource/img/lady1.png", ObjectUtils.emptyMap());
+        //System.out.println(testUrl.get("url"));
+       // System.out.println(testUrl.get("public_id"));
+
+
+        //image1 = scale(image1,50,50);
+
+        //cloudinary.uploader().upload("src/resource/img/lady1.png",ObjectUtils.asMap("name", "sample_id"));
+
+
+
+
+
+
+        //URL url = new URL("http://www.avajava.com/images/avajavalogo.jpg");
+      //  InputStream input = uc.getInputStream();
+
+      //  BufferedImage img = ImageIO.read(uc.getInputStream());
+        do {
+            try {
+                Thread.sleep(400);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+        ErrorMsg t = new ErrorMsg();
+        if( t.checkLogin()!=0 )
+        {
+            System.out.println("error");
+        }
+
+        Image image = SwingFXUtils.toFXImage(getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAvatarsId()), null);
+        userImg.setFill(new ImagePattern(image));
 
 
         flowPosition = new FlowFieldPositionHelper();
@@ -625,5 +827,86 @@ public class Controller {
             smileDialog.setVisible(true);
         }
 
+    }
+
+    public void toTray(MouseEvent mouseEvent) {
+        Stage stage = (Stage) Exit.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    public void fullScreenWindow(MouseEvent mouseEvent) {
+        stage = (Stage) Exit.getScene().getWindow();
+        if(!stage.isMaximized())
+            stage.setMaximized(true);
+        else
+        {
+            stage.setMaximized(false);
+            stage.setWidth(600);
+            stage.setHeight(400);
+        }
+    }
+
+    public void closeWindow(MouseEvent mouseEvent) {
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().interrupt();
+        Stage stage = (Stage) Exit.getScene().getWindow();
+        stage.close();
+    }
+
+    public void mouseInsideAvatar(MouseEvent mouseEvent) {
+        Image imgLoad = new Image("resource/img/Qr/qrIMGload.png");
+        newAvatars.setFill(new ImagePattern(imgLoad));
+        newAvatars.setOpacity(0.6);
+
+    }
+
+    public void mouseLeaveAvatar(MouseEvent mouseEvent) {
+        newAvatars.setOpacity(0);
+        newAvatars.setFill(Color.RED);
+
+    }
+
+    public void loadNewAvatarClick(MouseEvent mouseEvent) {
+        configImg.put("cloud_name", ThreadClientInfoSingleton.getInstance().getClientMsgThread().getCloudinaryConfig().getCloud_name());
+        configImg.put("api_key", ThreadClientInfoSingleton.getInstance().getClientMsgThread().getCloudinaryConfig().getApi_key());
+        configImg.put("api_secret", ThreadClientInfoSingleton.getInstance().getClientMsgThread().getCloudinaryConfig().getApi_secret());
+
+        chooser = new ImageChooser();
+        chooser.setAvailableFormats("*.png"); // Указываем форматы для FileChooser.
+
+        String image = chooser.openImage(); // Выбираем изображение.
+        if (image != null) {
+            File img = new File(image);
+            newImage=null;
+            try {
+                newImage= ImageIO.read(img);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            newImage=scale(newImage,50,50);
+
+            String avatrId=changeAvatar(newImage);
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(updateAvatars(userNameString,avatrId));
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+            new Thread(() -> {
+
+                do {
+                    try {
+                        Thread.sleep(400);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                ErrorMsg t = new ErrorMsg();
+                if( t.chnageAvatar()==0 )
+                {
+                    Image image1 = SwingFXUtils.toFXImage(newImage, null);
+                    userImg.setFill(new ImagePattern(image1));
+                }
+
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+            }).start();
+        }
     }
 }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="httpclient-cache-4.5.13">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/resource/lib/cloud/httpclient-cache-4.5.13.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

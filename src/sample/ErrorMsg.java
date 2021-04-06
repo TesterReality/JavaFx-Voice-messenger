@@ -22,6 +22,18 @@ public class ErrorMsg {
         });
     }
 
+    public int chnageAvatar()
+    {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+            case 1:
+                showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Произошла ошибка","Невозмжно изменить аватарку");
+                return 1;
+            case 0:
+                showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Изменение аватара","Аватар успешно изменен");
+                return 0;
+        }
+        return 1;
+    }
     public int changerPswd()
     {
         switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
