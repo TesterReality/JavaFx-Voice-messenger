@@ -130,7 +130,7 @@
                      <children>
                         <ScrollPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../style/ScrollPane.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <VBox prefHeight="1000.0" prefWidth="263.0" spacing="10.0">
+                              <VBox fx:id="users_list" prefHeight="1000.0" prefWidth="263.0" spacing="10.0">
                                  <children>
                                     <AnchorPane fx:id="newFriend1" prefHeight="60.0" prefWidth="180.0" stylesheets="@../../style/style.css">
                                        <children>
@@ -402,7 +402,7 @@
                                                             <Font name="Comic Sans MS Bold" size="11.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label fx:id="friend_login11" text="Йоу мазафака чо как оно" textFill="WHITE">
+                                                      <Label fx:id="friend_login11" text="Тестовая запись" textFill="WHITE">
                                                          <font>
                                                             <Font name="Comic Sans MS" size="11.0" />
                                                          </font>

@@ -53,6 +53,7 @@ public class Controller extends VacoomProtocol {
     public Label userName;
     public Label Exit;
     public Circle newAvatars;
+    public VBox users_list;
 
     private String userNameString;
     private Map configImg;
@@ -64,6 +65,15 @@ public class Controller extends VacoomProtocol {
     private String urlPathToImg = "https://res.cloudinary.com/diplomaimgdpi/image/upload/";
     ImageChooser chooser;
     BufferedImage newImage = null;
+    Controller thisNode;
+
+    public Controller getThisNode() {
+        return thisNode;
+    }
+
+    public void setThisNode(Controller thisNode) {
+        this.thisNode = thisNode;
+    }
 
     public Controller(String username) {
         this.userNameString = username;
@@ -907,6 +917,35 @@ public class Controller extends VacoomProtocol {
 
                 ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
             }).start();
+        }else
+        {
+            setFriend("ff",false);
         }
+    }
+
+    public void setFriend(String user_name,boolean online)
+    {
+        FXMLLoader loader = new FXMLLoader();
+        MyFriendController myfriend =
+                new MyFriendController();
+        myfriend.setParent(thisNode);
+        myfriend.setThisNode(myfriend);
+        loader = new FXMLLoader(
+                getClass().getResource(
+                        "fxml/myFriend.fxml"
+                )
+        );
+        loader.setController(myfriend);
+        AnchorPane newUsers =null;
+
+
+        try {
+            newUsers = (AnchorPane) loader.load();
+            users_list.getChildren().add(newUsers);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

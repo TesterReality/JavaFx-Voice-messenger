@@ -157,7 +157,7 @@ public class StartWindowController extends VacoomProtocol {
 
     public void loadWorkArea(String user_name) throws IOException {
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser("tester",new SHA256Class().getSHA256("")));
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser("Lenin",new SHA256Class().getSHA256("qwertyuiop")));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
 
         Stage stage1 = (Stage) Exit.getScene().getWindow();
@@ -170,7 +170,7 @@ public class StartWindowController extends VacoomProtocol {
         Controller controller =
                 new Controller(user_name);
       //  controller.setParent(controller);
-       // controller.setThisNode(workinArea);
+       controller.setThisNode(controller);
         loader = new FXMLLoader(
                 getClass().getResource(
                         "fxml/sample.fxml"
@@ -215,7 +215,7 @@ public class StartWindowController extends VacoomProtocol {
 
     public void openTestWindow(MouseEvent mouseEvent) {
         try {
-            loadWorkArea("tester");
+            loadWorkArea("Lenin");
         } catch (IOException e) {
             e.printStackTrace();
         }
