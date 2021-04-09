@@ -58,7 +58,15 @@ public class ClientMsgThread extends Thread {
     private volatile CloudinaryConfig cloudinaryConfig;
     private volatile String avatarsId;
     private volatile Map<String,Integer > statesProtocol;
+    private final FriendsInfo friendsInfo;
 
+    public ClientMsgThread() {
+        friendsInfo = new FriendsInfo();
+    }
+
+    public FriendsInfo getFriendsInfo() {
+        return friendsInfo;
+    }
 
     public Map<String, Integer> getStatesProtocol() {
         return statesProtocol;

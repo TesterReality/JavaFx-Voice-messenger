@@ -105,6 +105,18 @@ public class ErrorMsg {
         }
         return 1;
     }
+    public int checkFriend()
+    {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("getFriend")) {
+            case 1:
+                System.out.println("Не удалось обновить список друзей");
+                return 1;
+            case 0:
+                System.out.println("Список друзей обновлен");
+                return 0;
+        }
+        return 1;
+    }
 
 
 }

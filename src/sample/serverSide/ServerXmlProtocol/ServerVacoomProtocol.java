@@ -5,12 +5,40 @@ import org.xembly.ImpossibleModificationException;
 import org.xembly.Xembler;
 import sample.serverSide.CloudinaryConfig;
 
+import java.util.ArrayList;
+
 public class ServerVacoomProtocol {
 
 
     public ServerVacoomProtocol() {
     }
 
+    public String sendAnswerFriends(ArrayList<String> friend_name, ArrayList<String> status, ArrayList<Boolean> statusOnline,ArrayList<String> avatars) {
+        String xml = null;
+        try {
+
+            Directives directives = new Directives()
+                    .add("from")
+                    .attr("who", "server")
+                    .attr("to", "client")
+                    .attr("type", "result")
+                    .add("vacoom")
+                    .attr("action", "getFriend")
+                    .add("friends");
+            for (int i = 0; i < friend_name.size(); i++) {
+                directives.attr("user" + i, friend_name.get(i) + ":" + status.get(i) + ":" + String.valueOf(statusOnline.get(i) + ":"+avatars.get(i)));
+            }
+            directives.set("");
+            xml = new Xembler(directives).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        byte[] gg = xml.getBytes();
+        int index = xml.indexOf(">");
+        xml = xml.substring(index + 3, xml.length());
+        System.out.print(xml);
+        return xml;
+    }
     public String sendOkAnswerAuthorization(String urlAvatar)
     {
         CloudinaryConfig cloudinaryConfig = new CloudinaryConfig();

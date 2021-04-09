@@ -154,6 +154,12 @@
     -fx-background-repeat: no-repeat;
     -fx-background-image: url("../resource/img/online.png");
 }
+.isOffline
+{
+    -fx-background-color:  transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/offline.png");
+}
 /*Дата в друганах*/
 
 .msgData

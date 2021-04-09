@@ -246,8 +246,57 @@ public class Controller extends VacoomProtocol {
         if( t.checkLogin()!=0 )
         {
             System.out.println("error");
+            System.exit(-2);
         }
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("authorization");
+
+        /*Получаем друзей*/
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getFriend(userNameString));
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+
+        new Thread(() -> {
+
+            do {
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("getFriend"));
+            ErrorMsg err = new ErrorMsg();
+            if( err.checkFriend()==0 )
+            {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        users_list.getChildren().clear();
+
+                       int numOfFriend = ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendNumber();
+                       for(int i=0;i<numOfFriend;i++)
+                       {
+                           switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFrienStatus(i)) {
+                               case "1":
+                                   setFriend(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),
+                                           ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getStatusOnline(i),
+                                           getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendAvatars(i)),
+                                           "Друг",
+                                           "" );
+                                   break;//друг
+                               case "3":
+                                //   setNewUser(FriendsInfoSingleton.getInstance().getFriendName(i), "Запрос в друзья", Boolean.parseBoolean(FriendsInfoSingleton.getInstance().getStatusOnline(i)));
+                                   break;//запрос дал мне
+                           }
+                       }
+                        // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
+                        // parents.loadWorkrArea(input.getText());
+
+                    }
+                });
+            }
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("getFriend");
+
+        }).start();
+
 
 
         Image image = SwingFXUtils.toFXImage(getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAvatarsId()), null);
@@ -862,6 +911,7 @@ public class Controller extends VacoomProtocol {
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().interrupt();
         Stage stage = (Stage) Exit.getScene().getWindow();
         stage.close();
+        System.exit(-1);
     }
 
     public void mouseInsideAvatar(MouseEvent mouseEvent) {
@@ -921,15 +971,15 @@ public class Controller extends VacoomProtocol {
             }).start();
         }else
         {
-            setFriend("ff",false);
+            setFriend("ff","false",null,"","");
         }
     }
 
-    public void setFriend(String user_name,boolean online)
+    public void setFriend(String userName,String online,BufferedImage avatars,String last_msg,String friend_date)
     {
         FXMLLoader loader = new FXMLLoader();
         MyFriendController myfriend =
-                new MyFriendController();
+                new MyFriendController(userName,online,avatars,last_msg,friend_date);
         myfriend.setParent(thisNode);
         myfriend.setThisNode(myfriend);
         loader = new FXMLLoader(
@@ -940,7 +990,7 @@ public class Controller extends VacoomProtocol {
         loader.setController(myfriend);
         AnchorPane newUsers =null;
 
-
+        users_list.getChildren().clear();
         try {
             newUsers = (AnchorPane) loader.load();
             users_list.getChildren().add(newUsers);

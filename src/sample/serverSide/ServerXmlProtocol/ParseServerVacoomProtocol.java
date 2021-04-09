@@ -1,6 +1,7 @@
 package sample.serverSide.ServerXmlProtocol;
 
 import sample.serverSide.Database.DatabaseLogic;
+import sample.serverSide.FriendsHelper;
 import sample.serverSide.Mail.Mail;
 import sample.serverSide.RandomStringGenerator;
 import sample.serverSide.Server;
@@ -22,6 +23,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
     private Server objServer;
     private Mail mail;
     private ServerVacoomProtocol serverVacoomProtocol;
+    private String USER_NAME;
 
     public ParseServerVacoomProtocol(Server objServer) {
         this.objServer = objServer;
@@ -90,6 +92,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                 if (checkUser(commands[4], commands[5])) {
                     String mailUser;
                     try {
+                        USER_NAME = commands[4];
                         mailUser = checkLogin(commands[4]);
                         mail.setMailTo(mailUser);//это мейл
 
@@ -225,11 +228,20 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
             }
             case "updateAvatars":
             {
-
+                //если подменили ник
+                if(!commands[5].equals(USER_NAME))return sendAnswer(commands[3], "error");
                 if (changeAvatar(commands[5],commands[4]))
                     return sendAnswer(commands[3], "ok");
                 else
                     return sendAnswer(commands[3], "error");
+            }
+            case"getFriend":
+            {
+                if(!commands[4].equals(USER_NAME)) return sendAnswer(commands[3], "error");
+                FriendsHelper friend = new FriendsHelper();
+                if (getFriend(commands[4], friend)) {
+                    return serverVacoomProtocol.sendAnswerFriends( friend.getFriend_name(), friend.getStatus(), friend.getStatusOnline(),friend.getAvatars());
+                } else return sendAnswer(commands[3], "error");
             }
 
         }

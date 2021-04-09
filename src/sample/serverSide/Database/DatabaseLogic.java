@@ -5,6 +5,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import sample.serverSide.CloudinaryConfig;
 import sample.serverSide.Database.SingletonDatabaseConnection;
+import sample.serverSide.FriendsHelper;
 import sample.serverSide.ImageTransformer;
 
 import javax.crypto.NoSuchPaddingException;
@@ -648,5 +649,74 @@ public class DatabaseLogic {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean getFriend(String login, FriendsHelper frh) {
+        refreshConnect();
+        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+            PreparedStatement ps = SingletonDatabaseConnection.getInstance().getDBConnection().prepareStatement(" SELECT id_friend,status FROM contacts WHERE id_user = ( SELECT id_user FROM users WHERE user_name=?)");
+            ps.setString(1, login);
+            ArrayList<Integer> id_friend = new ArrayList<Integer>();
+            ArrayList<String> status = new ArrayList<String>();
+            ArrayList<String> name_friends = new ArrayList<String>();
+            ArrayList<Boolean> statusOnline = new ArrayList<>();
+            ArrayList<String> imgFriend = new ArrayList<>();
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                id_friend.add(rs.getInt("id_friend"));
+                status.add(rs.getString("status"));
+            }
+            int i = 0;
+            PreparedStatement ps1 = SingletonDatabaseConnection.getInstance().
+                    getDBConnection().prepareStatement(" SELECT user_name FROM users WHERE id_user = ?");
+            do {
+                ps1.setInt(1, id_friend.get(i));
+                rs = ps1.executeQuery();
+                while (rs.next()) {
+                    name_friends.add(rs.getString("user_name"));
+                }
+                i++;
+            } while (i < id_friend.size());
+            i = 0;
+            CallableStatement cstmt = conn.prepareCall("{? = CALL user_now_is_online}");
+            do {
+                cstmt.setString(1, name_friends.get(i));
+                cstmt.registerOutParameter(1, Types.BOOLEAN);
+                cstmt.execute();
+                statusOnline.add(cstmt.getBoolean(1));
+                i++;
+            } while (i < id_friend.size());
+            i=0;
+            cstmt = conn.prepareCall("{? = CALL get_img_url_login}");
+            do{
+                cstmt.setString(1, name_friends.get(i));
+                cstmt.registerOutParameter(1, Types.VARCHAR);
+                cstmt.execute();
+                String img = cstmt.getString(1);
+                if(img==null)
+                {
+                    imgFriend.add("default");
+                }else
+                {
+                    imgFriend.add(img);
+                }
+                i++;
+            }while(i<name_friends.size());
+            frh.setStatusOnline(statusOnline);
+            frh.setFriend_name(name_friends);
+            frh.setStatus(status);
+            frh.setAvatars(imgFriend);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
 }
