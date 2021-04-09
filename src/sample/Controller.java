@@ -241,12 +241,14 @@ public class Controller extends VacoomProtocol {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+        } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("authorization"));
         ErrorMsg t = new ErrorMsg();
         if( t.checkLogin()!=0 )
         {
             System.out.println("error");
         }
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("authorization");
+
 
         Image image = SwingFXUtils.toFXImage(getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAvatarsId()), null);
         userImg.setFill(new ImagePattern(image));
@@ -896,7 +898,6 @@ public class Controller extends VacoomProtocol {
             newImage=scale(newImage,50,50);
 
             String avatrId=changeAvatar(newImage);
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(updateAvatars(userNameString,avatrId));
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
             new Thread(() -> {
@@ -907,15 +908,16 @@ public class Controller extends VacoomProtocol {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("updateAvatars"));
                 ErrorMsg t = new ErrorMsg();
                 if( t.chnageAvatar()==0 )
                 {
                     Image image1 = SwingFXUtils.toFXImage(newImage, null);
                     userImg.setFill(new ImagePattern(image1));
                 }
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("updateAvatars");
 
-                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+
             }).start();
         }else
         {

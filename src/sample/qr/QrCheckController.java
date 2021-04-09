@@ -200,7 +200,6 @@ public class QrCheckController extends VacoomProtocol {
     public void toMainUserPage(MouseEvent mouseEvent) {
         if(parents instanceof LoginController) {
             LoginController login = (LoginController) parents;
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCode(login.input.getText(), code, false));
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
 
@@ -212,9 +211,9 @@ public class QrCheckController extends VacoomProtocol {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("checkCode"));
                 ErrorMsg t = new ErrorMsg();
-                if (t.checkCode() == 0) {
+                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCode")) == 0) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -226,15 +225,15 @@ public class QrCheckController extends VacoomProtocol {
                         }
                     });
                 }
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("checkCode");
 
-                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+
             }).start();
         }
         if(parents instanceof RegistrationController)
         {
             RegistrationController registrationController = (RegistrationController) parents;
 
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCode(registrationController.email.getText(), code, true));
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
 
@@ -246,9 +245,9 @@ public class QrCheckController extends VacoomProtocol {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("checkCode"));
                 ErrorMsg t = new ErrorMsg();
-                if (t.checkCode() == 0) {
+                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCode")) == 0) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -259,8 +258,7 @@ public class QrCheckController extends VacoomProtocol {
                         }
                     });
                 }
-
-                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("checkCode");
             }).start();
 
             System.out.println("Мы подтверждает неактивированный мейл");
@@ -269,7 +267,6 @@ public class QrCheckController extends VacoomProtocol {
         {
             RefreshingPasswordController RefreshingPasswordController = (RefreshingPasswordController) parents;
 
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(checkCodeRefresh(RefreshingPasswordController.email.getText(), code));
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
 
@@ -281,11 +278,12 @@ public class QrCheckController extends VacoomProtocol {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("checkCodeRefresh"));
                 ErrorMsg t = new ErrorMsg();
-                if (t.checkCode() == 0) {
+                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCodeRefresh")) == 0) {
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("checkCodeRefresh");
+
                     //Если Qr подошел, возьмем имя пользователя
-                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
                     ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getUserLoginFromMail(((RefreshingPasswordController) parents).email.getText()));
                     ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
 
@@ -295,7 +293,7 @@ public class QrCheckController extends VacoomProtocol {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                    } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                    } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("getMailLogin"));
                     String userName =  ThreadClientInfoSingleton.getInstance().getClientMsgThread().getUser_name();
 
                     Platform.runLater(new Runnable() {
@@ -311,9 +309,10 @@ public class QrCheckController extends VacoomProtocol {
 
                         }
                     });
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("getMailLogin");
+
                 }
 
-                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
             }).start();
 
             System.out.println("Мы подтверждает неактивированный мейл");

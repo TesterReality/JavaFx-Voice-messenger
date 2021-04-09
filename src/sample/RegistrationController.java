@@ -65,7 +65,6 @@ public class RegistrationController  extends VacoomProtocol {
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setRegistreUser(false);
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getCodeMsg(email.getText(),true));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
 
 
         new Thread(() -> {
@@ -76,9 +75,9 @@ public class RegistrationController  extends VacoomProtocol {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                        } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+                        } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("getCode"));
                         ErrorMsg t = new ErrorMsg();
-                       if( t.getCode()==0 )
+                       if( t.getCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("getCode"))==0 )
                        {
                            Platform.runLater(new Runnable() {
                                @Override
@@ -91,8 +90,8 @@ public class RegistrationController  extends VacoomProtocol {
                                }
                            });
                        }
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("getCode");
 
-                        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
         }).start();
 
     }

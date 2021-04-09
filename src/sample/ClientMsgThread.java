@@ -18,6 +18,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class ClientMsgThread extends Thread {
@@ -38,7 +40,7 @@ public class ClientMsgThread extends Thread {
     String msgFromServer;
     public volatile boolean serverIsOnline = false;
     //  ClientParseProtocol parser;
-    private volatile int answerGetCode = -1;
+   // private volatile int answerGetCode = -1;
     private volatile boolean isRegistreUser = false;
     private volatile boolean userLogin = false;//пользлватель зашел?
     private volatile String user_name = "";
@@ -55,7 +57,16 @@ public class ClientMsgThread extends Thread {
     private String QrAnswerDercypto = null;
     private volatile CloudinaryConfig cloudinaryConfig;
     private volatile String avatarsId;
+    private volatile Map<String,Integer > statesProtocol;
 
+
+    public Map<String, Integer> getStatesProtocol() {
+        return statesProtocol;
+    }
+
+    public void setStatesProtocol(Map<String, Integer> statesProtocol) {
+        this.statesProtocol = statesProtocol;
+    }
 
     public String getAvatarsId() {
         return avatarsId;
@@ -121,13 +132,6 @@ public class ClientMsgThread extends Thread {
         isRegistreUser = registreUser;
     }
 
-    public int getAnswerGetCode() {
-        return answerGetCode;
-    }
-
-    public void setAnswerGetCode(int answerGetCode) {
-        this.answerGetCode = answerGetCode;
-    }
 
     public boolean isServerIsOnline() {
         return serverIsOnline;
@@ -153,6 +157,7 @@ public class ClientMsgThread extends Thread {
     private static final String localhost = "localhost";
 
     public boolean starting() {
+
         if (!isInterrupted()) {
 
             try {
@@ -339,6 +344,8 @@ public class ClientMsgThread extends Thread {
                                         senMsgToServer("AES-OK");
                                         parserProtocol = new ClientParseProtocol();
                                         cloudinaryConfig = new CloudinaryConfig();
+                                        statesProtocol = new HashMap<String,Integer>();
+
                                     /*
                                     String mes = "AES-OK";
                                     bytemsg = aes256.makeAes(mes.getBytes(), Cipher.ENCRYPT_MODE);
@@ -362,7 +369,9 @@ public class ClientMsgThread extends Thread {
                                 inputMsg = aes256.makeAes(inputMsg, Cipher.DECRYPT_MODE);
                                 msgFromServer = new String(inputMsg);
                                 System.out.println(msgFromServer);
-                                answerGetCode = parserProtocol.parseRequest(msgFromServer);
+                                //answerGetCode = parserProtocol.parseRequest(msgFromServer);
+
+                               statesProtocol.putAll(parserProtocol.parseRequest(msgFromServer));
 
                             }
 

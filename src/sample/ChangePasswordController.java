@@ -92,7 +92,6 @@ public class ChangePasswordController extends VacoomProtocol {
 
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(changePswd(login,new SHA256Class().getSHA256(password.getText())));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
 
         new Thread(() -> {
 
@@ -102,10 +101,11 @@ public class ChangePasswordController extends VacoomProtocol {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+            } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("changePswd"));
             ErrorMsg t = new ErrorMsg();
             if( t.changerPswd()==0 )
             {
+
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -115,9 +115,10 @@ public class ChangePasswordController extends VacoomProtocol {
                     }
                 });
             }
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("changePswd");
+
 
         }).start();
 
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
     }
 }

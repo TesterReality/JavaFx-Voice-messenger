@@ -130,7 +130,7 @@ public class LoginController extends VacoomProtocol {
             alert.showAndWait();
             return;
         }
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+       // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser(input.getText(),new SHA256Class().getSHA256(password.getText())));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
        // loginXML.getChildren().add(qrCheck);
@@ -143,7 +143,7 @@ public class LoginController extends VacoomProtocol {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+            } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("authorization"));
             ErrorMsg t = new ErrorMsg();
             if( t.checkLogin()==0 )
             {
@@ -157,8 +157,8 @@ public class LoginController extends VacoomProtocol {
                     }
                 });
             }
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("authorization");
 
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
         }).start();
 
     }

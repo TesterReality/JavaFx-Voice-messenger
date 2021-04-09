@@ -24,7 +24,7 @@ public class ErrorMsg {
 
     public int chnageAvatar()
     {
-        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("updateAvatars")) {
             case 1:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Произошла ошибка","Невозмжно изменить аватарку");
                 return 1;
@@ -36,7 +36,7 @@ public class ErrorMsg {
     }
     public int changerPswd()
     {
-        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("changePswd")) {
             case 1:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Произошла ошибка","Ошибка изменения пароля");
                 return 1;
@@ -49,7 +49,7 @@ public class ErrorMsg {
 
     public int checkLogin()
     {
-        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("authorization")) {
             case 1:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка отправки","Не удалось отправить код регистрации");
                 return 1;
@@ -60,9 +60,9 @@ public class ErrorMsg {
         return 1;
     }
 
-    public int checkCode()
+    public int checkCode(int number)
     {
-        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+        switch (number) {
             case 1:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка кода подтверждения","Неверный код регистрации! (возможно устарел)");
                 return 1;
@@ -73,9 +73,10 @@ public class ErrorMsg {
         return 1;
     }
 
-    public int getCode()
+    public int getCode(int number)
     {
-        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+
+        switch (number) {
             case 3:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка отправки почты","На данную почту не зарегистрирован пользователь");
                 return 3;
@@ -94,7 +95,7 @@ public class ErrorMsg {
 
     public int registration()
     {
-        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode()) {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("registration")) {
             case 1:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка регистрации","Пользователь с таким логином уже существует. Выберите другой логин.");
                 return 1;

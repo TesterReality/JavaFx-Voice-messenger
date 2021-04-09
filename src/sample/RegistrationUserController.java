@@ -78,7 +78,6 @@ public class RegistrationUserController extends VacoomProtocol {
 
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(registrationUser(user_login.getText(),new SHA256Class().getSHA256(password.getText()),parent.codeInput.getText()));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
 
         //допиши тут ошибка и все такое, тестируй на другом мыле
 
@@ -90,7 +89,7 @@ public class RegistrationUserController extends VacoomProtocol {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } while (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getAnswerGetCode() == -1);
+            } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("registration"));
             ErrorMsg t = new ErrorMsg();
             if( t.registration()==0 )
             {
@@ -103,11 +102,10 @@ public class RegistrationUserController extends VacoomProtocol {
                     }
                 });
             }
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("registration");
 
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
+
         }).start();
-
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setAnswerGetCode(-1);
 
     }
 }
