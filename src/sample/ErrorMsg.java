@@ -108,6 +108,21 @@ public class ErrorMsg {
     public int checkFriend()
     {
         switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("getFriend")) {
+            case 2:
+                System.out.println("У тебя нет друзей (:");
+                return 2;
+            case 1:
+                System.out.println("Не удалось обновить список друзей");
+                return 1;
+            case 0:
+                System.out.println("Список друзей обновлен");
+                return 0;
+        }
+        return 1;
+    }
+    public int confirmFriend()
+    {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("confirmFriend")) {
             case 1:
                 System.out.println("Не удалось обновить список друзей");
                 return 1;
@@ -118,5 +133,17 @@ public class ErrorMsg {
         return 1;
     }
 
+    public int cancelFriend()
+    {
+        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("cancelFriend")) {
+            case 1:
+                System.out.println("Не удалось отказать в дружбе");
+                return 1;
+            case 0:
+                System.out.println("В дружбе успешно отказано");
+                return 0;
+        }
+        return 1;
+    }
 
 }

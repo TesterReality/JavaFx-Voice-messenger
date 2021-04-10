@@ -207,6 +207,10 @@ public class ClientParseProtocol extends VacoomProtocol {
                     statesProtocol.put(commands[3],1);
                     return;
                 }
+                if (commands[4].equals("noFriend")) {
+                    statesProtocol.put(commands[3],2);
+                    return;
+                }
                 ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().setCommands(commands);
                 statesProtocol.put(commands[3],0);
                 return;
@@ -214,6 +218,30 @@ public class ClientParseProtocol extends VacoomProtocol {
                 FriendsInfoSingleton.getInstance().setCommands(commands);
                 FriendsInfoSingleton.getInstance().parseUser();
                 return 0;*/
+            }
+            case "confirmFriend":
+            {
+                switch (commands[4]) {
+                    case "ok":
+                        statesProtocol.put(commands[3],0);
+                        return;
+                    case "error":
+                        statesProtocol.put(commands[3],1);
+                        return;
+                }
+                break;
+            }
+            case "cancelFriend":
+            {
+                switch (commands[4]) {
+                    case "ok":
+                        statesProtocol.put(commands[3],0);
+                        return;
+                    case "error":
+                        statesProtocol.put(commands[3],1);
+                        return;
+                }
+                break;
             }
 
         }

@@ -160,6 +160,39 @@
     -fx-background-repeat: no-repeat;
     -fx-background-image: url("../resource/img/offline.png");
 }
+
+.friendRequestOk
+{
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/checkmark.png");
+    -fx-background-color:  #00a896;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius:  18 18 18 18;
+    -fx-background-size: 10px 10px;
+    -fx-background-position: center;
+    -fx-pref-height: 22px;
+    -fx-pref-width: 22px;
+}
+.friendRequestOk:hover
+{
+    -fx-background-color:  #02c39a;
+}
+.friendRequestCancel
+{
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/xFriend1.png");
+    -fx-background-color:  #1C2027;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius:  18 18 18 18;
+    -fx-background-size: 9px 9px;
+    -fx-background-position: center;
+    -fx-pref-height: 22px;
+    -fx-pref-width: 22px;
+}
+.friendRequestCancel:hover
+{
+    -fx-background-color:  #7E8389;
+}
 /*Дата в друганах*/
 
 .msgData

@@ -256,5 +256,45 @@ public class VacoomProtocol {
         return prtocolToString(xml);
     }
 
+    public String confirmFriend(String login, String userFriend) {
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "server")
+                            .attr("type", "set")
+                            .add("vacoom")
+                            .attr("action", "confirmFriend")
+                            .attr("login", login)
+                            .attr("friend", userFriend)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
+    public String cancelFriend(String login, String userFriend) {
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "server")
+                            .attr("type", "set")
+                            .add("vacoom")
+                            .attr("action", "cancelFriend")
+                            .attr("login", login)
+                            .attr("friend", userFriend)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
 
 }

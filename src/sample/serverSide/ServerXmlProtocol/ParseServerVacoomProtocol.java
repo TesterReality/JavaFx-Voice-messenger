@@ -80,7 +80,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
         String random = new RandomStringGenerator().generateString();
         byte[] aesByte = objServer.getAes256Serv().makeAes(random.getBytes(), Cipher.ENCRYPT_MODE);
         byte[] encoded = Base64.getEncoder().encode(aesByte);
-        mail.sendCode(new String(encoded));
+       // mail.sendCode(new String(encoded));
 
         return random;
     }
@@ -240,8 +240,22 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                 if(!commands[4].equals(USER_NAME)) return sendAnswer(commands[3], "error");
                 FriendsHelper friend = new FriendsHelper();
                 if (getFriend(commands[4], friend)) {
+                    if(friend.getFriend_name().get(0)==null) return sendAnswer(commands[3], "noFriend");
                     return serverVacoomProtocol.sendAnswerFriends( friend.getFriend_name(), friend.getStatus(), friend.getStatusOnline(),friend.getAvatars());
                 } else return sendAnswer(commands[3], "error");
+            }
+            case "confirmFriend":
+            {
+                if(!commands[5].equals(USER_NAME)) return sendAnswer(commands[3], "error");
+                if (friendManipulator(commands[5], commands[4], (byte) 1))
+                    return sendAnswer(commands[3], "ok");
+                else return sendAnswer( commands[3], "error");
+            }
+            case "cancelFriend":
+            {
+                if (friendManipulator(commands[5], commands[4], (byte) 0))
+                    return sendAnswer(commands[3], "ok");
+                else return sendAnswer(commands[3], "error");
             }
 
         }

@@ -190,6 +190,62 @@ public class Controller extends VacoomProtocol {
         }
         return imageAvatars;
     }
+    public void getFriendThread()
+    {
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getFriend(userNameString));
+        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+
+        new Thread(() -> {
+
+            do {
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("getFriend"));
+            ErrorMsg err = new ErrorMsg();
+            if( err.checkFriend()==0 )
+            {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        users_list.getChildren().clear();
+
+                        int numOfFriend = ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendNumber();
+                        for(int i=0;i<numOfFriend;i++)
+                        {
+                            switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFrienStatus(i)) {
+                                case "1":
+                                    setFriend(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),
+                                            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getStatusOnline(i),
+                                            getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendAvatars(i)),
+                                            "Друг",
+                                            "" );
+                                    break;//друг
+                                case "3":
+                                    setNewFriendRequest(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),
+                                            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getStatusOnline(i),
+                                            getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendAvatars(i)),
+                                            "Запрос в друзья");
+                                    //   setNewUser(FriendsInfoSingleton.getInstance().getFriendName(i), "Запрос в друзья", Boolean.parseBoolean(FriendsInfoSingleton.getInstance().getStatusOnline(i)));
+                                    break;//запрос дал мне
+                            }
+                        }
+                        // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
+                        // parents.loadWorkrArea(input.getText());
+
+                    }
+                });
+            }
+            if(err.checkFriend() == 2)
+            {
+                System.out.println("Нет друзей :(");
+            }
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("getFriend");
+
+        }).start();
+    }
     @FXML
     private void initialize() throws IOException {
 
@@ -245,57 +301,14 @@ public class Controller extends VacoomProtocol {
         ErrorMsg t = new ErrorMsg();
         if( t.checkLogin()!=0 )
         {
+
             System.out.println("error");
-            System.exit(-2);
+            //System.exit(-2);
         }
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("authorization");
 
         /*Получаем друзей*/
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getFriend(userNameString));
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
-
-        new Thread(() -> {
-
-            do {
-                try {
-                    Thread.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("getFriend"));
-            ErrorMsg err = new ErrorMsg();
-            if( err.checkFriend()==0 )
-            {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        users_list.getChildren().clear();
-
-                       int numOfFriend = ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendNumber();
-                       for(int i=0;i<numOfFriend;i++)
-                       {
-                           switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFrienStatus(i)) {
-                               case "1":
-                                   setFriend(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),
-                                           ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getStatusOnline(i),
-                                           getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendAvatars(i)),
-                                           "Друг",
-                                           "" );
-                                   break;//друг
-                               case "3":
-                                //   setNewUser(FriendsInfoSingleton.getInstance().getFriendName(i), "Запрос в друзья", Boolean.parseBoolean(FriendsInfoSingleton.getInstance().getStatusOnline(i)));
-                                   break;//запрос дал мне
-                           }
-                       }
-                        // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
-                        // parents.loadWorkrArea(input.getText());
-
-                    }
-                });
-            }
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("getFriend");
-
-        }).start();
+        getFriendThread();
 
 
 
@@ -975,6 +988,29 @@ public class Controller extends VacoomProtocol {
         }
     }
 
+    public void setNewFriendRequest(String friendName,String online,BufferedImage avatars,String last_msg)
+    {
+        FXMLLoader loader = new FXMLLoader();
+        RequestFriendController myNewfriend =
+                new RequestFriendController(friendName,online,avatars,last_msg,userNameString);
+        myNewfriend.setParent(thisNode);
+        myNewfriend.setThisNode(myNewfriend);
+        loader = new FXMLLoader(
+                getClass().getResource(
+                        "fxml/requestFriend.fxml"
+                )
+        );
+        loader.setController(myNewfriend);
+        AnchorPane newUsers =null;
+
+        try {
+            newUsers = (AnchorPane) loader.load();
+            users_list.getChildren().add(newUsers);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     public void setFriend(String userName,String online,BufferedImage avatars,String last_msg,String friend_date)
     {
         FXMLLoader loader = new FXMLLoader();
@@ -990,7 +1026,6 @@ public class Controller extends VacoomProtocol {
         loader.setController(myfriend);
         AnchorPane newUsers =null;
 
-        users_list.getChildren().clear();
         try {
             newUsers = (AnchorPane) loader.load();
             users_list.getChildren().add(newUsers);
