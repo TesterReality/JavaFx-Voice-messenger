@@ -63,6 +63,49 @@ public class MyFriendController {
         friend_last_msg.setText(last_msg);
         this.friend_date.setText(friend_dates);
     }
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+        friend_login.setText(userName);
+    }
+
+    public String getOnline() {
+        return online;
+    }
+
+    public void setOnline(String online) {
+        this.online = online;
+    }
+
+    public BufferedImage getAvatars() {
+        return avatars;
+    }
+
+    public void setAvatars(BufferedImage avatars) {
+        this.avatars = avatars;
+    }
+
+    public String getLast_msg() {
+        return last_msg;
+    }
+
+    public void setLast_msg(String last_msg) {
+        this.last_msg = last_msg;
+    }
+
+    public String getFriend_dates() {
+        return friend_dates;
+    }
+
+    public void setFriend_dates(String friend_dates) {
+        this.friend_dates = friend_dates;
+    }
+
     public Circle getFrined_avatar() {
         return frined_avatar;
     }

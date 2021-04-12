@@ -66,7 +66,7 @@ public class Controller extends VacoomProtocol {
     ImageChooser chooser;
     BufferedImage newImage = null;
     Controller thisNode;
-
+    FriendsRefreshThread friendsRefreshThread;
     public Controller getThisNode() {
         return thisNode;
     }
@@ -243,7 +243,7 @@ public class Controller extends VacoomProtocol {
                 System.out.println("Нет друзей :(");
             }
             ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("getFriend");
-
+            friendsRefreshThread = new FriendsRefreshThread(userNameString,this);
         }).start();
     }
     @FXML
