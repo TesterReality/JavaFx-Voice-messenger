@@ -67,3 +67,6 @@
 [![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/6.jpg)]()
 [![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/7.jpg)]()
 [![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/smile_gif.gif)]()
+
+## _Лицензия_
+Этот репозиторий находится под лицензией MIT. Подробную информаци вы можете найти [здесь](https://github.com/TesterReality/JavaFx-Voice-messenger/blob/main/LICENSE "MIT лицензия") или на [официальном сайте](https://opensource.org/licenses/MIT "MIT лицензия").
