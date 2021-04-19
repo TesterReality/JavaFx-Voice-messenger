@@ -80,7 +80,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
         String random = new RandomStringGenerator().generateString();
         byte[] aesByte = objServer.getAes256Serv().makeAes(random.getBytes(), Cipher.ENCRYPT_MODE);
         byte[] encoded = Base64.getEncoder().encode(aesByte);
-       // mail.sendCode(new String(encoded));
+       //mail.sendCode(new String(encoded));
 
         return random;
     }
