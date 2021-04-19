@@ -288,6 +288,60 @@
     -fx-background-position: center;
 }
 
+.muteFriend
+{
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/headphones.png");
+    -fx-background-color:  #2E3338;
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius:  20 20 20 20;
+    -fx-background-size: 25px 25px;
+    -fx-background-position: center;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 40px;
+}
+
+.muteFriend:hover
+{
+    -fx-background-color:  gray;
+}
+
+.endVoice
+{
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/telephone.png");
+    -fx-background-color:  #E34234;
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius:  20 20 20 20;
+    -fx-background-size: 25px 25px;
+    -fx-background-position: center;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 40px;
+}
+
+.endVoice:hover
+{
+    -fx-background-color:  red;
+}
+
+.mute
+{
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/microphone1.png");
+    -fx-background-color:  #2E3338;
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius:  20 20 20 20;
+    -fx-background-size: 25px 25px;
+    -fx-background-position: center;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 40px;
+}
+
+.mute:hover
+{
+    -fx-background-color:  gray;
+}
+
 .testLabel
 {
     -fx-background-color: #1C2027;
