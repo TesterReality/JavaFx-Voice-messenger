@@ -1,4 +1,4 @@
-[![N|Solid](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/GitLogoVoice.jpg)](https://nodesource.com/products/nsolid)
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/GitLogoVoice.jpg)]()
 # Vacoom Voice Messenger (используя JavaFx)
 ![JDK version](https://img.shields.io/static/v1?label=JDK&message=1.8%2B&color=<COLOR>)
 ![Database](https://img.shields.io/static/v1?label=Database&message=PostgreSQL&color=<COLOR>)
@@ -59,3 +59,11 @@
 - [ ] Постараться перевести проект на Maven
 
 ## _Скриношты (на текущий момент времени, проект еще в разработке)_
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/1.png)]()
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/2.png)]()
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/3.jpg)]()
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/gif_qr.gif)]()
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/5.png)]()
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/6.jpg)]()
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/7.jpg)]()
+[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/smile_gif.gif)]()
