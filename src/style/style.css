@@ -342,6 +342,24 @@
     -fx-background-color:  gray;
 }
 
+.startCallbtn
+{
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../resource/img/telephone.png");
+    -fx-background-color:  #2E3338;
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius:  20 20 20 20;
+    -fx-background-size: 20px 20px;
+    -fx-background-position: center;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 30px;
+}
+
+.startCallbtn:hover
+{
+    -fx-background-color:  gray;
+}
+
 .testLabel
 {
     -fx-background-color: #1C2027;

@@ -54,6 +54,9 @@ public class Controller extends VacoomProtocol {
     public Label Exit;
     public Circle newAvatars;
     public VBox users_list;
+    public Label dialogUsername;
+    public Label closeUserChat;
+    public Label startCallButton;
 
     private String userNameString;
     private Map configImg;
@@ -1034,5 +1037,11 @@ public class Controller extends VacoomProtocol {
             e.printStackTrace();
         }
 
+    }
+
+    public void clickCloseUserChat(MouseEvent mouseEvent) {
+    }
+
+    public void clickStartCallButton(MouseEvent mouseEvent) {
     }
 }
