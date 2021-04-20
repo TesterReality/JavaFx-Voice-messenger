@@ -461,7 +461,7 @@
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <Label text="&lt;username&gt;" textFill="WHITE">
+                                    <Label fx:id="dialogUsername" text="&lt;username&gt;" textFill="WHITE">
                                        <font>
                                           <Font name="Roboto" size="12.0" />
                                        </font>
@@ -476,12 +476,17 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_RIGHT" prefHeight="115.0" prefWidth="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="CENTER" prefHeight="115.0" prefWidth="40.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label fx:id="Exit1" alignment="CENTER" prefHeight="24.0" prefWidth="20.0" styleClass="closeDialog" textAlignment="CENTER" textFill="WHITE">
+                              <Label fx:id="closeUserChat" alignment="CENTER" onMouseClicked="#clickCloseUserChat" prefHeight="24.0" prefWidth="20.0" styleClass="closeDialog" textAlignment="CENTER" textFill="WHITE">
                                  <VBox.margin>
-                                    <Insets top="25.0" />
+                                    <Insets />
                                  </VBox.margin>
+                              </Label>
+                              <Label fx:id="startCallButton" onMouseClicked="#clickStartCallButton" styleClass="startCallbtn" textFill="WHITE">
+                                 <font>
+                                    <Font name="Roboto" size="12.0" />
+                                 </font>
                               </Label>
                            </children>
                         </VBox>
