@@ -17,10 +17,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class ClientMsgThread extends Thread {
     private volatile String protocolMsg = "";
@@ -59,6 +56,7 @@ public class ClientMsgThread extends Thread {
     private volatile String avatarsId;
     private volatile Map<String,Integer > statesProtocol;
     private final FriendsInfo friendsInfo;
+    private ArrayDeque<String> needSendProtocol = new ArrayDeque<String>();
 
     public ClientMsgThread() {
         friendsInfo = new FriendsInfo();
@@ -158,7 +156,8 @@ public class ClientMsgThread extends Thread {
     }
 
     public void setProtocolMsg(String protocolMsg) {
-        this.protocolMsg = protocolMsg;
+        needSendProtocol.addLast(protocolMsg);
+        //this.protocolMsg = protocolMsg;
     }
 
     private static final int serverPort = 5000;
@@ -300,9 +299,9 @@ public class ClientMsgThread extends Thread {
                     }
 
 
-                    if (needSend)//если что-то нужно отравить
+                    if (needSend || needSendProtocol.size()>0)//если что-то нужно отравить
                     {
-                        senMsgToServer(protocolMsg);
+                        senMsgToServer(needSendProtocol.pop());
                         needSend = false;
                     } else {
                         // return;
@@ -375,11 +374,13 @@ public class ClientMsgThread extends Thread {
                                 //Если мы тут, значит обменялись ключами уже
                                 System.out.println("[Расшифрованное сообщение от сервера]:");
                                 inputMsg = aes256.makeAes(inputMsg, Cipher.DECRYPT_MODE);
-                                msgFromServer = new String(inputMsg);
-                                System.out.println(msgFromServer);
-                                //answerGetCode = parserProtocol.parseRequest(msgFromServer);
 
-                               statesProtocol.putAll(parserProtocol.parseRequest(msgFromServer));
+                                    msgFromServer = new String(inputMsg);
+                                    System.out.println(msgFromServer);
+                                    //answerGetCode = parserProtocol.parseRequest(msgFromServer);
+                                if(!msgFromServer.equals("ping")) {
+                                    statesProtocol.putAll(parserProtocol.parseRequest(msgFromServer));
+                                }
 
                             }
 
@@ -399,7 +400,8 @@ public class ClientMsgThread extends Thread {
                     break;
                 }
                 try {
-                    Thread.sleep(1000);        //Приостановка потока на 1 сек.
+                    Thread.sleep(333);        //Приостановка потока на 1 сек.
+
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     return;    //Завершение потока после прерывания

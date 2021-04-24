@@ -1,10 +1,8 @@
 package sample.serverSide.ServerXmlProtocol;
 
+import sample.serverSide.*;
 import sample.serverSide.Database.DatabaseLogic;
-import sample.serverSide.FriendsHelper;
 import sample.serverSide.Mail.Mail;
-import sample.serverSide.RandomStringGenerator;
-import sample.serverSide.Server;
 import sample.serverSide.ServerXmlProtocol.ServerVacoomProtocol;
 
 import javax.crypto.Cipher;
@@ -12,6 +10,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.mail.MessagingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,14 +23,15 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
     private Mail mail;
     private ServerVacoomProtocol serverVacoomProtocol;
     private String USER_NAME;
-
+    private String lastMsg= null;
     public ParseServerVacoomProtocol(Server objServer) {
         this.objServer = objServer;
         mail = new Mail();
         serverVacoomProtocol = new ServerVacoomProtocol();
     }
 
-    public String parseRequest(String request) {
+    public String parseRequest(String request ) {
+        lastMsg = request;
         Pattern p = Pattern.compile("\"([^\"]*)\""); //Результаты тегов, например: <from to="client".. будет client
         Pattern p1 = Pattern.compile("\\w+(?=\\=)");//Сами теги, например: <from to="client".. будет to
         int howNeeds=0;
@@ -69,9 +69,9 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
         {
             case "set"://значит НАМ подали запрос, мы должны ответить
                 return setCommads(commands,suffix);
-            case "result":
+            case "result"://значит НАМ подали ответ
                 System.out.print("result от клиента");
-                break;//значит НАМ подали ответ
+                return resultCommads(commands,suffix);
         }
         return null;
     }
@@ -84,6 +84,20 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
 
         return random;
     }
+    private String resultCommads(String[] commands,String[] suffix) {
+
+        switch (commands[3])//содержит код
+        {
+
+            case "startCall":
+            {
+                relayRequest(commands);
+                return null;
+            }
+        }
+        return sendAnswer(commands[3], "error");//в любой непонятной ситуации отвечаем ошибкой
+
+    }
     private String setCommads(String[] commands,String[] suffix) {
 
         switch (commands[3])//содержит код запроса
@@ -93,6 +107,8 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                     String mailUser;
                     try {
                         USER_NAME = commands[4];
+                        objServer.userThreadRename(USER_NAME);
+
                         mailUser = checkLogin(commands[4]);
                         mail.setMailTo(mailUser);//это мейл
 
@@ -257,12 +273,48 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                     return sendAnswer(commands[3], "ok");
                 else return sendAnswer(commands[3], "error");
             }
+            case "startCall":
+            {
+                relayRequest(commands);
+                return null;
+            }
 
         }
         return sendAnswer(commands[3], "error");//в любой непонятной ситуации отвечаем ошибкой
     }
-
+    Object search(TreeSet treeset, Object key) {
+        Object ceil  = treeset.ceiling(key); // least elt >= key
+        Object floor = treeset.floor(key);   // highest elt <= key
+        return ceil == floor? ceil : null;
+    }
+    private void relayRequest (String[] commands)
+    {
+        try {
+            InfoUsernameFromThread friend = (InfoUsernameFromThread) search(ServerMain.usernameFromThreadArrayList, new InfoUsernameFromThread(commands[4], null));
+            Server friendThread = friend.getThread();
+            friendThread.sendMessage(lastMsg);
+        }catch (Exception e)
+        {
+            System.out.println("[СЕРВЕР] Не удалось отправить сообщение другу");
+        }
+        /*
+        for (int i = 0; i< ServerMain.usernameFromThreadArrayList.size(); i++)
+        {
+            InfoUsernameFromThread inf = ServerMain.usernameFromThreadArrayList.get(i);
+            if(inf.getName().equals(commands[4]))
+            {
+                Server friend = inf.getThread();
+                friend.sendMessage(lastMsg);
+            }
+        }*/
+    }
     private String sendAnswer(String action, String status) {
         return serverVacoomProtocol.sendAnswer(action, status);//вернет строку
+    }
+
+    public void setOnlineUser(String username)
+    {
+        if(username.equals(USER_NAME))
+        setOnline(username);
     }
 }

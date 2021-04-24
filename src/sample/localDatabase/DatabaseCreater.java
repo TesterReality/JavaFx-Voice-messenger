@@ -1,8 +1,13 @@
 package sample.localDatabase;
+import sample.CallingUser;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DatabaseCreater {
     public static void createNewDatabase(String fileName) {
@@ -22,6 +27,36 @@ public class DatabaseCreater {
     }
 
     public static void main(String[] args) {
-        createNewDatabase("client.db");
+        //createNewDatabase("client.db");
+        try {
+            // Создаем экземпляр по работе с БД
+            LocalDbHandler dbHandler = LocalDbHandler.getInstance();
+            // Добавляем запись
+            //dbHandler.addProduct(new Product("Музей", 200, "Развлечения"));
+            // Получаем все записи и выводим их на консоль
+            List<UserVoiceKey> products = dbHandler.getAllProducts();
+            for (UserVoiceKey product : products) {
+                System.out.println(product.toString());
+            }
+            // Удаление записи с id = 8
+            //dbHandler.deleteProduct(8);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //CallingUser callingUser = new CallingUser();
+        //callingUser.start();
+
+        Map<Integer, String> states = new HashMap<Integer, String>();
+        states.put(1, "Germany");
+        states.put(null, "Germany1");
+
+        states.put(null, "Germany2");
+
+        for(Map.Entry<Integer, String> item : states.entrySet()){
+
+            System.out.printf("Key: %d  Value: %s \n", item.getKey(), item.getValue());
+        }
+
     }
 }

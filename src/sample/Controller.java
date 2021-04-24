@@ -1043,5 +1043,8 @@ public class Controller extends VacoomProtocol {
     }
 
     public void clickStartCallButton(MouseEvent mouseEvent) {
+        CallingUser callingUser = new CallingUser(userNameString,thisNode);
     }
+
+
 }

@@ -7,9 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import sample.ClientMsgThread;
-import sample.ResizeHelper;
-import sample.ThreadClientInfoSingleton;
+import sample.*;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -26,7 +24,7 @@ public class ClientParseProtocol extends VacoomProtocol {
     private int randomNum;
     String[] strings1;
     ArrayList<Integer> portCheck = new ArrayList<>();
-
+    private String lastRequest;
     Map<String,Integer > statesProtocol;
 
     public ClientParseProtocol() {
@@ -35,6 +33,7 @@ public class ClientParseProtocol extends VacoomProtocol {
     }
 
     public Map parseRequest(String request) {
+        lastRequest = request;
         Pattern p = Pattern.compile("\"([^\"]*)\"");
         Matcher m = p.matcher(request);
         while (m.find()) {
@@ -56,7 +55,8 @@ public class ClientParseProtocol extends VacoomProtocol {
         {
             case "set"://значит НАМ подали запрос, мы должны ответить
             {
-                statesProtocol.put(commands[3],1);
+                //statesProtocol.put(commands[3],1);
+                setCommands(commands);
                 return;
             }
 
@@ -75,6 +75,10 @@ public class ClientParseProtocol extends VacoomProtocol {
     private void setCommands(String[] commands) {
         switch (commands[3])//содержит код запроса
         {
+            case "startCall":
+            {
+                new ReceivingCall(commands[6],commands[5],commands[7],commands[4]);
+            }
             case "default":
                 break;
         }
@@ -243,6 +247,13 @@ public class ClientParseProtocol extends VacoomProtocol {
                 }
                 break;
             }
+            case "startCall":
+            {
+                CallingAnswerSaver callingAnswer = new CallingAnswerSaver(commands[6],lastRequest);
+                CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                return;
+            }
+
 
         }
         statesProtocol.put(commands[3],1);

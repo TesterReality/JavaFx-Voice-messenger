@@ -6,13 +6,16 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class ServerMain {
     // открываемый порт сервера
     private static final int port = 5000;
-
+    public static TreeSet<InfoUsernameFromThread> usernameFromThreadArrayList;
     public static void main(String[] ar) {
         ServerSocket srvSocket = null;
+        usernameFromThreadArrayList= new TreeSet<InfoUsernameFromThread>(new SortUsernameThread());
         try {
           /*  SingletonServerCryproRSA.getInstance().firstRun();
             SingletonServerCryproRSA.getInstance().generateKeys();

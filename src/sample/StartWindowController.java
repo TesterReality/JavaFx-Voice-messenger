@@ -20,6 +20,7 @@ import javafx.stage.StageStyle;
 import sample.ClientXmlPorocol.VacoomProtocol;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Set;
 
 public class StartWindowController extends VacoomProtocol {
@@ -53,6 +54,7 @@ public class StartWindowController extends VacoomProtocol {
     @FXML
     private void initialize()
     {
+        CallingUser.whoAmIcalling = new ArrayList<String>();
         LogoImage.setImage(new Image("resource/img/t1.png"));
         loadLogin();
 
@@ -214,7 +216,7 @@ public class StartWindowController extends VacoomProtocol {
 
     public void openTestWindow(MouseEvent mouseEvent) {
         try {
-            loadWorkArea("Vladik");
+            loadWorkArea("testerOk");
         } catch (IOException e) {
             e.printStackTrace();
         }

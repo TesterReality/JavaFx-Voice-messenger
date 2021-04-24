@@ -276,6 +276,7 @@ public class VacoomProtocol {
         }
         return prtocolToString(xml);
     }
+
     public String cancelFriend(String login, String userFriend) {
         String xml = null;
         try {
@@ -296,5 +297,31 @@ public class VacoomProtocol {
         }
         return prtocolToString(xml);
     }
-
+    public String startCall(String type,String whoAmI, String userFriend,String myIp, String port) {
+        /*
+<from to="client" type="set" who="client">
+<vacoom action="startCall" friend="testerOk" ipUser="176.121.196.136" login="Vladik" port="55576"/>
+</from>
+         */
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "client")
+                            .attr("type", type)
+                            .add("vacoom")
+                            .attr("action", "startCall")
+                            .attr("login", whoAmI)
+                            .attr("ipUser", myIp)
+                            .attr("port", port)
+                            .attr("friend", userFriend)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
 }

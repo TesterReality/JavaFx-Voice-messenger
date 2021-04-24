@@ -42,8 +42,8 @@ public class LocalDbHandler {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM user_voice_key");
             // Проходимся по нашему resultSet и заносим данные в products
             while (resultSet.next()) {
-                userVoiceKeys.add(new UserVoiceKey(resultSet.getInt("id"),
-                        resultSet.getString("friend_name"),
+                userVoiceKeys.add(new UserVoiceKey(resultSet.getInt("id_voice"),
+                        resultSet.getInt("id_friend"),
                         resultSet.getString("key_my"),
                         resultSet.getString("key_friend"),
                         resultSet.getString("secret_key1"),

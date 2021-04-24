@@ -4,6 +4,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -168,5 +169,18 @@ public class MyFriendController {
 
     public void setThisNode(MyFriendController thisNode) {
         this.thisNode = thisNode;
+    }
+
+    public void userFriendClick(MouseEvent mouseEvent) {
+        parent.dialogUsername.setText(userName);
+        switch (online)
+        {
+            case "true":
+                parent.startCallButton.setDisable(false);
+                break;
+            case "false":
+                parent.startCallButton.setDisable(true);
+                break;
+        }
     }
 }

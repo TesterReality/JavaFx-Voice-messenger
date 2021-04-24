@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.*;
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,24 +34,75 @@ public class Server extends Thread {
     DataInputStream dis;
     DataOutputStream dos;
     DHServer diffieServer;
-
+    public String USER_NAME;
     boolean haveDH = false;
     boolean isHaveSharedData = false;
     private String sha256DH1;
     private AES256Serv aes256Serv;
     private boolean isAesOk = false; //client aes == server aes?
     private ParseServerVacoomProtocol parseServerVacoomProtocol;
+    private InfoUsernameFromThread infoThisUserThread;
     public Server getThisObj() {
         return thisObj;
     }
-
-    public void setThisObj(Server thisObj) {
+    int timePing =0;
+    public void setThisObj(Server thisObj)
+    {
         this.thisObj = thisObj;
+        infoThisUserThread = new InfoUsernameFromThread(new RandomStringGenerator().generateString(),thisObj);
+        ServerMain.usernameFromThreadArrayList.add(infoThisUserThread);
+
     }
 
     public Server() {
+
     }
 
+
+
+    public void userThreadRename(String name)
+    {
+        USER_NAME = name;
+        ServerMain.usernameFromThreadArrayList.remove(infoThisUserThread);
+        infoThisUserThread = new InfoUsernameFromThread(name,thisObj);
+        ServerMain.usernameFromThreadArrayList.add(infoThisUserThread);
+
+       // InfoUsernameFromThread test = (InfoUsernameFromThread) search(ServerMain.usernameFromThreadArrayList,new InfoUsernameFromThread(name,null));
+      /*
+       search(ServerMain.usernameFromThreadArrayList,new InfoUsernameFromThread(name,thisObj));
+        for (int i=0;i<ServerMain.usernameFromThreadArrayList.size();i++)
+        {
+         InfoUsernameFromThread inf = ServerMain.usernameFromThreadArrayList.get(i);
+            if(inf.getThread()== thisObj)
+            {
+              //  ServerMain.usernameFromThreadArrayList.set(i,new InfoUsernameFromThread(USER_NAME,thisObj));
+            }
+        }*/
+    }
+
+    public void userThreadDel()
+    {
+        ServerMain.usernameFromThreadArrayList.remove(infoThisUserThread);
+        /*
+        for (int i=0;i<ServerMain.usernameFromThreadArrayList.size();i++)
+        {
+            InfoUsernameFromThread inf = ServerMain.usernameFromThreadArrayList.get(i);
+            if(inf.getThread()== thisObj)
+            {
+                ServerMain.usernameFromThreadArrayList.remove(i);
+            }
+        }
+        */
+        System.out.println("Теперь к серверу подключено: " +ServerMain.usernameFromThreadArrayList.size() +" человек" );
+        for(InfoUsernameFromThread state : ServerMain.usernameFromThreadArrayList){
+            System.out.println(state.getName());
+        }
+        /*
+        for (int i=0;i<ServerMain.usernameFromThreadArrayList.size();i++)
+        {
+            System.out.println("[Клиент "+i+"]:"+ServerMain.usernameFromThreadArrayList.get(i).getName());
+        }*/
+    }
     public AES256Serv getAes256Serv() {
         return aes256Serv;
     }
@@ -172,14 +224,41 @@ public class Server extends Thread {
                     }
                 }
 
-                Thread.sleep(500);
+                Thread.sleep(300);
+                timePing++;
+                if(isAesOk && timePing==30)
+                {
+                    timePing=0;
+                    sendMessage("ping") ;
+                    if(USER_NAME!=null)
+                    {
+                        parseServerVacoomProtocol.setOnlineUser(USER_NAME);
+                    }
+                }
+
             }
-        } catch (Exception e) {
+        }
+        catch (InterruptedException inter)
+        {
+            System.out.println("Поток с клиентом завершен: " + inter);
+            // для обмена данными с клиентом
+            try {
+                dis.close();
+                dos.close();
+                sin.close();
+                sout.close();
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        catch (Exception e) {
             System.out.println("ЭТО В ПОТОКЕ ГДЕ ЧИТАЮ : " + e);
         }
     }
 
-    private void sendMessage(String msg)
+    public void sendMessage(String msg)
     {
         try {
             outputMsg = aes256Serv.makeAes(msg.getBytes(), Cipher.ENCRYPT_MODE);
@@ -187,9 +266,18 @@ public class Server extends Thread {
             dos.write(outputMsg, 0, outputMsg.length);
             System.out.println("Сервер отправил клиенту ответ");
 
-        }catch (IOException e) {
+        }
+        catch (SocketException e)
+        {
+            System.out.println("[СЕРВЕР] Клиент отключился");
+            userThreadDel();
+            this.interrupt();
+        }
+        catch (IOException e) {
             System.out.println("[СЕРВЕР] Ошибка отправки сообщения");
             e.printStackTrace();
+
+
         }
     }
     private void resetFlags()
