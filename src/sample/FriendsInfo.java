@@ -89,7 +89,7 @@ public class FriendsInfo {
     {
         clearArray();
         try {
-            for (int i = 4; i < commands.length - 1; i++) {
+            for (int i = 4; i <= commands.length - 1; i++) {
                 temp = null;
                 temp = commands[i].split(":");
                 friend_name.add(temp[0]);

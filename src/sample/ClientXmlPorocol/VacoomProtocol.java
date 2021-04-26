@@ -312,10 +312,135 @@ public class VacoomProtocol {
                             .attr("to", "client")
                             .attr("type", type)
                             .add("vacoom")
-                            .attr("action", "startCall")
+                            .attr("action", "relay")
+                            .attr("actionClient", "startCall")
                             .attr("login", whoAmI)
                             .attr("ipUser", myIp)
                             .attr("port", port)
+                            .attr("friend", userFriend)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
+
+    public String sendKeyFriend(String type,String whoAmI, String userFriend,String key) {
+        /*
+<from to="client" type="set" who="client">
+<vacoom action="startCall" friend="testerOk" ipUser="176.121.196.136" login="Vladik" port="55576"/>
+</from>
+         */
+        String xml = null;
+        try {
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "client")
+                            .attr("type", type)
+                            .add("vacoom")
+                            .attr("action", "relay")
+                            .attr("actionClient", "sendKey")
+                            .attr("login", whoAmI)
+                            .attr("key", key)
+                            .attr("friend", userFriend)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
+
+    public String clientDHstart(String type,String whoAmI, String userFriend,String p,String g,String hash,String publKey) {
+
+        String xml = null;
+        try {
+            if(type.equals("set")) {
+                xml = new Xembler(
+                        new Directives()
+                                .add("from")
+                                .attr("who", "client")
+                                .attr("to", "client")
+                                .attr("type", type)
+                                .add("vacoom")
+                                .attr("action", "relay")
+                                .attr("actionClient", "firstDH")
+                                .attr("login", whoAmI)
+                                .attr("p", p)
+                                .attr("g", g)
+                                .attr("hash", hash)
+                                .attr("friend", userFriend)
+                                .set("")
+                ).xml();
+                return prtocolToString(xml);
+            }
+            if(type.equals("result"))
+            {
+                xml = new Xembler(
+                        new Directives()
+                                .add("from")
+                                .attr("who", "client")
+                                .attr("to", "client")
+                                .attr("type", type)
+                                .add("vacoom")
+                                .attr("action", "relay")
+                                .attr("actionClient", "firstDH")
+                                .attr("login", whoAmI)
+                                .attr("public", publKey)
+                                .attr("friend", userFriend)
+                                .set("")
+                ).xml();
+                return prtocolToString(xml);
+            }
+
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
+
+    public String sendDHpublic (String type,String whoAmI, String userFriend,String publKey) {
+        String xml = null;
+        try {
+
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "client")
+                            .attr("type", type)
+                            .add("vacoom")
+                            .attr("action", "relay")
+                            .attr("actionClient", "publicDH")
+                            .attr("login", whoAmI)
+                            .attr("public", publKey)
+                            .attr("friend", userFriend)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
+
+    public String halfDHhash (String type,String whoAmI, String userFriend,String hash) {
+        String xml = null;
+        try {
+
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "client")
+                            .attr("type", type)
+                            .add("vacoom")
+                            .attr("action", "relay")
+                            .attr("actionClient", "halfDH")
+                            .attr("login", whoAmI)
+                            .attr("hashSharedKey", hash)
                             .attr("friend", userFriend)
                             .set("")
             ).xml();

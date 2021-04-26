@@ -20,32 +20,66 @@ import java.util.regex.Pattern;
 
 public class ClientParseProtocol extends VacoomProtocol {
     private int howNeedString;//сколько нужно выделить строк в массиве
+    private int howNeeds;
+
     private int numOfNow; // текущее положение строки
     private int randomNum;
     String[] strings1;
     ArrayList<Integer> portCheck = new ArrayList<>();
     private String lastRequest;
     Map<String,Integer > statesProtocol;
+    HashMap<String, String> protocolMsg;
 
     public ClientParseProtocol() {
         statesProtocol = new HashMap<String,Integer>();
         statesProtocol.put("state",0);//test state
+        protocolMsg = new HashMap<>();
     }
 
     public Map parseRequest(String request) {
         lastRequest = request;
+        howNeedString=0;
+        howNeeds =0;
         Pattern p = Pattern.compile("\"([^\"]*)\"");
+        Pattern p1 = Pattern.compile("\\w+(?=\\=)");//Сами теги, например: <from to="client".. будет to
+
         Matcher m = p.matcher(request);
+        Matcher m1 = p1.matcher(request);
+
         while (m.find()) {
             System.out.println(m.group(1));
             howNeedString++;
         }
+
+        while (m1.find()) {
+            System.out.println(m1.group(0));
+            howNeeds++;
+        }
+
         strings1 = new String[howNeedString];
+        String[] strings2 = new String[howNeeds];
+
         m.reset();
+        m1.reset();
+
         numOfNow = 0;
+        int numOfNow1 = 0;
+
         while (m.find()) {
             strings1[numOfNow++] = m.group(1);
         }
+
+        while (m1.find()) {
+            strings2[numOfNow1++] = m1.group(0);
+        }
+
+        if(protocolMsg.size()>0)
+        protocolMsg.clear();
+        for (int i=0; i<strings1.length;i++)
+        {
+            protocolMsg.put(strings2[i],strings1[i]);
+        }
+
         parseCommand(strings1);
         return statesProtocol;
     }
@@ -73,11 +107,36 @@ public class ClientParseProtocol extends VacoomProtocol {
 
 
     private void setCommands(String[] commands) {
-        switch (commands[3])//содержит код запроса
+        switch (protocolMsg.get("actionClient"))//содержит код запроса
         {
             case "startCall":
             {
-                new ReceivingCall(commands[6],commands[5],commands[7],commands[4]);
+                new ReceivingCall(protocolMsg.get("login"),protocolMsg.get("ipUser"),protocolMsg.get("port"),protocolMsg.get("friend"));
+                break;
+            }
+            case "sendKey":
+            {
+                CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                break;
+            }
+            case "firstDH":
+            {
+                CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                break;
+            }
+            case "publicDH":
+            {
+                CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                break;
+            }
+            case "halfDH":
+            {
+                CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                break;
             }
             case "default":
                 break;
@@ -247,13 +306,40 @@ public class ClientParseProtocol extends VacoomProtocol {
                 }
                 break;
             }
-            case "startCall":
-            {
-                CallingAnswerSaver callingAnswer = new CallingAnswerSaver(commands[6],lastRequest);
-                CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
-                return;
-            }
 
+            case "default":
+                break;
+
+        }
+        if (protocolMsg.containsKey("actionClient"))
+        {
+            CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+            CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+            return;
+            /*
+            switch (protocolMsg.get("actionClient"))
+            {
+
+                case "startCall":
+                {
+                    CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                    CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                    return;
+                }
+                case "sendKey":
+                {
+                    CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                    CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                    return;
+                }
+                case "firstDH":
+                {
+                    CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                    CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                    return;
+                }
+
+            }*/
 
         }
         statesProtocol.put(commands[3],1);

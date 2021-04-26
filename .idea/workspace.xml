@@ -7,35 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/resource/localDatabase/test.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ClientMsgThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ClientMsgThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/CallingUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/CallingUser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ClientXmlPorocol/ClientParseProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ClientXmlPorocol/ClientParseProtocol.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ClientXmlPorocol/VacoomProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ClientXmlPorocol/VacoomProtocol.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/MyFriendController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/MyFriendController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/StartWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/StartWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/fxml/myFriend.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/fxml/myFriend.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/DatabaseCreater.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/DatabaseCreater.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/LocalDbHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/LocalDbHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/UserVoiceKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/UserVoiceKey.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/ServerMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/ServerMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ReceivingCall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ReceivingCall.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resource/localDatabase/client.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource/localDatabase/client.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ClientMsgThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientMsgThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CallingUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CallingUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MyFriendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MyFriendController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/FriendsInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FriendsInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ReceivingCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ReceivingCall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/StartWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StartWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/fxml/myFriend.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/fxml/myFriend.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/localDatabase/UserVoiceKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/localDatabase/UserVoiceKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/serverSide/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/serverSide/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/ServerMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -107,23 +90,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/StartWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="160" column="141" selection-start-line="160" selection-start-column="141" selection-end-line="160" selection-end-column="141" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="297" column="77" selection-start-line="297" selection-start-column="77" selection-end-line="297" selection-end-column="77" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="342">
+              <caret line="218" column="37" lean-forward="true" selection-start-line="218" selection-start-column="37" selection-end-line="218" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -131,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="322">
+              <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,33 +112,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="17" column="84" lean-forward="true" selection-start-line="17" selection-start-column="84" selection-end-line="17" selection-end-column="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/CallingUser.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/FriendsInfo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="254">
-              <caret line="80" column="60" lean-forward="true" selection-start-line="80" selection-start-column="60" selection-end-line="80" selection-end-column="60" />
+              <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ReceivingCall.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="62" column="33" lean-forward="true" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1484#1485#0" expanded="true" />
+                <element signature="e#1530#1531#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -176,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="865">
-              <caret line="314" column="54" selection-start-line="314" selection-start-column="45" selection-end-line="314" selection-end-column="54" />
+            <state relative-caret-position="50">
+              <caret line="428" column="24" selection-start-line="428" selection-start-column="24" selection-end-line="428" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -186,28 +137,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="380" column="58" selection-start-line="380" selection-start-column="58" selection-end-line="380" selection-end-column="58" />
+            <state relative-caret-position="488">
+              <caret line="185" column="32" selection-start-line="169" selection-start-column="30" selection-end-line="185" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4420#4421#0" expanded="true" />
+                <element signature="e#4451#4452#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/CallingUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+            <state relative-caret-position="225">
+              <caret line="277" selection-start-line="277" selection-end-line="277" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1340#1341#0" expanded="true" />
-                <element signature="e#1370#1371#0" expanded="true" />
-                <element signature="e#3902#3903#0" expanded="true" />
-                <element signature="e#3935#3936#0" expanded="true" />
-                <element signature="e#3991#3992#0" expanded="true" />
-                <element signature="e#4035#4036#0" expanded="true" />
-                <element signature="e#4451#4452#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -216,8 +165,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-595">
-              <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+            <state relative-caret-position="119">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2302#2303#0" expanded="true" />
@@ -226,6 +175,41 @@
                 <element signature="e#2425#2426#0" expanded="true" />
                 <element signature="e#2471#2472#0" expanded="true" />
                 <element signature="e#2499#2500#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="337" column="81" selection-start-line="337" selection-start-column="40" selection-end-line="337" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/ReceivingCall.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="206" column="105" selection-start-line="206" selection-start-column="105" selection-end-line="206" selection-end-column="105" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/DHReceiving.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="55" column="43" lean-forward="true" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3673#3674#0" expanded="true" />
+                <element signature="e#3706#3707#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -243,18 +227,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>off</find>
-      <find>friendsInfo</find>
-      <find>спи</find>
-      <find>sha</find>
-      <find>set</find>
-      <find>fri</find>
-      <find>users_list.getChildren</find>
-      <find>qr</find>
-      <find>sendCode</find>
-      <find>mute</find>
-      <find>textm</find>
-      <find>get</find>
       <find>ServerMeHdiator</find>
       <find>ServerMediator</find>
       <find>main</find>
@@ -273,6 +245,18 @@
       <find>ping</find>
       <find>USER_NAME</find>
       <find>UDP</find>
+      <find>friendName</find>
+      <find>random</find>
+      <find>from to=&quot;client&quot;</find>
+      <find>who=&quot;client&quot;</find>
+      <find>ответил</find>
+      <find>send</find>
+      <find>отв</find>
+      <find>ЗВОНОК</find>
+      <find>howNeedString</find>
+      <find>startCall</find>
+      <find>sendKey</find>
+      <find>firstDH</find>
     </findStrings>
     <replaceStrings>
       <replace>../../resource/</replace>
@@ -291,8 +275,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/sample/AES256.java" />
-        <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/Mail.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/MailUser.java" />
         <option value="$PROJECT_DIR$/src/sample/RefreshPasswordController.java" />
         <option value="$PROJECT_DIR$/src/sample/fxml/refreshingPswd.fxml" />
@@ -312,7 +294,6 @@
         <option value="$PROJECT_DIR$/src/sample/serverSide/FriendsHelper.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ServerVacoomProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java" />
-        <option value="$PROJECT_DIR$/src/sample/FriendsInfo.java" />
         <option value="$PROJECT_DIR$/src/sample/fxml/requestFriend.fxml" />
         <option value="$PROJECT_DIR$/src/sample/RequestFriendController.java" />
         <option value="$PROJECT_DIR$/src/sample/ErrorMsg.java" />
@@ -329,18 +310,21 @@
         <option value="$PROJECT_DIR$/src/sample/MyFriendController.java" />
         <option value="$PROJECT_DIR$/src/sample/RandomString.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/InfoUsernameFromThread.java" />
-        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/ClientUDPAccess.java" />
         <option value="$PROJECT_DIR$/src/sample/CallingAnswerSaver.java" />
-        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/ClientMsgThread.java" />
         <option value="$PROJECT_DIR$/src/sample/UDPChannel.java" />
-        <option value="$PROJECT_DIR$/src/sample/CallingUser.java" />
-        <option value="$PROJECT_DIR$/src/sample/ReceivingCall.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/ServerMain.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/SortUsernameThread.java" />
-        <option value="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/Server.java" />
+        <option value="$PROJECT_DIR$/src/sample/test/ClientProtocolTest.java" />
+        <option value="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" />
+        <option value="$PROJECT_DIR$/src/sample/FriendsInfo.java" />
+        <option value="$PROJECT_DIR$/src/sample/DHReceiving.java" />
+        <option value="$PROJECT_DIR$/src/sample/ReceivingCall.java" />
+        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" />
+        <option value="$PROJECT_DIR$/src/sample/CallingUser.java" />
+        <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" />
         <option value="$PROJECT_DIR$/src/sample/StartWindowController.java" />
       </list>
     </option>
@@ -364,6 +348,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -394,13 +379,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
               <item name="ClientXmlPorocol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
@@ -459,13 +437,19 @@
               <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="style" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -478,7 +462,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619283995753" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619459017981" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resource/localDatabase" />
@@ -568,13 +552,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseCreater" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sample.localDatabase.DatabaseCreater" />
+    <configuration name="ClientProtocolTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sample.test.ClientProtocolTest" />
       <module name="testFX" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.localDatabase.*" />
+          <option name="PATTERN" value="sample.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -582,13 +566,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Mail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sample.serverSide.Mail.Mail" />
+    <configuration name="DatabaseCreater" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sample.localDatabase.DatabaseCreater" />
       <module name="testFX" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.serverSide.Mail.*" />
+          <option name="PATTERN" value="sample.localDatabase.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -665,16 +649,16 @@
       <item itemvalue="Application.CallingTest" />
       <item itemvalue="Application.ChatServer" />
       <item itemvalue="Application.DatabaseCreater" />
-      <item itemvalue="Application.Mail" />
       <item itemvalue="Application.ServerMain" />
+      <item itemvalue="Application.ClientProtocolTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ServerMain" />
+        <item itemvalue="Application.ClientProtocolTest" />
         <item itemvalue="Application.DatabaseCreater" />
         <item itemvalue="Application.ChatServer" />
         <item itemvalue="Application.CallingTest" />
-        <item itemvalue="Application.Mail" />
       </list>
     </recent_temporary>
   </component>
@@ -754,12 +738,14 @@
       <workItem from="1618988736952" duration="1879000" />
       <workItem from="1619081472445" duration="13144000" />
       <workItem from="1619186982598" duration="11838000" />
-      <workItem from="1619257924902" duration="11399000" />
+      <workItem from="1619257924902" duration="12176000" />
+      <workItem from="1619344135625" duration="9813000" />
+      <workItem from="1619438784756" duration="14379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="531670000" />
+    <option name="totallyTimeSpent" value="556639000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -778,7 +764,7 @@
       <window_info id="Capture Tool" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.3524962" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.29425114" />
       <window_info id="Structure" order="5" weight="0.25" />
       <window_info id="Favorites" order="6" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3289689" />
@@ -786,8 +772,8 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
-      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.22422259" />
-      <window_info anchor="bottom" id="Debug" order="6" weight="0.30932897" />
+      <window_info anchor="bottom" id="Run" order="5" weight="0.22422259" />
+      <window_info active="true" anchor="bottom" id="Debug" order="6" visible="true" weight="0.30932897" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.3289689" />
@@ -907,13 +893,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
-          <line>31</line>
+          <line>35</line>
           <properties />
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
-          <line>65</line>
+          <line>77</line>
           <properties />
           <option name="timeStamp" value="90" />
         </line-breakpoint>
@@ -949,7 +935,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
-          <line>229</line>
+          <line>245</line>
           <properties />
           <option name="timeStamp" value="128" />
         </line-breakpoint>
@@ -990,12 +976,6 @@
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>114</line>
-          <properties />
-          <option name="timeStamp" value="155" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ChatServer.java</url>
           <line>22</line>
           <properties />
@@ -1015,27 +995,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
-          <line>277</line>
+          <line>293</line>
           <properties />
           <option name="timeStamp" value="161" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
-          <line>300</line>
+          <line>322</line>
           <properties />
           <option name="timeStamp" value="162" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>77</line>
-          <properties />
-          <option name="timeStamp" value="163" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>86</line>
-          <properties />
-          <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/UDPChannel.java</url>
@@ -1045,15 +1013,99 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
-          <line>62</line>
+          <line>111</line>
           <properties />
           <option name="timeStamp" value="166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/serverSide/Server.java</url>
-          <line>65</line>
+          <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
+          <line>173</line>
           <properties />
-          <option name="timeStamp" value="167" />
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
+          <line>176</line>
+          <properties />
+          <option name="timeStamp" value="169" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
+          <line>93</line>
+          <properties />
+          <option name="timeStamp" value="170" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
+          <line>59</line>
+          <properties />
+          <option name="timeStamp" value="171" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
+          <line>314</line>
+          <properties />
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
+          <line>109</line>
+          <properties />
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java</url>
+          <line>299</line>
+          <properties />
+          <option name="timeStamp" value="177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
+          <line>257</line>
+          <properties />
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
+          <line>245</line>
+          <properties />
+          <option name="timeStamp" value="179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
+          <line>168</line>
+          <properties />
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
+          <line>171</line>
+          <properties />
+          <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/test/ClientProtocolTest.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="186" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
+          <line>259</line>
+          <properties />
+          <option name="timeStamp" value="190" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
+          <line>265</line>
+          <properties />
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
+          <line>271</line>
+          <properties />
+          <option name="timeStamp" value="192" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1106,27 +1158,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/resource/img/offline.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/FriendsHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource/css/input.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="61" column="32" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/fxml/registrationUser.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ErrorMsg.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2312">
@@ -1189,17 +1220,6 @@
           <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/FriendsInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="96" column="25" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
-          <folding>
-            <element signature="e#1484#1485#0" expanded="true" />
-            <element signature="e#1530#1531#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1344,13 +1364,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/RandomString.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClientUDPAccess.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1365,16 +1378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CallingAnswerSaver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-          <folding>
-            <element signature="e#228#248#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1393,13 +1396,6 @@
             <element signature="e#10673#10674#0" expanded="true" />
             <element signature="e#10716#10717#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/RandomStringGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1431,17 +1427,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/RandomString.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="84" lean-forward="true" selection-start-line="17" selection-start-column="84" selection-end-line="17" selection-end-column="84" />
+        <state relative-caret-position="68">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ReceivingCall.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/RandomStringGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="62" column="33" lean-forward="true" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="17" column="84" selection-start-line="17" selection-start-column="84" selection-end-line="17" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CallingAnswerSaver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/test/ClientProtocolTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="58" column="44" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1450,62 +1467,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="297" column="77" selection-start-line="297" selection-start-column="77" selection-end-line="297" selection-end-column="77" />
+        <state relative-caret-position="186">
+          <caret line="311" column="17" selection-start-line="311" selection-start-column="17" selection-end-line="311" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/DH.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="314" column="54" selection-start-line="314" selection-start-column="45" selection-end-line="314" selection-end-column="54" />
+        <state relative-caret-position="294">
+          <caret line="51" column="11" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#633#634#0" expanded="true" />
+            <element signature="e#670#671#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/DHServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="380" column="58" selection-start-line="380" selection-start-column="58" selection-end-line="380" selection-end-column="58" />
+        <state relative-caret-position="257">
+          <caret line="357" column="5" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="357" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+        <state relative-caret-position="488">
+          <caret line="185" column="32" selection-start-line="169" selection-start-column="30" selection-end-line="185" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1340#1341#0" expanded="true" />
-            <element signature="e#1370#1371#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-            <element signature="e#3935#3936#0" expanded="true" />
-            <element signature="e#3991#3992#0" expanded="true" />
-            <element signature="e#4035#4036#0" expanded="true" />
+            <element signature="e#4420#4421#0" expanded="true" />
             <element signature="e#4451#4452#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/DHReceiving.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="55" column="43" lean-forward="true" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3673#3674#0" expanded="true" />
+            <element signature="e#3706#3707#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-595">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        <state relative-caret-position="119">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2302#2303#0" expanded="true" />
@@ -1518,10 +1533,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CallingUser.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="337" column="81" selection-start-line="337" selection-start-column="40" selection-end-line="337" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ReceivingCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="206" column="105" selection-start-line="206" selection-start-column="105" selection-end-line="206" selection-end-column="105" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="428" column="24" selection-start-line="428" selection-start-column="24" selection-end-line="428" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/FriendsInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
-          <caret line="80" column="60" lean-forward="true" selection-start-line="80" selection-start-column="60" selection-end-line="80" selection-end-column="60" />
+          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+          <folding>
+            <element signature="e#1484#1485#0" expanded="true" />
+            <element signature="e#1530#1531#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1530,8 +1583,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/StartWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="160" column="141" selection-start-line="160" selection-start-column="141" selection-end-line="160" selection-end-column="141" />
+        <state relative-caret-position="342">
+          <caret line="218" column="37" lean-forward="true" selection-start-line="218" selection-start-column="37" selection-end-line="218" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CallingUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="277" selection-start-line="277" selection-end-line="277" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

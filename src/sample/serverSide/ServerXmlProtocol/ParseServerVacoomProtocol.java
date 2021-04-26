@@ -10,6 +10,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.mail.MessagingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,13 +25,18 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
     private ServerVacoomProtocol serverVacoomProtocol;
     private String USER_NAME;
     private String lastMsg= null;
+    HashMap<String, String> protocolMsg;
     public ParseServerVacoomProtocol(Server objServer) {
         this.objServer = objServer;
         mail = new Mail();
+        protocolMsg = new HashMap<>();
+
         serverVacoomProtocol = new ServerVacoomProtocol();
     }
 
     public String parseRequest(String request ) {
+        howNeedString=0;
+
         lastMsg = request;
         Pattern p = Pattern.compile("\"([^\"]*)\""); //Результаты тегов, например: <from to="client".. будет client
         Pattern p1 = Pattern.compile("\\w+(?=\\=)");//Сами теги, например: <from to="client".. будет to
@@ -61,6 +67,12 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
         while (m1.find()) {
             strings2[numOfNow1++] = m1.group(0);
         }
+        if(protocolMsg.size()>0)
+        protocolMsg.clear();
+        for (int i=0; i<strings1.length;i++)
+        {
+            protocolMsg.put(strings2[i],strings1[i]);
+        }
         return parseCommand(strings1,strings2);
     }
 
@@ -86,10 +98,14 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
     }
     private String resultCommads(String[] commands,String[] suffix) {
 
-        switch (commands[3])//содержит код
+        switch (protocolMsg.get("action"))//содержит код
         {
-
-            case "startCall":
+            case "relay":
+            {
+                relayRequest(commands);
+                return null;
+            }
+            case "sendKey":
             {
                 relayRequest(commands);
                 return null;
@@ -100,7 +116,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
     }
     private String setCommads(String[] commands,String[] suffix) {
 
-        switch (commands[3])//содержит код запроса
+        switch (protocolMsg.get("action"))//содержит код запроса
         {
             case "authorization": {
                 if (checkUser(commands[4], commands[5])) {
@@ -273,11 +289,17 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                     return sendAnswer(commands[3], "ok");
                 else return sendAnswer(commands[3], "error");
             }
-            case "startCall":
+            case "relay":
             {
                 relayRequest(commands);
                 return null;
             }
+            /*
+            case "sendKey":
+            {
+                relayRequest(commands);
+                return null;
+            }*/
 
         }
         return sendAnswer(commands[3], "error");//в любой непонятной ситуации отвечаем ошибкой
@@ -290,7 +312,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
     private void relayRequest (String[] commands)
     {
         try {
-            InfoUsernameFromThread friend = (InfoUsernameFromThread) search(ServerMain.usernameFromThreadArrayList, new InfoUsernameFromThread(commands[4], null));
+            InfoUsernameFromThread friend = (InfoUsernameFromThread) search(ServerMain.usernameFromThreadArrayList, new InfoUsernameFromThread(protocolMsg.get("friend"), null));
             Server friendThread = friend.getThread();
             friendThread.sendMessage(lastMsg);
         }catch (Exception e)
