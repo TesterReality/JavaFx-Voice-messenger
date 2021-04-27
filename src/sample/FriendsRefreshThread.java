@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import org.xembly.Directives;
 import org.xembly.ImpossibleModificationException;
 import org.xembly.Xembler;
+import sample.localDatabase.LocalDbHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.SQLException;
 
 public class FriendsRefreshThread extends Thread {
 
@@ -55,6 +57,8 @@ public class FriendsRefreshThread extends Thread {
 
     public void run() {
         try {
+            String lastFriendStr = "";
+
             do {
                 Thread.sleep(5000);
 
@@ -69,36 +73,62 @@ public class FriendsRefreshThread extends Thread {
                 } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("getFriend"));
                 ErrorMsg err = new ErrorMsg();
                 if (err.checkFriend() == 0) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                           parent.users_list.getChildren().clear();
+                    if (!lastFriendStr.equals(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getLastFriendStr())) {
+                       //если появилось что то новое в друзьях
+                        lastFriendStr = ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getLastFriendStr();
 
-                            int numOfFriend = ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendNumber();
-                            for(int i=0;i<numOfFriend;i++)
-                            {
-                                switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFrienStatus(i)) {
-                                    case "1":
-                                        setFriend(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),
-                                                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getStatusOnline(i),
-                                                getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendAvatars(i)),
-                                                "Друг",
-                                                "" );
-                                        break;//друг
-                                    case "3":
-                                        setNewFriendRequest(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),
-                                                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getStatusOnline(i),
-                                                getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendAvatars(i)),
-                                                "Запрос в друзья");
-                                        //   setNewUser(FriendsInfoSingleton.getInstance().getFriendName(i), "Запрос в друзья", Boolean.parseBoolean(FriendsInfoSingleton.getInstance().getStatusOnline(i)));
-                                        break;//запрос дал мне
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                parent.users_list.getChildren().clear();
+
+                                int numOfFriend = ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendNumber();
+                                for (int i = 0; i < numOfFriend; i++) {
+                                    try {
+                                        switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFrienStatus(i)) {
+                                            case "1":
+                                                setFriend(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),
+                                                        ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getStatusOnline(i),
+                                                        getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendAvatars(i)),
+                                                        "Друг",
+                                                        "");
+                                                if(!LocalDbHandler.getInstance().checkFriend(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i)))
+                                                {
+                                                    //если такого пользователя нет у нас в локальной бд
+                                                    LocalDbHandler.getInstance().addFriend(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),1);
+                                                }
+
+                                                break;//друг
+                                            case "3": {
+                                                setNewFriendRequest(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),
+                                                        ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getStatusOnline(i),
+                                                        getImgFromUrl(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendAvatars(i)),
+                                                        "Запрос в друзья");
+                                                //   setNewUser(FriendsInfoSingleton.getInstance().getFriendName(i), "Запрос в друзья", Boolean.parseBoolean(FriendsInfoSingleton.getInstance().getStatusOnline(i)));
+                                                break;//запрос дал мне
+                                            }
+                                        }
+                                        if(LocalDbHandler.getInstance().checkFriend(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i)))
+                                        {
+                                           int contactLast = LocalDbHandler.getInstance().getFriendContact(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i));
+                                           if(contactLast==-1) continue;
+                                           int contactNow = Integer.parseInt(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFrienStatus(i));
+
+                                           if(contactLast != contactNow)
+                                           {
+                                               LocalDbHandler.getInstance().updateFriendContact(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendName(i),contactNow);
+                                           }
+                                        }
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                            }
-                            // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
-                            // parents.loadWorkrArea(input.getText());
+                                // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
+                                // parents.loadWorkrArea(input.getText());
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
 
                 if (err.checkFriend() == 2) {

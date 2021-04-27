@@ -1,11 +1,13 @@
 package sample;
 
 import sample.ClientXmlPorocol.VacoomProtocol;
+import sample.localDatabase.LocalDbHandler;
 
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -93,6 +95,7 @@ public class ReceivingCall extends Thread {
 
         waitAnswer();//Ждем публичный ключ DH
 
+        waitAnswer();// Ждем подтверждения DH
 
 /*
         try {
@@ -209,8 +212,63 @@ public class ReceivingCall extends Thread {
                 }
                 break;
             }
+            case "DHstatus":
+            {
+                String status = protocolMsg.get("status");
+                switch (status)
+                {
+                    case "ok":
+                    {
+                        startVoiceUDP();
+                        break;
+                    }
+                    case "error": // ключ был кем-то изменен
+                    {
+                        break;
+                    }
+                }
+
+                break;
+            }
             case "default":
                 break;
         }
     }
+
+    public void startVoiceUDP()
+    {
+        keyManipulation();
+
+    }
+
+    public String keyManipulation()
+    {
+        String secretKey1 = "NaN";
+        try {
+            //добавлю ключи (keyBob keyAlice) в локальную бд
+            LocalDbHandler.getInstance().addVoiceKey(myKey,friendKey,null,null,loginFriend);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String newSercertKey = new StringXORer().encode(new StringXORer().encode(dhReceiving.getSharedKeyB().toString(),friendKey),myKey);
+        String newSercertKeyHash = new SHA256Class().getSHA256(newSercertKey);
+        try {
+            //добавлю новый секретный ключ в бд для обеспечения непрерывности ключегового материала
+            LocalDbHandler.getInstance().addNewSecretKey(newSercertKeyHash,loginFriend);
+            secretKey1 = LocalDbHandler.getInstance().getSecretKeyOne(loginFriend);
+            if(secretKey1==null)
+            {
+                secretKey1 = " ";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String newCryptoVoiceKey = new StringXORer().encode(new StringXORer().encode(dhReceiving.getSharedKeyB().toString(),secretKey1),newSercertKeyHash);
+        String voiceKey = new SHA256Class().getSHA256(newCryptoVoiceKey);
+        System.out.println("VOICE KEY " + voiceKey);
+        return voiceKey;
+
+    }
+
 }

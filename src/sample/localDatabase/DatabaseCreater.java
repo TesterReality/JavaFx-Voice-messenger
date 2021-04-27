@@ -38,6 +38,14 @@ public class DatabaseCreater {
             for (UserVoiceKey product : products) {
                 System.out.println(product.toString());
             }
+           // dbHandler.addVoiceUser("memes");
+            //dbHandler.addVoiceKey("hui","hui","hui","hui","test");
+            //dbHandler.addNewSecretKey("eobana","test");
+            dbHandler.getFriendContact("test");
+            dbHandler.getFriendContact("hui");
+            dbHandler.updateFriendContact("test",777);
+          String sck=  dbHandler.getSecretKeyOne("kekich");
+            System.out.println(sck);
             // Удаление записи с id = 8
             //dbHandler.deleteProduct(8);
         } catch (SQLException e) {
@@ -46,17 +54,6 @@ public class DatabaseCreater {
 
         //CallingUser callingUser = new CallingUser();
         //callingUser.start();
-
-        Map<Integer, String> states = new HashMap<Integer, String>();
-        states.put(1, "Germany");
-        states.put(null, "Germany1");
-
-        states.put(null, "Germany2");
-
-        for(Map.Entry<Integer, String> item : states.entrySet()){
-
-            System.out.printf("Key: %d  Value: %s \n", item.getKey(), item.getValue());
-        }
 
     }
 }

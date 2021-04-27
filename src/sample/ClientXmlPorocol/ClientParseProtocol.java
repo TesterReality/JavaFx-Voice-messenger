@@ -138,6 +138,12 @@ public class ClientParseProtocol extends VacoomProtocol {
                 CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
                 break;
             }
+            case "DHstatus":
+            {
+                CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                break;
+            }
             case "default":
                 break;
         }
@@ -275,6 +281,7 @@ public class ClientParseProtocol extends VacoomProtocol {
                     return;
                 }
                 ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().setCommands(commands);
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().setLastFriendStr(lastRequest);
                 statesProtocol.put(commands[3],0);
                 return;
                /* FriendsInfoSingleton.getInstance().setHaveFriend(true);

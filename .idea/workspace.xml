@@ -8,18 +8,26 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/resource/localDatabase/client.db" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/resource/localDatabase/client.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/CallingUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/CallingUser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ClientXmlPorocol/ClientParseProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ClientXmlPorocol/ClientParseProtocol.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ClientXmlPorocol/VacoomProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ClientXmlPorocol/VacoomProtocol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/FriendsInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/FriendsInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/FriendsRefreshThread$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/FriendsRefreshThread$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/FriendsRefreshThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/FriendsRefreshThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/ReceivingCall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/ReceivingCall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/DatabaseCreater.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/DatabaseCreater.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/LocalDbHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/testFX/sample/localDatabase/LocalDbHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resource/localDatabase/client.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource/localDatabase/client.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/CallingUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CallingUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/FriendsInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FriendsInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/FriendsRefreshThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FriendsRefreshThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ReceivingCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ReceivingCall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/StartWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/StartWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/StartWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="218" column="37" lean-forward="true" selection-start-line="218" selection-start-column="37" selection-end-line="218" selection-end-column="37" />
+            <state relative-caret-position="337">
+              <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -102,8 +110,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
+            <state relative-caret-position="169">
+              <caret line="274" column="50" lean-forward="true" selection-start-line="274" selection-start-column="50" selection-end-line="274" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="214" column="39" lean-forward="true" selection-start-line="214" selection-start-column="39" selection-end-line="214" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,9 +134,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/FriendsInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+            <state relative-caret-position="373">
+              <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
               <folding>
+                <element signature="e#1138#1139#0" expanded="true" />
+                <element signature="e#1174#1175#0" expanded="true" />
+                <element signature="e#1232#1233#0" expanded="true" />
+                <element signature="e#1282#1283#0" expanded="true" />
                 <element signature="e#1484#1485#0" expanded="true" />
                 <element signature="e#1530#1531#0" expanded="true" />
               </folding>
@@ -125,66 +149,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="428" column="24" selection-start-line="428" selection-start-column="24" selection-end-line="428" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="185" column="32" selection-start-line="169" selection-start-column="30" selection-end-line="185" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4420#4421#0" expanded="true" />
-                <element signature="e#4451#4452#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/CallingUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="277" selection-start-line="277" selection-end-line="277" />
+            <state relative-caret-position="820">
+              <caret line="327" selection-start-line="327" selection-end-line="327" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2302#2303#0" expanded="true" />
-                <element signature="e#2334#2335#0" expanded="true" />
-                <element signature="e#2383#2384#0" expanded="true" />
-                <element signature="e#2425#2426#0" expanded="true" />
-                <element signature="e#2471#2472#0" expanded="true" />
-                <element signature="e#2499#2500#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="337" column="81" selection-start-line="337" selection-start-column="40" selection-end-line="337" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -192,8 +163,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ReceivingCall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="206" column="105" selection-start-line="206" selection-start-column="105" selection-end-line="206" selection-end-column="105" />
+            <state relative-caret-position="342">
+              <caret line="268" column="33" selection-start-line="268" selection-start-column="28" selection-end-line="268" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -202,14 +173,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/DHReceiving.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/StringXORer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="55" column="43" lean-forward="true" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+            <state relative-caret-position="67">
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3673#3674#0" expanded="true" />
-                <element signature="e#3706#3707#0" expanded="true" />
+                <element signature="e#182#183#0" expanded="true" />
+                <element signature="e#259#260#0" expanded="true" />
+                <element signature="e#309#310#0" expanded="true" />
+                <element signature="e#387#388#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="88" selection-start-line="10" selection-start-column="88" selection-end-line="10" selection-end-column="88" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/FriendsRefreshThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -227,10 +236,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ServerMeHdiator</find>
-      <find>ServerMediator</find>
-      <find>main</find>
-      <find>online</find>
       <find>getF</find>
       <find>ОТВЕТИЛ</find>
       <find>Поток согласовнию ключей с другим клиентом запущен</find>
@@ -257,6 +262,10 @@
       <find>startCall</find>
       <find>sendKey</find>
       <find>firstDH</find>
+      <find>friend</find>
+      <find>lastFriendStr</find>
+      <find>VOICE</find>
+      <find>KEY</find>
     </findStrings>
     <replaceStrings>
       <replace>../../resource/</replace>
@@ -275,7 +284,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/sample/serverSide/Mail/MailUser.java" />
         <option value="$PROJECT_DIR$/src/sample/RefreshPasswordController.java" />
         <option value="$PROJECT_DIR$/src/sample/fxml/refreshingPswd.fxml" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
@@ -297,16 +305,12 @@
         <option value="$PROJECT_DIR$/src/sample/fxml/requestFriend.fxml" />
         <option value="$PROJECT_DIR$/src/sample/RequestFriendController.java" />
         <option value="$PROJECT_DIR$/src/sample/ErrorMsg.java" />
-        <option value="$PROJECT_DIR$/src/sample/FriendsRefreshThread.java" />
         <option value="$PROJECT_DIR$/src/style/style.css" />
         <option value="$PROJECT_DIR$/src/sample/fxml/sample.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java" />
         <option value="$PROJECT_DIR$/src/sample/localDatabase/UserVoiceKey.java" />
         <option value="$PROJECT_DIR$/src/sample/CallingTest.java" />
         <option value="$PROJECT_DIR$/src/sample/ChatServer.java" />
-        <option value="$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java" />
         <option value="$PROJECT_DIR$/src/sample/fxml/myFriend.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/sample/MyFriendController.java" />
         <option value="$PROJECT_DIR$/src/sample/RandomString.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/InfoUsernameFromThread.java" />
@@ -319,13 +323,18 @@
         <option value="$PROJECT_DIR$/src/sample/serverSide/Server.java" />
         <option value="$PROJECT_DIR$/src/sample/test/ClientProtocolTest.java" />
         <option value="$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ParseServerVacoomProtocol.java" />
-        <option value="$PROJECT_DIR$/src/sample/FriendsInfo.java" />
         <option value="$PROJECT_DIR$/src/sample/DHReceiving.java" />
-        <option value="$PROJECT_DIR$/src/sample/ReceivingCall.java" />
         <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java" />
-        <option value="$PROJECT_DIR$/src/sample/CallingUser.java" />
+        <option value="$PROJECT_DIR$/src/sample/FriendsInfo.java" />
         <option value="$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$PROJECT_DIR$/src/sample/FriendsRefreshThread.java" />
+        <option value="$PROJECT_DIR$/src/sample/StringXORer.java" />
+        <option value="$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java" />
+        <option value="$PROJECT_DIR$/src/sample/CallingUser.java" />
+        <option value="$PROJECT_DIR$/src/sample/ReceivingCall.java" />
         <option value="$PROJECT_DIR$/src/sample/StartWindowController.java" />
+        <option value="$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java" />
       </list>
     </option>
   </component>
@@ -348,7 +357,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -366,6 +374,13 @@
               <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="resource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaFx-Voice-messenger" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+              <item name="localDatabase" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Voice-messenger" type="b2602c69:ProjectViewProjectNode" />
@@ -450,6 +465,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -462,7 +478,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619459017981" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619516054972" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resource/localDatabase" />
@@ -474,23 +490,23 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\sample\fxml" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="sample.serverSide.ServerXmlProtocol" />
       <recent name="sample.serverSide.Mail" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\localDatabase" />
+      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\lib" />
+      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\sample\fxml" />
+      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\img" />
+      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\lib\cloud" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="sample" />
       <recent name="" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\lib" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\sample\fxml" />
-      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\img" />
-      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\lib\cloud" />
-      <recent name="E:\Java Project\testFX\JavaFx-Voice-messenger\src\resource\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -655,8 +671,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ServerMain" />
-        <item itemvalue="Application.ClientProtocolTest" />
         <item itemvalue="Application.DatabaseCreater" />
+        <item itemvalue="Application.ClientProtocolTest" />
         <item itemvalue="Application.ChatServer" />
         <item itemvalue="Application.CallingTest" />
       </list>
@@ -740,12 +756,13 @@
       <workItem from="1619186982598" duration="11838000" />
       <workItem from="1619257924902" duration="12176000" />
       <workItem from="1619344135625" duration="9813000" />
-      <workItem from="1619438784756" duration="14379000" />
+      <workItem from="1619438784756" duration="22294000" />
+      <workItem from="1619505370291" duration="8961000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="556639000" />
+    <option name="totallyTimeSpent" value="573515000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -757,14 +774,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.29425114" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.2987897" />
       <window_info id="Structure" order="5" weight="0.25" />
       <window_info id="Favorites" order="6" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3289689" />
@@ -772,8 +789,8 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.22422259" />
-      <window_info active="true" anchor="bottom" id="Debug" order="6" visible="true" weight="0.30932897" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.22422259" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.30932897" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.3289689" />
@@ -970,12 +987,6 @@
           <option name="timeStamp" value="143" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java</url>
-          <line>38</line>
-          <properties />
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ChatServer.java</url>
           <line>22</line>
           <properties />
@@ -1013,31 +1024,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
-          <line>111</line>
+          <line>114</line>
           <properties />
           <option name="timeStamp" value="166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
-          <line>173</line>
+          <line>176</line>
           <properties />
           <option name="timeStamp" value="168" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
-          <line>176</line>
+          <line>179</line>
           <properties />
           <option name="timeStamp" value="169" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>93</line>
+          <line>95</line>
           <properties />
           <option name="timeStamp" value="170" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
-          <line>59</line>
+          <line>61</line>
           <properties />
           <option name="timeStamp" value="171" />
         </line-breakpoint>
@@ -1061,25 +1072,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>257</line>
+          <line>262</line>
           <properties />
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>245</line>
+          <line>250</line>
           <properties />
           <option name="timeStamp" value="179" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
-          <line>168</line>
+          <line>171</line>
           <properties />
           <option name="timeStamp" value="183" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/ReceivingCall.java</url>
-          <line>171</line>
+          <line>174</line>
           <properties />
           <option name="timeStamp" value="184" />
         </line-breakpoint>
@@ -1091,21 +1102,45 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>259</line>
+          <line>264</line>
           <properties />
           <option name="timeStamp" value="190" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>265</line>
+          <line>270</line>
           <properties />
           <option name="timeStamp" value="191" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
-          <line>271</line>
+          <line>276</line>
           <properties />
           <option name="timeStamp" value="192" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java</url>
+          <line>216</line>
+          <properties />
+          <option name="timeStamp" value="193" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
+          <line>304</line>
+          <properties />
+          <option name="timeStamp" value="205" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/CallingUser.java</url>
+          <line>325</line>
+          <properties />
+          <option name="timeStamp" value="206" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1158,34 +1193,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/ErrorMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2312">
-          <caret line="137" column="114" selection-start-line="137" selection-start-column="114" selection-end-line="137" selection-end-column="114" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/ServerXmlProtocol/ServerVacoomProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="39" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/fxml/requestFriend.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="221" selection-start-line="10" selection-start-column="221" selection-end-line="10" selection-end-column="221" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/com/sun/javafx/application/PlatformImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -1211,16 +1218,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/FriendsRefreshThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1287,16 +1284,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ChatServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -1327,33 +1314,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16983">
-          <caret line="1045" column="17" selection-start-line="1045" selection-start-column="17" selection-end-line="1045" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4590">
-          <caret line="291" column="19" selection-start-line="291" selection-start-column="19" selection-end-line="291" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MyFriendController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2091">
@@ -1371,13 +1331,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ThreadClientInfoSingleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1533,27 +1486,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="337" column="81" selection-start-line="337" selection-start-column="40" selection-end-line="337" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ReceivingCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="206" column="105" selection-start-line="206" selection-start-column="105" selection-end-line="206" selection-end-column="105" />
+        <state relative-caret-position="7888">
+          <caret line="466" column="41" selection-start-line="466" selection-start-column="35" selection-end-line="466" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/VacoomProtocol.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseLogic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="428" column="24" selection-start-line="428" selection-start-column="24" selection-end-line="428" selection-end-column="24" />
+        <state relative-caret-position="10302">
+          <caret line="627" column="8" selection-start-line="627" selection-start-column="8" selection-end-line="630" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/serverSide/Database/DatabaseUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientMsgThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="57" column="21" lean-forward="true" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+          <folding>
+            <element signature="e#2292#2293#0" expanded="true" />
+            <element signature="e#2326#2327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ThreadClientInfoSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding>
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_231/javafx-src.zip!/javafx/stage/Stage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="474" selection-start-line="474" selection-end-line="474" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="274" column="50" lean-forward="true" selection-start-line="274" selection-start-column="50" selection-end-line="274" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1562,19 +1554,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/FriendsInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+        <state relative-caret-position="373">
+          <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
           <folding>
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+            <element signature="e#1232#1233#0" expanded="true" />
+            <element signature="e#1282#1283#0" expanded="true" />
             <element signature="e#1484#1485#0" expanded="true" />
             <element signature="e#1530#1531#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClientXmlPorocol/ClientParseProtocol.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
+        <state relative-caret-position="238">
+          <caret line="214" column="39" lean-forward="true" selection-start-line="214" selection-start-column="39" selection-end-line="214" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/StringXORer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#182#183#0" expanded="true" />
+            <element signature="e#259#260#0" expanded="true" />
+            <element signature="e#309#310#0" expanded="true" />
+            <element signature="e#387#388#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/localDatabase/DatabaseCreater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/FriendsRefreshThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1583,15 +1613,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/StartWindowController.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="218" column="32" selection-start-line="218" selection-start-column="32" selection-end-line="218" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ReceivingCall.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="218" column="37" lean-forward="true" selection-start-line="218" selection-start-column="37" selection-end-line="218" selection-end-column="37" />
+          <caret line="268" column="33" selection-start-line="268" selection-start-column="28" selection-end-line="268" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/CallingUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="277" selection-start-line="277" selection-end-line="277" />
+        <state relative-caret-position="820">
+          <caret line="327" selection-start-line="327" selection-end-line="327" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/localDatabase/LocalDbHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="88" selection-start-line="10" selection-start-column="88" selection-end-line="10" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

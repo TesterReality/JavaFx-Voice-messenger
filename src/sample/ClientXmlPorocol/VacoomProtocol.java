@@ -449,4 +449,28 @@ public class VacoomProtocol {
         }
         return prtocolToString(xml);
     }
+
+    public String sharedKeyDHstatus (String type,String whoAmI, String userFriend,String status) {
+        String xml = null;
+        try {
+
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "client")
+                            .attr("type", type)
+                            .add("vacoom")
+                            .attr("action", "relay")
+                            .attr("actionClient", "DHstatus")
+                            .attr("login", whoAmI)
+                            .attr("status", status)
+                            .attr("friend", userFriend)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
 }

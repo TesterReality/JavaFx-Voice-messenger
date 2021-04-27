@@ -1,10 +1,12 @@
 package sample;
 
 import sample.ClientXmlPorocol.VacoomProtocol;
+import sample.localDatabase.LocalDbHandler;
 
 import java.io.*;
 import java.math.BigInteger;
 import java.net.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +101,10 @@ public class CallingUser extends Thread{
         waitAnswer();
 
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.sendDHpublic("set",userName,friendName,diffie.getPublicA().toString()));
-        waitAnswer();
+        waitAnswer();// жлем хеш общего секрета
+
+        waitAnswer();// ????
+
 
 
 
@@ -273,9 +278,15 @@ public class CallingUser extends Thread{
                 String halfSha256SharedKey = new SHA256Class().getSHA256(diffie.getSharedKeyA().toString());
                 halfSha256SharedKey = halfSha256SharedKey.substring(0, halfSha256SharedKey.length() / 2);
 
-                if (halfSha256SharedKey.equals(protocolMsg.get("hashSharedKey")))
+                if (halfSha256SharedKey.equals(protocolMsg.get("hashSharedKey")))//Если общий секрет одинаковый
                 {
-                    System.out.println("ОХУЕТЬ КЛЮЧИ РАБОТАЮТ");
+                    System.out.println("Ключи совпали. Подтверждаем");
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.sharedKeyDHstatus("set",userName,friendName,"ok"));
+                    startVoiceUDP();
+                }else
+                {
+                    System.out.println("Ключи НЕ совпали. Сообщаем об этом");
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.sharedKeyDHstatus("set",userName,friendName,"error"));
                 }
                 break;
             }
@@ -283,8 +294,38 @@ public class CallingUser extends Thread{
                 break;
         }
     }
-    public void startClientServer()
+    public void startVoiceUDP()
     {
+        keyManipulation();
+
+    }
+
+    public String keyManipulation()
+    {
+        String secretKey1 = "NaN";
+        try {
+            //добавлю ключи (keyBob keyAlice) в локальную бд
+            LocalDbHandler.getInstance().addVoiceKey(myKey,friendKey,null,null,friendName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String newSercertKey = new StringXORer().encode(new StringXORer().encode(diffie.getSharedKeyA().toString(),myKey),friendKey);
+        String newSercertKeyHash = new SHA256Class().getSHA256(newSercertKey);
+        try {
+            //добавлю новый секретный ключ в бд для обеспечения непрерывности ключегового материала
+            LocalDbHandler.getInstance().addNewSecretKey(newSercertKeyHash,friendName);
+            secretKey1 = LocalDbHandler.getInstance().getSecretKeyOne(friendName);
+            if(secretKey1==null)
+            {
+                secretKey1 = " ";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String newCryptoVoiceKey = new StringXORer().encode(new StringXORer().encode(diffie.getSharedKeyA().toString(),secretKey1),newSercertKeyHash);
+        String voiceKey = new SHA256Class().getSHA256(newCryptoVoiceKey);
+        return voiceKey;
 
     }
 

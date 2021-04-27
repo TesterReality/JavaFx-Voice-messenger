@@ -59,4 +59,174 @@ public class LocalDbHandler {
         }
     }
 
+    public void addNewSecretKey(String newSecretKey,String username)
+    {
+
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("UPDATE user_voice_key SET secret_key1 = secret_key2, secret_key2=? WHERE id_friend = ((SELECT id_user_friend FROM user_friend WHERE user_name = ?))");
+            cstmt.setString(1, newSecretKey);
+            cstmt.setString(2, username);
+
+            int rows = cstmt.executeUpdate();
+            System.out.printf("%d rows added", rows);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addVoiceKey(String key_my, String key_friend, String secret_key1, String secret_key2,String username)
+    {
+
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("UPDATE user_voice_key SET key_my = ?,key_friend = ?,secret_key1 =?,secret_key2=? WHERE id_friend = ((SELECT id_user_friend FROM user_friend WHERE user_name = ?))");
+            cstmt.setString(1, key_my);
+            cstmt.setString(2, key_friend);
+            cstmt.setString(3, secret_key1);
+            cstmt.setString(4, secret_key2);
+            cstmt.setString(5, username);
+
+            int rows = cstmt.executeUpdate();
+            System.out.printf("%d rows added", rows);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void addVoice(String username)
+    {
+
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("INSERT INTO user_voice_key (id_friend) VALUES( (SELECT id_user_friend FROM user_friend WHERE user_name = ?))");
+            cstmt.setString(1, username);
+
+            int rows = cstmt.executeUpdate();
+            System.out.printf("%d rows added", rows);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateFriendContact(String username, int contactNew)
+    {
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("UPDATE user_friend SET user_contact=? WHERE user_name = ?");
+            cstmt.setInt(1, contactNew);
+            cstmt.setString(2, username);
+
+            int rows = cstmt.executeUpdate();
+            System.out.printf("%d rows updates", rows);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public String getSecretKeyOne(String username)
+    {
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("SELECT secret_key1 FROM user_voice_key WHERE id_friend = (SELECT id_user_friend FROM user_friend WHERE user_name = ? )");
+            cstmt.setString(1, username);
+
+            ResultSet resultSet = cstmt.executeQuery();
+            while (resultSet.next()) {
+                String secretKey1 = resultSet.getString("secret_key1");
+                return secretKey1;
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "NaN";
+    }
+    public int getFriendContact(String username)
+    {
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("SELECT user_contact FROM user_friend WHERE user_name = ?");
+            cstmt.setString(1, username);
+
+            ResultSet resultSet = cstmt.executeQuery();
+            while (resultSet.next()) {
+              int contact_int = resultSet.getInt("user_contact");
+              return contact_int;
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // такого друга в локальной бд нет
+    }
+    public boolean checkFriend(String username)
+    {
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("SELECT id_user_friend FROM user_friend WHERE user_name = ?");
+            cstmt.setString(1, username);
+
+            ResultSet resultSet = cstmt.executeQuery();
+            if (!resultSet.isBeforeFirst() ) {
+                return false; // такого друга в локальной бд нет
+            }else
+            {
+                return true; //такой друг есть
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // такого друга в локальной бд нет
+    }
+    public void addFriend(String username,int contact)
+    {
+
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("INSERT INTO user_friend (user_name, user_contact) VALUES (?,?)");
+            cstmt.setString(1, username);
+            cstmt.setInt(2, contact);
+
+            int rows = cstmt.executeUpdate();
+            System.out.printf("%d rows added", rows);
+            addVoice(username);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addVoiceUser(String username)
+    {
+        PreparedStatement cstmt = null;
+
+        try {
+            cstmt= connection.prepareStatement("SELECT id_voice FROM user_voice_key WHERE id_friend = (SELECT id_user_friend FROM user_friend WHERE user_name = ? )");
+            cstmt.setString(1, username);
+
+            ResultSet resultSet = cstmt.executeQuery();
+            if (!resultSet.isBeforeFirst() ) {
+                System.out.println("No data");
+                addFriend(username,1);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

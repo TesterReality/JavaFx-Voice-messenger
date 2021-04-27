@@ -11,7 +11,7 @@ public class FriendsInfo {
     ArrayList<String> avatars = new ArrayList<String>();
 
     String[] temp;
-
+    private String lastFriendStr = null;
     public FriendsInfo(){}
 
     public ArrayList<String> getStatusOnline() {
@@ -41,6 +41,14 @@ public class FriendsInfo {
     public void setCommands(String[] commands) {
         this.commands = commands;
         parseUser();
+    }
+
+    public String getLastFriendStr() {
+        return lastFriendStr;
+    }
+
+    public void setLastFriendStr(String lastFriendStr) {
+        this.lastFriendStr = lastFriendStr;
     }
 
     public String getFriendName(int index)
