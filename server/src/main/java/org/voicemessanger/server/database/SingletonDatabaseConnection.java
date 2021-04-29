@@ -11,7 +11,7 @@ import java.sql.SQLException;
  */
 public class SingletonDatabaseConnection {
    // static final String DB_URL = "jdbc:postgresql://127.0.0.1:5432/vacoommessanger";
-    static final String DB_URL = "jdbc:postgresql://ec2-52-50-171-4.eu-west-1.compute.amazonaws.com/dbik0tdq6p8b3p";
+    static String DB_URL = "";
 
     static String USER = "";
     static String PASS = "";
@@ -34,7 +34,7 @@ public class SingletonDatabaseConnection {
             DatabaseUser databaseUser = new DatabaseUser();
             USER = databaseUser.getUSER();
             PASS = databaseUser.getPASS();
-
+            DB_URL=databaseUser.getDB_URL();
         }
         return instance;
     }

@@ -29,3 +29,5 @@ classes/
 *.ipr
 *.iws
 *.idea
+client/src/main/resources/conf/config.properties
+server/src/main/resources/conf/config.properties
