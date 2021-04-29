@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="testFX:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/testFX_jar</output-path>
-    <root id="archive" name="testFX.jar">
-      <element id="module-output" name="testFX" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/src/resource/lib/json-simple-1.1.1.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="xembly-0.22.1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/resource/lib/xembly-0.22.1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

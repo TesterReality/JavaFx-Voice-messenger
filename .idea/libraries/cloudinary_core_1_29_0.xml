@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="cloudinary-core-1.29.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/resource/lib/cloudinary-core-1.29.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
