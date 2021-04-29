@@ -1,0 +1,5 @@
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 1 1 10 1; /* фишка в задании толщины только одному из бордюров */
+    -fx-border-color: #313e47;
+}

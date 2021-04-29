@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="stageWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="471.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="44.0" layoutY="43.0" prefHeight="30.0" prefWidth="600.0" style="-fx-background-color: trasperent;" styleClass="systemElements" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox layoutX="284.0" layoutY="-29.0" prefHeight="75.0" prefWidth="72.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="tray" onMouseClicked="#toTray" prefHeight="24.0" prefWidth="20.0" styleClass="tray">
+                     <HBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </HBox.margin></Label>
+                  <Label fx:id="full" onMouseClicked="#fullScreenWindow" prefHeight="24.0" prefWidth="20.0" styleClass="quad">
+                     <HBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </HBox.margin></Label>
+                  <Label fx:id="Exit" alignment="CENTER" onMouseClicked="#closeWindow" prefHeight="24.0" prefWidth="20.0" styleClass="turn" textAlignment="CENTER" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </HBox.margin></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="1.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+               <children>
+                  <Separator prefHeight="1.0" prefWidth="800.0" styleClass="lineUp">
+                     <HBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </HBox.margin>
+                  </Separator>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="67.0" layoutY="146.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="91.0" layoutY="22.0" prefHeight="42.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="193.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="193.0" spacing="5.0">
+                           <children>
+                              <AnchorPane prefHeight="42.0" prefWidth="42.0">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fx:id="smile0" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="42.0" prefWidth="42.0">
+                                 <children>
+                                    <ImageView fx:id="smile1" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="42.0" prefWidth="42.0">
+                                 <children>
+                                    <ImageView fx:id="smile2" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="42.0" prefWidth="42.0">
+                                 <children>
+                                    <ImageView fx:id="smile3" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="50.0" layoutY="250.0" prefHeight="296.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="48.0" spacing="15.0">
+                     <children>
+                        <AnchorPane prefHeight="48.0" prefWidth="48.0">
+                           <children>
+                              <Circle fx:id="frindIsSend" fill="DODGERBLUE" radius="54.0" stroke="RED" strokeType="INSIDE" styleClass="circleFromImage" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Circle fx:id="userImgFriend" fill="DODGERBLUE" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleImage" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="friendName" text="Benedikt" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="timeOfCalling" text="01:11" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="9.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="81.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="50.0">
+                     <children>
+                        <Label fx:id="headphones" onMouseClicked="#clickHeadphones" styleClass="muteFriend" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="50.0">
+                     <children>
+                        <Label fx:id="stopCall" onMouseClicked="#clickStopCall" styleClass="endVoice" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="50.0">
+                     <children>
+                        <Label fx:id="mute" onMouseClicked="#clickMute" styleClass="mute" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

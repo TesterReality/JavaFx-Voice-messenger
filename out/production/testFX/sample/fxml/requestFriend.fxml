@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="friend_AnchorPane" minHeight="60.0" minWidth="180.0" prefHeight="60.0" prefWidth="263.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane opacity="0.5" prefHeight="200.0" prefWidth="200.0" styleClass="friend" stylesheets="@../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="32.0">
+               <children>
+                  <Circle fx:id="frined_avatar" fill="#1f93ff" radius="16.0" stroke="#7c8186" strokeType="INSIDE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
+                  <Label fx:id="friendOnline" prefHeight="10.0" prefWidth="10.0" styleClass="isOnline" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="7.0" />
+               </children>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </AnchorPane>
+            <Label fx:id="friend_status1" prefHeight="10.0" prefWidth="10.0" styleClass="offlineStatus">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="140.0">
+               <children>
+                  <Label fx:id="friend_login" text="Владик" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Light" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="friend_last_msg" text="Запрос в друзья" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Light" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="2.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="61.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="cancelFriendButton" onMouseClicked="#cancelFriend" prefHeight="17.0" prefWidth="17.0" styleClass="friendRequestCancel" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0" />
+                              <Label fx:id="acceptFriendButton" alignment="CENTER_RIGHT" onMouseClicked="#acceptFriend" prefHeight="10.0" prefWidth="10.0" styleClass="friendRequestOk" textAlignment="RIGHT" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

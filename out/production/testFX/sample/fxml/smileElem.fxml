@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="hBoxSmile" prefHeight="39.0" prefWidth="286.0" styleClass="boxElem" stylesheets="@../../style/smileElem.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane onMouseClicked="#fMouseClick" prefHeight="200.0" prefWidth="200.0" styleClass="smileElem">
+         <children>
+            <ImageView fx:id="oneSmile" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="img-view" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
+               <image>
+                  <Image url="@../../resource/img/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+         <HBox.margin>
+            <Insets left="13.0" />
+         </HBox.margin>
+      </AnchorPane>
+      <AnchorPane onMouseClicked="#twoMouseClick" prefHeight="200.0" prefWidth="200.0" styleClass="smileElem">
+         <children>
+            <ImageView fx:id="twoSmile" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="img-view" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane onMouseClicked="#threeMouseClick" prefHeight="200.0" prefWidth="200.0" styleClass="smileElem">
+         <children>
+            <ImageView fx:id="threeSmile" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="img-view" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane onMouseClicked="#fourMouseClick" prefHeight="200.0" prefWidth="200.0" styleClass="smileElem">
+         <children>
+            <ImageView fx:id="fourSmile" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="img-view" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane onMouseClicked="#fiveMouseClick" prefHeight="200.0" prefWidth="200.0" styleClass="smileElem">
+         <children>
+            <ImageView fx:id="fiveSmile" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="img-view" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane onMouseClicked="#sixMouseClick" prefHeight="200.0" prefWidth="200.0" styleClass="smileElem">
+         <children>
+            <ImageView fx:id="sixSmile" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="img-view" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane onMouseClicked="#sevenMouseClick" prefHeight="200.0" prefWidth="200.0" styleClass="smileElem">
+         <children>
+            <ImageView fx:id="sevenSmile" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="img-view" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
