@@ -1,72 +1,74 @@
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/GitLogoVoice.jpg)]()
+[![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/GitLogoVoice.jpg)]()
 # Vacoom Voice Messenger (используя JavaFx)
 ![JDK version](https://img.shields.io/static/v1?label=JDK&message=1.8%2B&color=<COLOR>)
 ![Database](https://img.shields.io/static/v1?label=Database&message=PostgreSQL&color=<COLOR>)
+![build](https://img.shields.io/static/v1?label=build&message=Gradle&color=<COLOR>)
 
-Обмен голосовыми сообщениями в реальном времени между двумя пользователями является актуальной проблемой на данное время.
+Vacoom Voice Messenger - голосовой мессенджер с криптографической защитой. Мессенджер содержит клиентскую и серверную часть. Мессенджер позволяет:
 
- Основной проблемой обмена сообщениями в реальном времени является их задержка и качество связи. Далеко не все голосовые мессенджеры позволяют качественно и без существенных задержек совершать голосовые звонки.
+* совершать криптографически защищенный сеанс аудиосвязи между двумя пользователями
+* передавать сообщения по защищенному каналу
+ 
+В данном проекте реализован собственный движок для смайликов на JavaFx.
+
+## _Причины создания_
 
  Данный проект является попыткой создания собственного голосового мессенджера с криптографической защитой, ведь мы далеко не всегда может быть уверены в том, что нас не прослушивают.
-## _Основные(!) Актуальные задачи_
-- [x] Главная форма авторизации
-- [x] Подгрузка формы внутрь существущей формы
-    - [x] Регистрация
-    - [x] Восстановление пароля
-    - [x] QR-код
-- [x] Генерация QR-кода с логотпом
-- [x] Генерация индивидуальных аватарок на основе ника
-- [x] Возможность изменения аватарки (хранится на сервере)
-- [x] Вывод списка друзей
-- [x] Принятие запроса на дружбу (с формой)
-- [x] Отклонение запроса на дружбу (с формой)
-- [ ] Сбственный движок для смайликов
-    - [x] Разбитие спрайта со смайлами на отдельные смайлики
-    - [x] Окно вывода смайликов
-    - [x] Информация о смайлике при наведении
-    - [x] Возможность вставлять смайлики в текстовое поле
-    - [ ] Корретная обработка вставляемых в текстовое поле смайликов
-- [ ] Собственный протокола обмена данными (на подобии XMPP)
-    - [ ] Обмена ключами шифрования между клиентом и сервером
-    - [x] Проверка QR-кода
-    - [x] Авторизация
-    - [x] Регистрация
-    - [x] Изменение пароля
-    - [x] Получение аватара пользователя
-    - [x] Изменение аватара пользователя
-    - [x] Получение списка друзей(и подавших заявку) со статусом онлайна и аватаркой
-    - [x] Принятие заявки в друзья
-    - [x] Отклонение заявки в друзья
-    - [ ] Подача заявки в друзья
-    - [ ] Поиск пользователей
-    - [ ] Установление соединения при звонке другу
-    - [ ] Обработка звонка от другого пользователя
-    - [ ] Отправка сообщений пользвателю
-    - [ ] Обмена ключами шифрования между пользователями
-- [ ] Локальная БД
-    - [ ] Хранение ключей шифрования для обеспечение непрерывности ключевого материала
-    - [ ] Хранение сообщений от пользвателей
-- [ ] Создать форму звонка
-- [ ] Создать форму настроек
-- [ ] Создать форму входящего звонка (когда ты или тебе звонят)
-- [ ] Исправить стилестические ошибки кода
-- [ ] Удалить бекапы из гита
-- [ ] Подключить анализатор кода
-- [ ] Использовать Logger вместо sout
-- [ ] Использовать отсутствие классов (где хранятся пароли), переделать чтобы пароли и логины хранились в файле
-- [ ] Добавить в README информацию о том, что необходимо для работы проекта
-- [ ] Добавить SQL-файлик
-- [ ] Постараться перевести проект на Maven
 
 ## _Скриношты (на текущий момент времени, проект еще в разработке)_
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/1.png)]()
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/2.png)]()
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/3.jpg)]()
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/gif_qr.gif)]()
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/5.png)]()
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/6.jpg)]()
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/7.jpg)]()
-[![Vacoom Voice Messenger](https://raw.githubusercontent.com/TesterReality/JavaFx-Voice-messenger/main/gitRes/smile_gif.gif)]()
+[![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/1.png)]()
+[![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/2.png)]()
+[![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/3.jpg)]()
+[![Vacoom Voice Messenger](https://cloclo2.cloud.mail.ru/weblink/view/yKtd/KV9eVB4VN/gif_qr.gif?etag=6A88524BB177204C7B471E64C18F2A1684ABF042)]()
+[![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/5.png)]()
+[![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/6.jpg)]()
+[![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/7.jpg)]()
+[![Vacoom Voice Messenger](https://cloclo2.cloud.mail.ru/weblink/view/yKtd/KV9eVB4VN/smile_gif.gif?etag=3BAA7030A625273721D3F64B14D5AF7258218819)]()
+
+## _Участие в разработке_
+
+Перед разработкой необходимо создать файл `config.properties` в директории `src/main/resources/conf` в gradle-модуле `server` со следущющими полями:
+
+* db.login - имя пользователя БД
+* db.password - пароль пользователя БД
+* db.url - url базы данных pgsql, включая `jdbc:postgresql://`
+
+Серверная часть проекта использует сервис для хранения изображений (https://cloudinary.com/), поэтому в файле `config.properties` также обязательно указываются следующие поля, название которых соответствует разделу **Account Details** на сайте:
+
+* cloud&#46;name - Cloud name
+* api.key - API Key
+* api.secret - API Secret
+
+Пример файла `config.properties` :
+
+```
+db.login = qnrdhkiobgd
+db.password = qwca75e4e677y9a43df89e483cbe52fcb8cbf5bchhf9
+db.url= jdbc:postgresql://ecw2-7771-4.eu-west.compute.amazonaws.com/88fjdhgshgnds
+cloud.name= vacoommem
+api.key= 777375577712777
+api.secret= McELkeGtiA-hghdfhdfh
+```
+Все зависимости устанавливаются при помощи Gradle. Достаточно выполнить следующую команду:
+
+```
+gradle --refresh-dependencies clean build
+```
+
+Если Вы используете IDE, то при открытии проекта это выполнится автоматически.
+
+Перед внесением изменений делайте pull request. В случае больших изменений открывайте issue для обсуждения того, что Вы хотели бы изменить.
+
+## _Сборка проекта в JAR_
+
+Чтобы собрать **клиентскую** часть в jar необходимо выполнить следующую команду:
+```
+gradle jfxJar
+```
+Чтобы собрать **серверную** часть в jar необходимо выполнить следующую команду:
+```
+gradle :server:jar
+```
 
 ## _Лицензия_
 Этот репозиторий находится под лицензией MIT. Подробную информаци вы можете найти [здесь](https://github.com/TesterReality/JavaFx-Voice-messenger/blob/main/LICENSE "MIT лицензия") или на [официальном сайте](https://opensource.org/licenses/MIT "MIT лицензия").
