@@ -1,0 +1,4 @@
+rootProject.name = 'VacoomVoice'
+
+include("server")
+include("client")

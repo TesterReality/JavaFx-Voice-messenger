@@ -1,0 +1,38 @@
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+
+
+dependencies {
+    implementation("com.vdurmont:emoji-java:5.1.1")
+    implementation("org.antlr:antlr4-runtime:4.9.2")
+    
+    implementation("com.google.zxing:core:2.0")
+    implementation("com.google.zxing:javase:2.2")
+
+
+    implementation("com.jcabi.incubator:xembly:0.25.0")
+    implementation("com.googlecode.json-simple:json-simple:1.1.1")
+    implementation("javax.mail:javax.mail-api:1.6.2")
+    implementation("com.sun.mail:javax.mail:1.6.2")
+    implementation("org.postgresql:postgresql:42.2.19")
+
+    implementation("com.cloudinary:cloudinary-core:1.29.0")
+    implementation("com.cloudinary:cloudinary-http44:1.29.0")
+
+}
+
+jar {
+    baseName = 'VacoomServer'
+    version =  '0.1.0'
+    manifest {
+        attributes "Main-Class": "org.voicemessanger.server.main.ServerMain"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

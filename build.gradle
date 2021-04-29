@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+
+    
+}
+plugins {
+    id 'java'
+}
+
+group 'org.voicemessanger'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencies {
+
+}
