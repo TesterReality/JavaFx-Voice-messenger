@@ -19,11 +19,11 @@ Vacoom Voice Messenger - голосовой мессенджер с крипто
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/1.png)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/2.png)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/3.jpg)]()
-[![Vacoom Voice Messenger](https://cloclo2.cloud.mail.ru/weblink/view/yKtd/KV9eVB4VN/gif_qr.gif?etag=6A88524BB177204C7B471E64C18F2A1684ABF042)]()
+[![Vacoom Voice Messenger](https://cloclo2.cloud.mail.ru/weblink/view/yKtd/KV9eVB4VN/gif_qr.gif)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/5.png)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/6.jpg)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/7.jpg)]()
-[![Vacoom Voice Messenger](https://cloclo2.cloud.mail.ru/weblink/view/yKtd/KV9eVB4VN/smile_gif.gif?etag=3BAA7030A625273721D3F64B14D5AF7258218819)]()
+[![Vacoom Voice Messenger](https://cloclo2.cloud.mail.ru/weblink/view/yKtd/KV9eVB4VN/smile_gif.gif)]()
 
 ## _Участие в разработке_
 
