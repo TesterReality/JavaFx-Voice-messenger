@@ -19,11 +19,11 @@ Vacoom Voice Messenger - голосовой мессенджер с крипто
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/1.png)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/2.png)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/3.jpg)]()
-[![Vacoom Voice Messenger](https://cloclo2.cloud.mail.ru/weblink/view/yKtd/KV9eVB4VN/gif_qr.gif)]()
+[![Vacoom Voice Messenger](https://media.giphy.com/media/1OX6RCF1I4siH0mmHM/giphy.gif)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/5.png)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/6.jpg)]()
 [![Vacoom Voice Messenger](https://thumb.cloud.mail.ru/weblink/thumb/xw1/yKtd/KV9eVB4VN/7.jpg)]()
-[![Vacoom Voice Messenger](https://cloclo2.cloud.mail.ru/weblink/view/yKtd/KV9eVB4VN/smile_gif.gif)]()
+[![Vacoom Voice Messenger](https://media.giphy.com/media/AaJsnzyNRIJMIGcD7I/giphy.gif)]()
 
 ## _Участие в разработке_
 
