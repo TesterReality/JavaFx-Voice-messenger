@@ -69,11 +69,9 @@ public class DatabaseLogic {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-
-                    SingletonDatabaseConnection.getInstance().getDBConnection();
-                    stmt = SingletonDatabaseConnection.getInstance().getConnection().createStatement();
                 }
             }
+           refreshConnect();
             try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
                 CallableStatement cstmt = conn.prepareCall("{? = CALL test(?)}");
                 cstmt.setString(1, mail);
@@ -87,7 +85,7 @@ public class DatabaseLogic {
             e.printStackTrace();
         }
        // refreshConnect();
-        SingletonDatabaseConnection.getInstance().closeConncetion();
+       // SingletonDatabaseConnection.getInstance().closeConncetion();
         return true;
     }
 
@@ -101,7 +99,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean isOk = cstmt.getBoolean(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return isOk;
         } catch (SQLException e) {
@@ -123,7 +121,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean canRegisterThisMail = cstmt.getBoolean(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             if (canRegisterThisMail) return true;
             else return false;
@@ -146,7 +144,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.executeUpdate();
             String answer = cstmt.getString(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             if (answer == null) return false;
             if (answer.equals(code)) return true;
@@ -170,7 +168,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean isCodeEquals = cstmt.getBoolean(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return isCodeEquals;
         } catch (SQLException e) {
@@ -192,7 +190,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean isCodeEquals = cstmt.getBoolean(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             if (isCodeEquals) return true;
             else return false;
@@ -215,7 +213,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.executeUpdate();
             String answer = cstmt.getString(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             if(answer==null) return "default";
             if(answer.equals("")) return "default";
@@ -239,7 +237,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean ok = cstmt.getBoolean(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             if (ok) return true;
             else return false;
@@ -313,7 +311,7 @@ public class DatabaseLogic {
             CallableStatement cstmt = conn.prepareCall("{? = CALL update_online}");
             cstmt.setString(1, login);
             cstmt.execute();
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -336,7 +334,7 @@ public class DatabaseLogic {
             cstmt.setString(1, login);
             cstmt.setString(2, newPswd);
             cstmt.execute();
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -357,7 +355,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.executeUpdate();
             String answer = cstmt.getString(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return answer;
         } catch (SQLException e) {
@@ -380,7 +378,9 @@ public class DatabaseLogic {
             cstmt.setByte(3, statusFrom);
             cstmt.setByte(4, StatusTO);
             cstmt.execute();
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            cstmt.close();
+            conn.close();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -403,7 +403,9 @@ public class DatabaseLogic {
             cstmt.setString(2, friendName);
             cstmt.setByte(3, status);
             cstmt.execute();
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            cstmt.close();
+            conn.close();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -513,7 +515,7 @@ public class DatabaseLogic {
             cstmt.setString(1, login);
             cstmt.setString(2, newAvatar);
             cstmt.execute();
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -554,7 +556,7 @@ public class DatabaseLogic {
             cstmt.setString(1, login);
             cstmt.setString(2, (String) load_img_info.get("public_id"));
             cstmt.execute();
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+           // SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -637,7 +639,7 @@ public class DatabaseLogic {
             cstmt.execute();
 
             createFirstAvatar(login);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+           // SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -659,7 +661,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.execute();
             String user_mail = cstmt.getString(1);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+           // SingletonDatabaseConnection.getInstance().closeConncetion();
 
             if (user_mail == null) return "";
             return user_mail;
@@ -676,7 +678,7 @@ public class DatabaseLogic {
             cstmt.setString(1, mail);
             cstmt.setString(2, code);
             cstmt.execute();
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -741,7 +743,7 @@ public class DatabaseLogic {
             frh.setFriend_name(name_friends);
             frh.setStatus(status);
             frh.setAvatars(imgFriend);
-            SingletonDatabaseConnection.getInstance().closeConncetion();
+            //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {

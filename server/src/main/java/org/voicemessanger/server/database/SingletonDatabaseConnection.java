@@ -6,9 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by user on 10.05.2019.
- */
+
 public class SingletonDatabaseConnection {
    // static final String DB_URL = "jdbc:postgresql://127.0.0.1:5432/vacoommessanger";
     static String DB_URL = "";
@@ -40,6 +38,14 @@ public class SingletonDatabaseConnection {
     }
 
     public Connection getDBConnection() {
+        if(connection !=null)
+        {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {

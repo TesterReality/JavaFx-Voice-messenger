@@ -31,3 +31,10 @@ classes/
 *.idea
 client/src/main/resources/conf/config.properties
 server/src/main/resources/conf/config.properties
+
+# Generated files
+gen/
+out/
+
+# Java class files
+*.class

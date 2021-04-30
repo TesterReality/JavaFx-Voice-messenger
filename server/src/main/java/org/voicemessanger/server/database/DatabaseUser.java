@@ -1,7 +1,9 @@
 package org.voicemessanger.server.database;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class DatabaseUser {
@@ -18,12 +20,11 @@ public class DatabaseUser {
 
     public void loadConfig()
     {
-        FileInputStream fis;
         Properties property = new Properties();
 
         try {
-            fis = new FileInputStream("/conf/config.properties");
-            property.load(fis);
+            InputStream resourceStream = getClass().getResourceAsStream("/conf/config.properties");
+            property.load(resourceStream);
 
             USER = property.getProperty("db.login");
             PASS = property.getProperty("db.password");
