@@ -1,3 +1,5 @@
+import com.sun.org.apache.xalan.internal.xsltc.cmdline.Compile
+
 plugins {
     id 'application'
     id 'javafx-gradle-plugin'
@@ -5,11 +7,18 @@ plugins {
 jfx {
     // minimal requirement for jfxJar-task
     mainClass = 'org.voicemessanger.client.main.Main'
-
     // minimal requirement for jfxNative-task
     vendor = 'Vacoom'
-}
+    jvmArgs = ["-Dfile.encoding=UTF-8"]
 
+}
+tasks.withType(Compile) {
+    options.encoding = "UTF-8"
+}
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
 dependencies {
     implementation("com.vdurmont:emoji-java:5.1.1")
     implementation("org.antlr:antlr4-runtime:4.9.2")
@@ -35,6 +44,7 @@ dependencies {
 }
 
 jar {
+
     manifest {
         attributes "Main-Class": "org.voicemessanger.client.main.Main"
     }
