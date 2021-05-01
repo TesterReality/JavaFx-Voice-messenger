@@ -27,7 +27,9 @@ public class SmileCreater {
     }
 
     public void getAllSpritePathFromConf() throws FileNotFoundException {
-        Scanner sc = new Scanner(new File(smileConfPath));
+        //Scanner sc = new Scanner(new File(smileConfPath));
+        Scanner sc = new Scanner(getClass().getResourceAsStream(smileConfPath));
+
         String path;
         while(sc.hasNext()){
             path = sc.nextLine();
@@ -66,7 +68,7 @@ public class SmileCreater {
         {
             int x=0;
             int y=0;
-            temp = ImageIO.read(new File(allSmilePath.get(i)));
+            temp = ImageIO.read(getClass().getResourceAsStream(allSmilePath.get(i)));
             int indexX=0;
             int indexY=0;
             for(int n=0;n<temp.getHeight();n+=34,indexY++)

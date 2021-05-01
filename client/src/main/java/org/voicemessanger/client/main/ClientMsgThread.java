@@ -164,7 +164,8 @@ public class ClientMsgThread extends Thread {
    // private static final String localhost = "localhost";
 
     private static final int serverPort = 30003;
-    private static final String localhost = "185.156.41.8";
+   // private static final String localhost = "185.156.41.8";
+    private static final String localhost = "localhost";
 
     public boolean starting() {
 

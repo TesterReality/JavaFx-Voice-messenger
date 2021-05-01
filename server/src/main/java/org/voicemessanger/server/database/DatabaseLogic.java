@@ -715,7 +715,9 @@ public class DatabaseLogic {
                 i++;
             } while (i < id_friend.size());
             i = 0;
-            CallableStatement cstmt = conn.prepareCall("{? = CALL user_now_is_online}");
+            refreshConnect();
+            Connection conn1 = SingletonDatabaseConnection.getInstance().getConnection();
+            CallableStatement cstmt = conn1.prepareCall("{? = CALL user_now_is_online}");
             do {
                 cstmt.setString(1, name_friends.get(i));
                 cstmt.registerOutParameter(1, Types.BOOLEAN);
@@ -724,7 +726,7 @@ public class DatabaseLogic {
                 i++;
             } while (i < id_friend.size());
             i=0;
-            cstmt = conn.prepareCall("{? = CALL get_img_url_login}");
+            cstmt = conn1.prepareCall("{? = CALL get_img_url_login}");
             do{
                 cstmt.setString(1, name_friends.get(i));
                 cstmt.registerOutParameter(1, Types.VARCHAR);

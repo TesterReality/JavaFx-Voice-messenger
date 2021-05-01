@@ -151,7 +151,7 @@ public class FriendsRefreshThread extends Thread {
         myNewfriend.setThisNode(myNewfriend);
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "fxml/requestFriend.fxml"
+                        "/fxml/requestFriend.fxml"
                 )
         );
         loader.setController(myNewfriend);
@@ -172,9 +172,10 @@ public class FriendsRefreshThread extends Thread {
                 new MyFriendController(userName,online,avatars,last_msg,friend_date);
         myfriend.setParent(parent.thisNode);
         myfriend.setThisNode(myfriend);
+
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "fxml/myFriend.fxml"
+                        "/fxml/myFriend.fxml"
                 )
         );
         loader.setController(myfriend);

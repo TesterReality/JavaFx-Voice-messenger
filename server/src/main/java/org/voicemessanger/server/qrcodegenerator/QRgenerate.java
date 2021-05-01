@@ -83,9 +83,12 @@ public class QRgenerate {
             // Load QR image
             BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix, config);
             // Load logo image
-            File file = new File("/img/logo125.png");
-            System.out.println("QR-logo png is" + file.getName()+ "full path: " +file.getAbsolutePath());
-            BufferedImage logoImage = ImageIO.read(file);
+           // File file = new File("/img/logo125.png");
+            //System.out.println("QR-logo png is" + file.getName()+ "full path: " +file.getAbsolutePath());
+           // BufferedImage logoImage = ImageIO.read(file);
+
+            BufferedImage logoImage = ImageIO.read(getClass().getResourceAsStream("/img/logo125.png"));
+
             // Calculate the delta height and width between QR code and logo
             int deltaHeight = qrImage.getHeight() - logoImage.getHeight();
             int deltaWidth = qrImage.getWidth() - logoImage.getWidth();

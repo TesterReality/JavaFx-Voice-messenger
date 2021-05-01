@@ -172,8 +172,8 @@ public class StartWindowController extends VacoomProtocol {
                 new Controller(user_name);
       //  controller.setParent(controller);
        controller.setThisNode(controller);
-      //  loader = new FXMLLoader(getClass().getResource("fxml/sample.fxml"));
-        loader = new FXMLLoader(        Main.class.getResource("fxml/sample.fxml"));
+      //  loader = new FXMLLoader(getClass().getResource("/fxml/sample.fxml"));
+        loader = new FXMLLoader(        Main.class.getResource("/fxml/sample.fxml"));
 
         // workinArea.setUser_name(user_name);
         loader.setController(controller);

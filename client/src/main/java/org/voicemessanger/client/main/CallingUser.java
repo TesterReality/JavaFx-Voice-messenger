@@ -447,7 +447,7 @@ public class CallingUser extends Thread{
         voiceCallController.setThisNode(voiceCallController);
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "fxml/voiceCall.fxml"
+                        "/fxml/voiceCall.fxml"
                 )
         );
         loader.setController(voiceCallController);

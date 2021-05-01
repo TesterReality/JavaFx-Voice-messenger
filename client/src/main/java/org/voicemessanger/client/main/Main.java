@@ -24,7 +24,7 @@ public class Main extends Application {
 
         /*
         System.out.println( getClass().getClassLoader().getResource(
-                "fxml/startWindow.fxml"
+                "/fxml/startWindow.fxml"
         ));*/
         FXMLLoader loader = new FXMLLoader();
         StartWindowController startWindowController =
@@ -33,7 +33,7 @@ public class Main extends Application {
         /*
         loader = new FXMLLoader(
                 getClass().getClassLoader().getResource(
-                        "fxml/startWindow.fxml"
+                        "/fxml/startWindow.fxml"
                 )
         );*/
         System.out.println(getClass().getResource("/fxml/startWindow.fxml"));
@@ -53,7 +53,7 @@ public class Main extends Application {
         primaryStage.show();
 
         /*Scene mainScene;
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
         primaryStage.setTitle("Hello World");
         mainScene = new Scene(root,800,600);*/
 

@@ -31,6 +31,11 @@ public class DatabaseCreater {
     }
 
     public static void main(String[] args) {
+        try {
+            LocalDbHandler.getInstance().checkFriend("kek");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //createNewDatabase("client.db");
 
             /*

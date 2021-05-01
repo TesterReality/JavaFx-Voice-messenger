@@ -2,12 +2,15 @@ package org.voicemessanger.server.main;
 
 import org.voicemessanger.server.database.DatabaseLogic;
 import org.voicemessanger.server.database.DatabaseUser;
+import org.voicemessanger.server.qrcodegenerator.QRgenerate;
 
 import javax.crypto.NoSuchPaddingException;
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 
 public class TampleTestMain {
@@ -21,6 +24,7 @@ public class TampleTestMain {
         }*/
 
        // System.out.println(file.getAbsolutePath());
+        /*
         DatabaseLogic dbl = new DatabaseLogic();
 
         try {
@@ -34,6 +38,19 @@ public class TampleTestMain {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        System.out.println("ok");
+        System.out.println("ok");*/
+        File file = new File("/img/logo125.png");
+        System.out.println("QR-logo png is" + file.getName()+ "full path: " +file.getAbsolutePath());
+        InputStream is = TampleTestMain.class.getResourceAsStream("/img/logo125.png");
+        QRgenerate qr = new QRgenerate();
+        try {
+            qr.createQR("hui");
+            Image image = ImageIO.read(is);
+
+            BufferedImage image1 = ImageIO.read(TampleTestMain.class.getResourceAsStream("/img/logo125.png"));
+            System.out.println("mem");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -105,7 +105,7 @@ public class RefreshingPasswordController extends VacoomProtocol {
         QrCheckController refresh = new QrCheckController();
         refresh.setParent(thisNode);
         refresh.setNode(refresh);
-        loaderQr = new FXMLLoader(getClass().getResource("fxml/qrCheck.fxml"));
+        loaderQr = new FXMLLoader(getClass().getResource("/fxml/qrCheck.fxml"));
         loaderQr.setController(refresh);
 
         try {

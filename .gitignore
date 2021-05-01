@@ -30,6 +30,9 @@ classes/
 *.iws
 *.idea
 client/src/main/resources/conf/config.properties
+client/src/main/resources/localdatabase/client.db
+client/src/main/resources/localdatabase/client1.db
+
 server/src/main/resources/conf/config.properties
 
 # Generated files

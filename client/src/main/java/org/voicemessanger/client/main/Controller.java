@@ -325,7 +325,7 @@ public class Controller extends VacoomProtocol {
         SmileController smileController = new SmileController();
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "fxml/smile.fxml"
+                        "/fxml/smile.fxml"
                 )
         );
         loader.setController(smileController);
@@ -347,7 +347,9 @@ public class Controller extends VacoomProtocol {
         smile.loadAllEmoji();
         Object obj = null;
         try {
-            obj = new JSONParser().parse(new FileReader("/conf/emojiNew.json"));
+            InputStream in = getClass().getResourceAsStream("/conf/emojiNew.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            obj = new JSONParser().parse(reader);
            // obj = new JSONParser().parse(new FileReader("/conf/emojiNew.json"));
 
         } catch (ParseException e) {
@@ -429,7 +431,7 @@ public class Controller extends VacoomProtocol {
 
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "fxml/smileElem.fxml"
+                        "/fxml/smileElem.fxml"
                 )
         );
         int temp = 0;
@@ -474,7 +476,7 @@ public class Controller extends VacoomProtocol {
                             loader1 = new FXMLLoader();
                             loader1 = new FXMLLoader(
                                     getClass().getResource(
-                                            "fxml/smileElem.fxml"
+                                            "/fxml/smileElem.fxml"
                                     )
                             );
                             smileElemController = new SmileElemController(flow,flowPosition);
@@ -1008,7 +1010,7 @@ public class Controller extends VacoomProtocol {
         myNewfriend.setThisNode(myNewfriend);
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "fxml/requestFriend.fxml"
+                        "/fxml/requestFriend.fxml"
                 )
         );
         loader.setController(myNewfriend);
@@ -1031,7 +1033,7 @@ public class Controller extends VacoomProtocol {
         myfriend.setThisNode(myfriend);
         loader = new FXMLLoader(
                 getClass().getResource(
-                        "fxml/myFriend.fxml"
+                        "/fxml/myFriend.fxml"
                 )
         );
         loader.setController(myfriend);
