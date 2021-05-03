@@ -53,6 +53,10 @@ public class CallingUser extends Thread{
     InetAddress addrFriend;
     private volatile FloatControl gainControl;
     private SmileCreater smileCreater;
+    private volatile boolean isCalling=true;
+    private Thread voiceThread;
+    private Thread soundThread;
+
 
     public CallingUser(String userName,Controller parent,SmileCreater smileCreater) {
         protocol = new VacoomProtocol();
@@ -63,6 +67,14 @@ public class CallingUser extends Thread{
         this.start();
     }
 
+    public boolean isCalling() {
+        return isCalling;
+    }
+
+    public void setCalling(boolean calling) {
+        isCalling = calling;
+    }
+
     public void setPort(int port) {
         Port = port;
     }
@@ -70,6 +82,7 @@ public class CallingUser extends Thread{
     public int getPort() {
         return Port;
     }
+
 
     private void waitAnswer()
     {
@@ -107,6 +120,7 @@ public class CallingUser extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ipAdress="localhost";
         friendName = parent.dialogUsername.getText();
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.startCall("set",userName,friendName,ipAdress,String.valueOf(Port)));
         whoAmIcalling.add(parent.dialogUsername.getText());
@@ -245,6 +259,14 @@ public class CallingUser extends Thread{
         startVoice();
     }
 
+    public void stopCalling()
+    {
+        voiceThread.interrupt();
+        soundThread.interrupt();
+        s.disconnect();
+        s.close();
+        System.out.println("Все порты закрыты. Звонок прекращен");
+    }
     public String keyManipulation()
     {
         String secretKey1 = "NaN";
@@ -260,7 +282,11 @@ public class CallingUser extends Thread{
             //добавлю новый секретный ключ в бд для обеспечения непрерывности ключегового материала
             LocalDbHandler.getInstance().addNewSecretKey(newSercertKeyHash,friendName);
             secretKey1 = LocalDbHandler.getInstance().getSecretKeyOne(friendName);
-            if(secretKey1==null)
+            if(secretKey1==null )
+            {
+                secretKey1 = " ";
+            }
+            if(secretKey1.equals(""))
             {
                 secretKey1 = " ";
             }
@@ -292,8 +318,11 @@ public class CallingUser extends Thread{
 
             setupAudio(inputList[0],mixer,outputList[1]);
 
-            new Thread(this::inputLoop, "Input loop").start();
-            new Thread(this::outputLoop, "Output loop").start();
+
+            voiceThread = new Thread(this::inputLoop, "Input loop");
+            voiceThread.start();
+            soundThread= new Thread(this::outputLoop, "Output loop");
+            soundThread.start();
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -343,27 +372,29 @@ public class CallingUser extends Thread{
     }
 
     private void inputLoop() {
-        TargetDataLine currentLine = null;
-        byte[] buffer = new byte[BUFFER_SIZE];
-        boolean wasMuted = false;
-        while (true) {
-            if (currentLine != targetLine) {
-                if (currentLine != null) {
-                    currentLine.stop();
-                    currentLine.drain();
-                    currentLine.close();
-                }
-                currentLine = targetLine;
-                if (currentLine != null) {
-                    try {
-                        currentLine.open(AUDIO_FORMAT);
-                        currentLine.start();
-                    } catch (LineUnavailableException e) {
-                        currentLine = null;
-                        e.printStackTrace();
+
+
+            TargetDataLine currentLine = null;
+            byte[] buffer = new byte[BUFFER_SIZE];
+            boolean wasMuted = false;
+            while (isCalling) {
+                    if (currentLine != targetLine) {
+                        if (currentLine != null) {
+                            currentLine.stop();
+                            currentLine.drain();
+                            currentLine.close();
+                        }
+                        currentLine = targetLine;
+                        if (currentLine != null) {
+                            try {
+                                currentLine.open(AUDIO_FORMAT);
+                                currentLine.start();
+                            } catch (LineUnavailableException e) {
+                                currentLine = null;
+                                e.printStackTrace();
+                            }
+                        }
                     }
-                }
-            }
             /*
             if (wasMuted != muted) {
                 wasMuted = muted;
@@ -376,28 +407,33 @@ public class CallingUser extends Thread{
                     }
                 }
             }*/
-            if (currentLine == null) {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else if (!wasMuted) {
-                try {
-                    int total = currentLine.read(buffer, 0, buffer.length);
-                    s.send(new DatagramPacket(buffer, 0, total, addrFriend, friendPort));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    if (currentLine == null) {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else if (!wasMuted) {
+                        try {
+                            int total = currentLine.read(buffer, 0, buffer.length);
+                            s.send(new DatagramPacket(buffer, 0, total, addrFriend, friendPort));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
             }
-        }
+        currentLine.stop();
+        currentLine.drain();
+        currentLine.close();
+
     }
 
     private void outputLoop() {
         SourceDataLine currentOutput = null;
         byte[] buffer = new byte[BUFFER_SIZE];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-        while (true) {
+        while (isCalling) {
             if (currentOutput != audioOutputStream) {
                 if (currentOutput != null) {
                     currentOutput.drain();
@@ -440,6 +476,8 @@ public class CallingUser extends Thread{
                 }
             }
         }
+        currentOutput.drain();
+        currentOutput.close();
     }
     public long bytesToLong(final byte[] b) {
         long result = 0;
@@ -460,8 +498,14 @@ public class CallingUser extends Thread{
             stringToLong = stringToLong%(58*58);
             int x = (int) (stringToLong%58);
             int y = (int) (stringToLong/58);
-            System.out.println("Число "+stringToLong);
-            Image image = SwingFXUtils.toFXImage(smileCreater.getEmojiFromIndex(x,y), null);
+            System.out.println("Число "+stringToLong +" x="+x + " y="+y);
+            Image image;
+            try {
+                image = SwingFXUtils.toFXImage(smileCreater.getEmojiFromIndex(x, y), null);
+            }catch (NullPointerException npe)
+            {
+                image = SwingFXUtils.toFXImage(smileCreater.getEmojiFromIndex(33, 33), null);
+            }
 
             switch (i)
             {
@@ -474,7 +518,7 @@ public class CallingUser extends Thread{
                 case 32:
                     voiceCallController.smile2.setImage(image);
                     break;
-                case 64:
+                case 48:
                     voiceCallController.smile3.setImage(image);
                     break;
             }
@@ -486,12 +530,15 @@ public class CallingUser extends Thread{
         VoiceCallController voiceCallController =
                 new VoiceCallController(friendName);
         voiceCallController.setThisNode(voiceCallController);
+        voiceCallController.setParent(this);
         loader = new FXMLLoader(
                 getClass().getResource(
                         "/fxml/voiceCall.fxml"
                 )
         );
+
         loader.setController(voiceCallController);
+
         Parent root = null;
         try {
             root = loader.load();

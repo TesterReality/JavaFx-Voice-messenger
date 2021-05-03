@@ -98,6 +98,7 @@ public class ReceivingCall extends Thread {
             Port = clientUDPAccess.getPorts();
         } while (Port == -1);
 
+        myIp = "localhost";
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.startCall("result", myLogin, loginFriend, myIp, String.valueOf(Port)));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
         System.out.println("[КЛИЕНТ] ОТВЕТИЛ на startCall");
@@ -269,6 +270,10 @@ public class ReceivingCall extends Thread {
             LocalDbHandler.getInstance().addNewSecretKey(newSercertKeyHash,loginFriend);
             secretKey1 = LocalDbHandler.getInstance().getSecretKeyOne(loginFriend);
             if(secretKey1==null)
+            {
+                secretKey1 = " ";
+            }
+            if(secretKey1.equals(""))
             {
                 secretKey1 = " ";
             }

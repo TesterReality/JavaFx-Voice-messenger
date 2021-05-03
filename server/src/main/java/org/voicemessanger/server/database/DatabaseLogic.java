@@ -690,7 +690,7 @@ public class DatabaseLogic {
     public boolean getFriend(String login, FriendsHelper frh) {
         refreshConnect();
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
-            PreparedStatement ps = SingletonDatabaseConnection.getInstance().getDBConnection().prepareStatement(" SELECT id_friend,status FROM contacts WHERE id_user = ( SELECT id_user FROM users WHERE user_name=?)");
+            PreparedStatement ps = conn.prepareStatement(" SELECT id_friend,status FROM contacts WHERE id_user = ( SELECT id_user FROM users WHERE user_name=?)");
             ps.setString(1, login);
             ArrayList<Integer> id_friend = new ArrayList<Integer>();
             ArrayList<String> status = new ArrayList<String>();
@@ -704,8 +704,7 @@ public class DatabaseLogic {
                 status.add(rs.getString("status"));
             }
             int i = 0;
-            PreparedStatement ps1 = SingletonDatabaseConnection.getInstance().
-                    getDBConnection().prepareStatement(" SELECT user_name FROM users WHERE id_user = ?");
+            PreparedStatement ps1 = conn.prepareStatement(" SELECT user_name FROM users WHERE id_user = ?");
             do {
                 ps1.setInt(1, id_friend.get(i));
                 rs = ps1.executeQuery();
@@ -745,6 +744,7 @@ public class DatabaseLogic {
             frh.setFriend_name(name_friends);
             frh.setStatus(status);
             frh.setAvatars(imgFriend);
+            conn1.close();
             //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;

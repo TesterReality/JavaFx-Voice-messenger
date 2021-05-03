@@ -39,7 +39,7 @@ public class DatabaseCreater {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-        createNewDatabase("./clientOS.db");
+        //createNewDatabase("./clientOS.db");
 
             /*
             // Создаем экземпляр по работе с БД
@@ -94,7 +94,7 @@ public class DatabaseCreater {
         });*/
         //openCallWindow();
 
-       // createCryptoSmile();
+        createCryptoSmile();
     }
     private static void createCryptoSmile()
     {
@@ -109,7 +109,7 @@ public class DatabaseCreater {
             int x = (int) (stringToLong%58);
             int y = (int) (stringToLong/58);
             System.out.println("Число "+stringToLong);
-
+            System.out.println(" index "+i);
         }
     }
     public static long bytesToLong(final byte[] b) {

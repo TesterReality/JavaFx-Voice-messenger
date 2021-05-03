@@ -54,22 +54,22 @@
                                     <Insets left="5.0" />
                                  </HBox.margin>
                                  <children>
-                                    <ImageView fx:id="smile0" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="smile0" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="7.5" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="42.0" prefWidth="42.0">
                                  <children>
-                                    <ImageView fx:id="smile1" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="smile1" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="7.5" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="42.0" prefWidth="42.0">
                                  <children>
-                                    <ImageView fx:id="smile2" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="smile2" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="7.5" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="42.0" prefWidth="42.0">
                                  <children>
-                                    <ImageView fx:id="smile3" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="smile3" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.5" AnchorPane.leftAnchor="7.5" AnchorPane.rightAnchor="7.5" AnchorPane.topAnchor="7.5" />
                                  </children>
                               </AnchorPane>
                            </children>

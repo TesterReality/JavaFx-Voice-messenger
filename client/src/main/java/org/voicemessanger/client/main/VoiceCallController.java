@@ -30,6 +30,9 @@ public class VoiceCallController {
 
     private String srtingFriendName;
     private VoiceCallController thisNode;
+    private CallingUser parent;
+
+     private KTimer timer;
     public VoiceCallController() {
     }
 
@@ -43,6 +46,14 @@ public class VoiceCallController {
 
     public void setThisNode(VoiceCallController thisNode) {
         this.thisNode = thisNode;
+    }
+
+    public CallingUser getParent() {
+        return parent;
+    }
+
+    public void setParent(CallingUser parent) {
+        this.parent = parent;
     }
 
     public ImageView getSmile0() {
@@ -84,6 +95,10 @@ public class VoiceCallController {
 
         Image image = SwingFXUtils.toFXImage(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getLastClickAvatar(), null);
         userImgFriend.setFill(new ImagePattern(image));
+        timer = new KTimer();
+        timer.setVoiceCallController(thisNode);
+        timer.startTimer(0);
+
 
     }
     public void toTray(MouseEvent mouseEvent) {
@@ -100,8 +115,17 @@ public class VoiceCallController {
 
     public void clickHeadphones(MouseEvent mouseEvent) {
     }
-
+    public void setTimeCallee(String time)
+    {
+        System.out.println("Время разговора: "+time);;
+        timeOfCalling.setText(time);
+    }
     public void clickStopCall(MouseEvent mouseEvent) {
+        Stage stage = (Stage) Exit.getScene().getWindow();
+        parent.setCalling(false);
+        parent.stopCalling();
+        timer.stopTimer();
+        stage.close();
     }
 
     public void clickMute(MouseEvent mouseEvent) {

@@ -214,7 +214,7 @@ public class StartWindowController extends VacoomProtocol {
 
     public void openTestWindow(MouseEvent mouseEvent) {
         try {
-            loadWorkArea("testerOk");
+            loadWorkArea("Vladik");
         } catch (IOException e) {
             e.printStackTrace();
         }
