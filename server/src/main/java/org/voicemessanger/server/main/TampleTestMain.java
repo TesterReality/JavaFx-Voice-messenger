@@ -2,6 +2,7 @@ package org.voicemessanger.server.main;
 
 import org.voicemessanger.server.database.DatabaseLogic;
 import org.voicemessanger.server.database.DatabaseUser;
+import org.voicemessanger.server.mail.MailUser;
 import org.voicemessanger.server.qrcodegenerator.QRgenerate;
 
 import javax.crypto.NoSuchPaddingException;
@@ -39,6 +40,7 @@ public class TampleTestMain {
             e.printStackTrace();
         }
         System.out.println("ok");*/
+        /*
         File file = new File("/img/logo125.png");
         System.out.println("QR-logo png is" + file.getName()+ "full path: " +file.getAbsolutePath());
         InputStream is = TampleTestMain.class.getResourceAsStream("/img/logo125.png");
@@ -51,6 +53,7 @@ public class TampleTestMain {
             System.out.println("mem");
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        MailUser mail = new MailUser();
     }
 }

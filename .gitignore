@@ -38,6 +38,7 @@ server/src/main/resources/conf/config.properties
 # Generated files
 gen/
 out/
+*/out
 
 # Java class files
 *.class

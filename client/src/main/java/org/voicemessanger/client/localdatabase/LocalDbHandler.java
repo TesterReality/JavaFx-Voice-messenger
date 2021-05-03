@@ -12,7 +12,10 @@ public class LocalDbHandler {
 
     // Константа, в которой хранится адрес подключения
     private static final String CON_STR = "jdbc:sqlite:/localdatabase/client2.db";
-    private String pathDb = "/localdatabase/client.db";
+
+   // private String pathDb = "/localdatabase/client1.db"; //localhost
+    private String pathDb = "./clientDUDOS.db"; //localhost
+
     // Используем шаблон одиночка, чтобы не плодить множество
     // экземпляров класса DbHandler
     private static LocalDbHandler instance = null;
@@ -34,41 +37,106 @@ public class LocalDbHandler {
         fristConnect();
 
     }
+    /*
+    void initDatabase(Connection con) throws Exception {
+        // load the init.sql script from JAR
+        InputStreamReader isr = new InputStreamReader(
+                getClass().getResourceAsStream("/resources/init.sql"));
+        // run it on the database to create the whole structure, tables and so on
+        RunScript.execute(con, isr);
+        isr.close();
+    }*/
 
     private void fristConnect()
     {
         try {
           //  createNewDatabase("");
             String url = "jdbc:sqlite:";
-            String path=getClass().getResource(pathDb).getPath();
-            connection = DriverManager.getConnection(url+getClass().getResource(pathDb));
+           // String path=getClass().getResource(pathDb).getPath();
+            if(!databaseConnect(pathDb))
+            {
+                System.out.println("Локальной БД нет. Начинаем создание.....");
+                createNewDatabase(pathDb);
+            }
+            connection = DriverManager.getConnection(url+pathDb);
         } catch (SQLException e) {
            e.printStackTrace();
             System.out.println("Локальной БД нет. Начинаем создание.....");
-            createNewDatabase("client2.db");
+            createNewDatabase(pathDb);
+
         }catch (NullPointerException npe)
         {
             npe.printStackTrace();
             System.out.println("Локальной БД нет. Начинаем создание.....");
-            createNewDatabase("");
+            createNewDatabase(pathDb);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+    }
+    public boolean databaseConnect(String dbName) throws Exception {
+
+        File file = new File(dbName);
+
+        if (file.exists()) //here's how to check
+        {
+            System.out.print("Бд уже есть");
+            return true;
+        } else {
+            return false;
+        }
     }
     private void createNewDatabase(String fileName) {
 
         String url = "jdbc:sqlite:" + fileName;
+        System.out.println("Пытаемся создать бд с .");
 
-        try (Connection conn = DriverManager.getConnection(url+getClass().getResource("/localdatabase/client.db"))) {
+        try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
                 System.out.println("The driver name is " + meta.getDriverName());
                 System.out.println("A new database has been created.");
-                createFirstSQLcommands(url);
+                InputStream resourceStream = getClass().getResourceAsStream("/localdatabase/main.sql");
+
+                importSQL(conn,resourceStream);
+               // createFirstSQLcommands(url);
             }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    public void importSQL(Connection conn, InputStream in) throws SQLException
+    {
+        System.out.println("Начинаем импорт .sql....");
+
+        Scanner s = new Scanner(in);
+        s.useDelimiter("(;(\r)?\n)|(--\n)");
+        Statement st = null;
+        try
+        {
+            st = conn.createStatement();
+            while (s.hasNext())
+            {
+                String line = s.next();
+                if (line.startsWith("/*!") && line.endsWith("*/"))
+                {
+                    int i = line.indexOf(' ');
+                    line = line.substring(i + 1, line.length() - " */".length());
+                }
+
+                if (line.trim().length() > 0)
+                {
+                    st.execute(line);
+                }
+            }
+        }
+        finally
+        {
+            if (st != null) st.close();
+        }
+        System.out.println("Все команды sql успешно выполнены!");
+
     }
     private void createFirstSQLcommands(String urlConnection)
     {

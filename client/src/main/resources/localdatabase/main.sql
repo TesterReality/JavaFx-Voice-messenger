@@ -26,11 +26,6 @@ CREATE TABLE "msg_key_friend" (
 -- ----------------------------
 -- Table structure for sqlite_sequence
 -- ----------------------------
-DROP TABLE IF EXISTS "sqlite_sequence";
-CREATE TABLE "sqlite_sequence" (
-  "name",
-  "seq"
-);
 
 -- ----------------------------
 -- Table structure for user_friend

@@ -1,9 +1,11 @@
 package org.voicemessanger.client.main;
 
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -50,11 +52,12 @@ public class CallingUser extends Thread{
     private AudioFormat AUDIO_FORMAT = new AudioFormat(8000.0f, 16, 1, true, true);
     InetAddress addrFriend;
     private volatile FloatControl gainControl;
+    private SmileCreater smileCreater;
 
-    public CallingUser(String userName,Controller parent) {
+    public CallingUser(String userName,Controller parent,SmileCreater smileCreater) {
         protocol = new VacoomProtocol();
         protocolMsg = new HashMap<>();
-
+        this.smileCreater = smileCreater;
         this.userName = userName;
         this.parent = parent;
         this.start();
@@ -438,7 +441,45 @@ public class CallingUser extends Thread{
             }
         }
     }
+    public long bytesToLong(final byte[] b) {
+        long result = 0;
+        for (int i = 0; i < Long.BYTES; i++) {
+            result <<= Byte.SIZE;
+            result |= (b[i] & 0xFF);
+        }
+        return result;
+    }
+    private void createCryptoSmile(VoiceCallController voiceCallController)
+    {
+        String DH1SHA =new SHA256Class().getSHA256(diffie.getPublicA().toString());
+        for (int i=0; i<DH1SHA.length();i+=16)
+        {
+            String smileString = DH1SHA.substring(i, i+16);
+            byte[] smileByte = smileString.getBytes();
+            long stringToLong =  bytesToLong(smileByte);;
+            stringToLong = stringToLong%(58*58);
+            int x = (int) (stringToLong%58);
+            int y = (int) (stringToLong/58);
+            System.out.println("Число "+stringToLong);
+            Image image = SwingFXUtils.toFXImage(smileCreater.getEmojiFromIndex(x,y), null);
 
+            switch (i)
+            {
+                case 0:
+                    voiceCallController.smile0.setImage(image);
+                    break;
+                case 16:
+                    voiceCallController.smile1.setImage(image);
+                    break;
+                case 32:
+                    voiceCallController.smile2.setImage(image);
+                    break;
+                case 64:
+                    voiceCallController.smile3.setImage(image);
+                    break;
+            }
+        }
+    }
     private void openCallWindow()
     {
         FXMLLoader loader = new FXMLLoader();
@@ -457,6 +498,7 @@ public class CallingUser extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        createCryptoSmile(voiceCallController);
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         Stage stage = new Stage();

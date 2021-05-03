@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.Properties;
 
 public class Mail {
-    private static String mailTo = "testerreality@gmail.com";
+    private static String mailTo = "";
     private  String mailServer = "";
     private  String mailPswd="";
     private static int randomNum;

@@ -45,6 +45,37 @@ public class VoiceCallController {
         this.thisNode = thisNode;
     }
 
+    public ImageView getSmile0() {
+        return smile0;
+    }
+
+    public void setSmile0(ImageView smile0) {
+        this.smile0 = smile0;
+    }
+
+    public ImageView getSmile1() {
+        return smile1;
+    }
+
+    public void setSmile1(ImageView smile1) {
+        this.smile1 = smile1;
+    }
+
+    public ImageView getSmile2() {
+        return smile2;
+    }
+
+    public void setSmile2(ImageView smile2) {
+        this.smile2 = smile2;
+    }
+
+    public ImageView getSmile3() {
+        return smile3;
+    }
+
+    public void setSmile3(ImageView smile3) {
+        this.smile3 = smile3;
+    }
 
     @FXML
     private void initialize()

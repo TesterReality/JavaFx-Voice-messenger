@@ -2,6 +2,7 @@ package org.voicemessanger.server.main;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class CloudinaryConfig {
@@ -15,12 +16,11 @@ public class CloudinaryConfig {
     }
     public void loadConfig()
     {
-        FileInputStream fis;
         Properties property = new Properties();
 
         try {
-            fis = new FileInputStream("/conf/config.properties");
-            property.load(fis);
+            InputStream resourceStream = getClass().getResourceAsStream("/conf/config.properties");
+            property.load(resourceStream);
 
             cloud_name = property.getProperty("cloud.name");
             api_key = property.getProperty("api.key");

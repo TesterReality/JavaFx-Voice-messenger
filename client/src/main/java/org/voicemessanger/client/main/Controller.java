@@ -71,6 +71,8 @@ public class Controller extends VacoomProtocol {
     BufferedImage newImage = null;
     Controller thisNode;
     FriendsRefreshThread friendsRefreshThread;
+    private SmileCreater smile;
+
     public Controller getThisNode() {
         return thisNode;
     }
@@ -335,7 +337,7 @@ public class Controller extends VacoomProtocol {
         smileDialog.setVisible(false);
 
 
-        SmileCreater smile = new SmileCreater("/conf/smile.txt");
+         smile = new SmileCreater("/conf/smile.txt");
 
          //SmileCreater smile = new SmileCreater(Main.class.getResource("..//conf/smile.txt").toString());
         //SmileCreater smile = new SmileCreater("/conf/smile.txt");
@@ -1053,7 +1055,7 @@ public class Controller extends VacoomProtocol {
     }
 
     public void clickStartCallButton(MouseEvent mouseEvent) {
-        CallingUser callingUser = new CallingUser(userNameString,thisNode);
+        CallingUser callingUser = new CallingUser(userNameString,thisNode,smile);
     }
 
 

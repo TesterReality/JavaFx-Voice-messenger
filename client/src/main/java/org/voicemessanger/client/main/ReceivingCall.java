@@ -87,7 +87,7 @@ public class ReceivingCall extends Thread {
         System.out.println("Нам позвонили");
 
         ClientUDPAccess clientUDPAccess = new ClientUDPAccess();
-        String myIp = "localhost";
+        String myIp = "";
 
         try {
             myIp = clientUDPAccess.getIpAddress();

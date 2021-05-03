@@ -7,16 +7,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.voicemessanger.client.main.ResizeHelper;
+import org.voicemessanger.client.main.SHA256Class;
 import org.voicemessanger.client.main.VoiceCallController;
 
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.sql.*;
 
 public class DatabaseCreater {
     public static void createNewDatabase(String fileName) {
 
-        String url = "jdbc:sqlite:/localdatabase/" + fileName;
+        String url = "jdbc:sqlite:" + fileName;
 
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
@@ -31,12 +33,13 @@ public class DatabaseCreater {
     }
 
     public static void main(String[] args) {
+        /*
         try {
             LocalDbHandler.getInstance().checkFriend("kek");
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        //createNewDatabase("client.db");
+        }*/
+        createNewDatabase("./clientOS.db");
 
             /*
             // Создаем экземпляр по работе с БД
@@ -89,15 +92,39 @@ public class DatabaseCreater {
                 openCallWindow();
             }
         });*/
-        openCallWindow();
+        //openCallWindow();
 
+       // createCryptoSmile();
     }
+    private static void createCryptoSmile()
+    {
+        String DH1SHA =new SHA256Class().getSHA256("test");
+        for (int i=0; i<DH1SHA.length();i+=16)
+        {
 
+            String smileString = DH1SHA.substring(i, i+16);
+            byte[] smileByte = smileString.getBytes();
+            long stringToLong =  bytesToLong(smileByte);;
+            stringToLong = stringToLong%(58*58);
+            int x = (int) (stringToLong%58);
+            int y = (int) (stringToLong/58);
+            System.out.println("Число "+stringToLong);
+
+        }
+    }
+    public static long bytesToLong(final byte[] b) {
+        long result = 0;
+        for (int i = 0; i < Long.BYTES; i++) {
+            result <<= Byte.SIZE;
+            result |= (b[i] & 0xFF);
+        }
+        return result;
+    }
     private static void openCallWindow()
     {
         FXMLLoader loader = new FXMLLoader();
         VoiceCallController voiceCallController =
-                new VoiceCallController("pizda");
+                new VoiceCallController("test");
         voiceCallController.setThisNode(voiceCallController);
 
         loader = new FXMLLoader(

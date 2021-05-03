@@ -2,6 +2,7 @@ package org.voicemessanger.client.main;
 
 import javafx.scene.control.Alert;
 import org.voicemessanger.client.clientxmlporocol.ClientParseProtocol;
+import org.voicemessanger.client.localdatabase.LocalDbHandler;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -17,6 +18,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
+import java.sql.SQLException;
 import java.util.*;
 
 public class ClientMsgThread extends Thread {
@@ -164,10 +166,17 @@ public class ClientMsgThread extends Thread {
    // private static final String localhost = "localhost";
 
     private static final int serverPort = 30003;
-   // private static final String localhost = "185.156.41.8";
-    private static final String localhost = "localhost";
+    private static final String localhost = "185.156.41.8";
+    //private static final String localhost = "localhost";
 
     public boolean starting() {
+
+        try {
+            LocalDbHandler.getInstance();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
         if (!isInterrupted()) {
 
@@ -303,7 +312,7 @@ public class ClientMsgThread extends Thread {
                     }
 
 
-                    if (needSend || needSendProtocol.size()>0)//если что-то нужно отравить
+                    if (needSendProtocol.size()>0)//если что-то нужно отравить
                     {
                         senMsgToServer(needSendProtocol.pop());
                         needSend = false;
