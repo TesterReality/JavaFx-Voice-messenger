@@ -369,3 +369,37 @@
     -fx-padding: 5px 5px 5px 5px;
     -fx-font-family: Roboto;
 }
+
+.cancelVoice
+{
+    -fx-background-repeat: no-repeat;
+    -fx-background-color:  #E34234;
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius:  20 20 20 20;
+    -fx-background-size: 100px 100px;
+    -fx-background-position: center;
+    -fx-pref-height: 45px;
+    -fx-pref-width: 150px;
+}
+
+.cancelVoice:hover
+{
+    -fx-background-color:  red;
+}
+
+.okVoice
+{
+    -fx-background-repeat: no-repeat;
+    -fx-background-color:  #2E3338;
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius:  20 20 20 20;
+    -fx-background-size: 100px 100px;
+    -fx-background-position: center;
+    -fx-pref-height: 45px;
+    -fx-pref-width: 150px;
+}
+
+.okVoice:hover
+{
+    -fx-background-color:  gray;
+}

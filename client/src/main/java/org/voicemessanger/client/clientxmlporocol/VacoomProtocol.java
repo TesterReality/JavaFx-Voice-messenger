@@ -473,4 +473,27 @@ public class VacoomProtocol {
         }
         return prtocolToString(xml);
     }
+    public String firstCall (String type,String whoAmI, String userFriend,String status) {
+        String xml = null;
+        try {
+
+            xml = new Xembler(
+                    new Directives()
+                            .add("from")
+                            .attr("who", "client")
+                            .attr("to", "client")
+                            .attr("type", type)
+                            .add("vacoom")
+                            .attr("action", "relay")
+                            .attr("actionClient", "firstCall")
+                            .attr("login", whoAmI)
+                            .attr("friend", userFriend)
+                            .attr("status", status)
+                            .set("")
+            ).xml();
+        } catch (ImpossibleModificationException e) {
+            e.printStackTrace();
+        }
+        return prtocolToString(xml);
+    }
 }

@@ -5,11 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.voicemessanger.client.main.CallingAnswerSaver;
-import org.voicemessanger.client.main.ReceivingCall;
-import org.voicemessanger.client.main.ThreadClientInfoSingleton;
+import org.voicemessanger.client.main.*;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -146,10 +146,21 @@ public class ClientParseProtocol extends VacoomProtocol {
                 CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
                 break;
             }
+            case "firstCall":
+            {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+
+                       newCall(protocolMsg.get("friend"),protocolMsg.get("login"),false);
+                    }
+                });
+            }
             case "default":
                 break;
         }
     }
+
 //0-ok 1-error
     private void resultCommands(String[] commands) {
         statesProtocol.clear();
@@ -353,6 +364,45 @@ public class ClientParseProtocol extends VacoomProtocol {
         }
         statesProtocol.put(commands[3],1);
         return;
+    }
+
+    private void newCall(String myLogin,String friendLogin,boolean status)
+    {
+        FXMLLoader loader = new FXMLLoader();
+        CallStartController callStartController =
+                new CallStartController(friendLogin,myLogin,status,ThreadClientInfoSingleton.getInstance().getSmileCreater(),null);//установили имя друга,мое,Звоню я?(true-да, false - мне)
+
+        loader = new FXMLLoader(
+                getClass().getResource(
+                        "/fxml/callStart.fxml"
+                )
+        );
+
+        loader.setController(callStartController);
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        Stage stage = new Stage();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.setScene(scene);
+
+        //stage.setResizable(false);
+        stage.setMinWidth(300);
+        stage.setMinHeight(400);
+        stage.setWidth(351);
+        stage.setHeight(455);
+        ResizeHelper.addResizeListener(stage);
+        stage.setTitle("Звонок");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
     }
 
 }

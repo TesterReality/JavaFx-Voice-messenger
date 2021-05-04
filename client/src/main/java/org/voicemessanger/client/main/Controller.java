@@ -9,6 +9,8 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -22,7 +24,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -1057,8 +1061,47 @@ public class Controller extends VacoomProtocol {
     }
 
     public void clickStartCallButton(MouseEvent mouseEvent) {
-        CallingUser callingUser = new CallingUser(userNameString,thisNode,smile);
+        newCall();
+        //CallingUser callingUser = new CallingUser(userNameString,thisNode,smile);
+
     }
 
+    private void newCall()
+    {
+        FXMLLoader loader = new FXMLLoader();
+        CallStartController callStartController =
+                new CallStartController(dialogUsername.getText(),userNameString,true,smile,thisNode);//установили имя друга,мое,Звоню я?(true-да, false - мне)
 
+        loader = new FXMLLoader(
+                getClass().getResource(
+                        "/fxml/callStart.fxml"
+                )
+        );
+
+        loader.setController(callStartController);
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        Stage stage = new Stage();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.setScene(scene);
+
+        //stage.setResizable(false);
+        stage.setMinWidth(300);
+        stage.setMinHeight(400);
+        stage.setWidth(351);
+        stage.setHeight(455);
+        ResizeHelper.addResizeListener(stage);
+        stage.setTitle("Звонок");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+    }
 }

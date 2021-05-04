@@ -14,7 +14,7 @@ public class LocalDbHandler {
     private static final String CON_STR = "jdbc:sqlite:/localdatabase/client2.db";
 
    // private String pathDb = "/localdatabase/client1.db"; //localhost
-    private String pathDb = "./clientDUDOS1.db"; //localhost
+    private String pathDb = "./clientDUDOS.db"; //localhost
 
     // Используем шаблон одиночка, чтобы не плодить множество
     // экземпляров класса DbHandler
