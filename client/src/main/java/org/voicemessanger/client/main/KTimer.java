@@ -65,7 +65,9 @@ public class KTimer {
     public synchronized void updateTime() {
         this.time = this.time + 10;
         split = sdf.format(new Date(this.time)).split(":");
-        sspTime.set(split[0] + ":" + split[1] + ":" + (split[2].length() == 1 ? "0" + split[2] : split[2].substring(0, 2)));
+       // sspTime.set(split[0] + ":" + split[1] + ":" + (split[2].length() == 1 ? "0" + split[2] : split[2].substring(0, 2)));
+        sspTime.set(split[0] + ":" + split[1]);
+
         voiceCallController.setTimeCallee(sspTime.get());
     }
 

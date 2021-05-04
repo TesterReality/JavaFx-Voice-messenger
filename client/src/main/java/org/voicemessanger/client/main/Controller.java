@@ -217,7 +217,7 @@ public class Controller extends VacoomProtocol {
                     @Override
                     public void run() {
                         users_list.getChildren().clear();
-
+                        ThreadClientInfoSingleton.getInstance().getImageUser().clear();
                         int numOfFriend = ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getFriendNumber();
                         for(int i=0;i<numOfFriend;i++)
                         {
@@ -496,6 +496,7 @@ public class Controller extends VacoomProtocol {
                     }
                 }
             }
+            ThreadClientInfoSingleton.getInstance().setSmileCreater(smile);
         }
         /*
         for (int i=0;i< smile.getAllSmile().size(); i+=11) {
@@ -1028,6 +1029,7 @@ public class Controller extends VacoomProtocol {
     }
     public void setFriend(String userName,String online,BufferedImage avatars,String last_msg,String friend_date)
     {
+        ThreadClientInfoSingleton.getInstance().getImageUser().put(userName,avatars);
         FXMLLoader loader = new FXMLLoader();
         MyFriendController myfriend =
                 new MyFriendController(userName,online,avatars,last_msg,friend_date);

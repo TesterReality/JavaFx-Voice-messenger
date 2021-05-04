@@ -2,6 +2,16 @@ package org.voicemessanger.client.main;
 
 
 
+import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.voicemessanger.client.clientxmlporocol.VacoomProtocol;
 import org.voicemessanger.client.localdatabase.LocalDbHandler;
 import org.voicemessanger.client.voice.Mixer;
@@ -40,6 +50,11 @@ public class ReceivingCall extends Thread {
     private volatile TargetDataLine targetLine;
     private volatile SourceDataLine audioOutputStream;
 
+    private SmileCreater smileCreater;
+    private volatile boolean isCalling=true;
+    private Thread voiceThread;
+    private Thread soundThread;
+
     public ReceivingCall() {
     }
 
@@ -50,8 +65,16 @@ public class ReceivingCall extends Thread {
         this.myLogin = myLogin;
         protocol = new VacoomProtocol();
         protocolMsg = new HashMap<>();
-
+        smileCreater= ThreadClientInfoSingleton.getInstance().getSmileCreater();
         this.start();
+    }
+
+    public boolean isCalling() {
+        return isCalling;
+    }
+
+    public void setCalling(boolean calling) {
+        isCalling = calling;
     }
 
     private void waitAnswer()
@@ -287,10 +310,25 @@ public class ReceivingCall extends Thread {
         return voiceKey;
 
     }
+    public void stopCalling()
+    {
+        voiceThread.interrupt();
+        soundThread.interrupt();
+        s.disconnect();
+        s.close();
+        System.out.println("Все порты закрыты. Звонок прекращен");
+    }
     private void startVoice()
     {
        // InetAddress addrFriend;
         try {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    openCallWindow();
+                }
+            });
+
             addrFriend = InetAddress.getByName(ip);
             clientConnection(addrFriend);
 
@@ -300,8 +338,10 @@ public class ReceivingCall extends Thread {
 
             setupAudio(inputList[0],mixer,outputList[1]);
 
-            new Thread(this::inputLoop, "Input loop").start();
-            new Thread(this::outputLoop, "Output loop").start();
+           voiceThread= new Thread(this::inputLoop, "Input loop");
+           voiceThread.start();
+           soundThread= new Thread(this::outputLoop, "Output loop");
+           soundThread.start();
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -335,7 +375,91 @@ public class ReceivingCall extends Thread {
             e.printStackTrace();
         }
     }
+    private void openCallWindow()
+    {
+        FXMLLoader loader = new FXMLLoader();
+        VoiceCallController voiceCallController =
+                new VoiceCallController(loginFriend);
+        voiceCallController.setThisNode(voiceCallController);
+        voiceCallController.setParent(this);
+        loader = new FXMLLoader(
+                getClass().getResource(
+                        "/fxml/voiceCall.fxml"
+                )
+        );
 
+        loader.setController(voiceCallController);
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        createCryptoSmile(voiceCallController);
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        Stage stage = new Stage();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.setScene(scene);
+
+        //stage.setResizable(false);
+        stage.setMinWidth(400);
+        stage.setMinHeight(400);
+        stage.setWidth(471);
+        stage.setHeight(455);
+        ResizeHelper.addResizeListener(stage);
+        stage.setTitle("Hello World");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+    }
+    private void createCryptoSmile(VoiceCallController voiceCallController)
+    {
+        String DH1SHA =new SHA256Class().getSHA256(dhReceiving.getPublicA().toString());
+        for (int i=0; i<DH1SHA.length();i+=16)
+        {
+            String smileString = DH1SHA.substring(i, i+16);
+            byte[] smileByte = smileString.getBytes();
+            long stringToLong =  bytesToLong(smileByte);;
+            stringToLong = stringToLong%(58*58);
+            int x = (int) (stringToLong%58);
+            int y = (int) (stringToLong/58);
+            System.out.println("Число "+stringToLong +" x="+x + " y="+y);
+            Image image;
+            try {
+                image = SwingFXUtils.toFXImage(smileCreater.getEmojiFromIndex(x, y), null);
+            }catch (NullPointerException npe)
+            {
+                image = SwingFXUtils.toFXImage(smileCreater.getEmojiFromIndex(33, 33), null);
+            }
+
+            switch (i)
+            {
+                case 0:
+                    voiceCallController.smile0.setImage(image);
+                    break;
+                case 16:
+                    voiceCallController.smile1.setImage(image);
+                    break;
+                case 32:
+                    voiceCallController.smile2.setImage(image);
+                    break;
+                case 48:
+                    voiceCallController.smile3.setImage(image);
+                    break;
+            }
+        }
+    }
+    public long bytesToLong(final byte[] b) {
+        long result = 0;
+        for (int i = 0; i < Long.BYTES; i++) {
+            result <<= Byte.SIZE;
+            result |= (b[i] & 0xFF);
+        }
+        return result;
+    }
     private void setupOutput(String outputItem,Mixer mixer) {
 
         Line.Info output;
@@ -351,7 +475,7 @@ public class ReceivingCall extends Thread {
         TargetDataLine currentLine = null;
         byte[] buffer = new byte[BUFFER_SIZE];
         boolean wasMuted = false;
-        while (true) {
+        while (isCalling) {
             if (currentLine != targetLine) {
                 if (currentLine != null) {
                     currentLine.stop();
@@ -396,13 +520,16 @@ public class ReceivingCall extends Thread {
                 }
             }
         }
+        currentLine.stop();
+        currentLine.drain();
+        currentLine.close();
     }
 
     private void outputLoop() {
         SourceDataLine currentOutput = null;
         byte[] buffer = new byte[BUFFER_SIZE];
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-        while (true) {
+        while (isCalling) {
             if (currentOutput != audioOutputStream) {
                 if (currentOutput != null) {
                     currentOutput.drain();
@@ -445,6 +572,8 @@ public class ReceivingCall extends Thread {
                 }
             }
         }
+        currentOutput.drain();
+        currentOutput.close();
     }
 
 }

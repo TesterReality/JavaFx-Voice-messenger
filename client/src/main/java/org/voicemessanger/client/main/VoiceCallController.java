@@ -30,8 +30,8 @@ public class VoiceCallController {
 
     private String srtingFriendName;
     private VoiceCallController thisNode;
-    private CallingUser parent;
-
+    private CallingUser callingParent;
+    private ReceivingCall receivingParent;
      private KTimer timer;
     public VoiceCallController() {
     }
@@ -48,12 +48,16 @@ public class VoiceCallController {
         this.thisNode = thisNode;
     }
 
-    public CallingUser getParent() {
-        return parent;
-    }
 
-    public void setParent(CallingUser parent) {
-        this.parent = parent;
+    public void setParent(Object parent) {
+        if(parent instanceof CallingUser)
+        {
+            this.callingParent =(CallingUser) parent;
+        }
+        if(parent instanceof ReceivingCall)
+        {
+            this.receivingParent = (ReceivingCall)parent;
+        }
     }
 
     public ImageView getSmile0() {
@@ -92,9 +96,15 @@ public class VoiceCallController {
     private void initialize()
     {
         friendName.setText(srtingFriendName);
-
-        Image image = SwingFXUtils.toFXImage(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getLastClickAvatar(), null);
-        userImgFriend.setFill(new ImagePattern(image));
+        Image image=null;
+        if(callingParent!=null) {
+            image=SwingFXUtils.toFXImage(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getFriendsInfo().getLastClickAvatar(), null);
+        }
+        if(receivingParent!=null)
+        {
+            image =SwingFXUtils.toFXImage(ThreadClientInfoSingleton.getInstance().getImageUser().get(srtingFriendName), null);
+        }
+         userImgFriend.setFill(new ImagePattern(image));
         timer = new KTimer();
         timer.setVoiceCallController(thisNode);
         timer.startTimer(0);
@@ -110,6 +120,7 @@ public class VoiceCallController {
     }
 
     public void closeWindow(MouseEvent mouseEvent) {
+        stopCall();
     }
 
 
@@ -117,15 +128,26 @@ public class VoiceCallController {
     }
     public void setTimeCallee(String time)
     {
-        System.out.println("Время разговора: "+time);;
         timeOfCalling.setText(time);
     }
-    public void clickStopCall(MouseEvent mouseEvent) {
+    private void stopCall()
+    {
         Stage stage = (Stage) Exit.getScene().getWindow();
-        parent.setCalling(false);
-        parent.stopCalling();
+        if(callingParent!=null)
+        {
+            callingParent.setCalling(false);
+            callingParent.stopCalling();
+        }
+        if(receivingParent!=null)
+        {
+            receivingParent.setCalling(false);
+            receivingParent.stopCalling();
+        }
         timer.stopTimer();
         stage.close();
+    }
+    public void clickStopCall(MouseEvent mouseEvent) {
+        stopCall();
     }
 
     public void clickMute(MouseEvent mouseEvent) {
