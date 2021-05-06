@@ -120,7 +120,7 @@ public class CallingUser extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ipAdress="localhost";
+       // ipAdress="localhost";
         friendName = parent.dialogUsername.getText();
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.startCall("set",userName,friendName,ipAdress,String.valueOf(Port)));
         whoAmIcalling.add(parent.dialogUsername.getText());

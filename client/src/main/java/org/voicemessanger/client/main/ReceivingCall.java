@@ -121,7 +121,7 @@ public class ReceivingCall extends Thread {
             Port = clientUDPAccess.getPorts();
         } while (Port == -1);
 
-        myIp = "localhost";
+        //myIp = "localhost";
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.startCall("result", myLogin, loginFriend, myIp, String.valueOf(Port)));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
         System.out.println("[КЛИЕНТ] ОТВЕТИЛ на startCall");

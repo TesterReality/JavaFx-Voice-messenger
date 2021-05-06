@@ -168,7 +168,7 @@ public class Controller extends VacoomProtocol {
         try {
             BufferedImage in = buffImg;
             in = scale(in, 50, 50);
-            File outputfile = new File("/img/temp.png");
+            File outputfile = new File("./temp_new_avatars.png");
             ImageIO.write(in, "png", outputfile);
             uploadInfo = cloudinary.uploader().upload(outputfile.getPath(), ObjectUtils.emptyMap());
             outputfile.delete();
@@ -301,6 +301,7 @@ public class Controller extends VacoomProtocol {
       //  InputStream input = uc.getInputStream();
 
       //  BufferedImage img = ImageIO.read(uc.getInputStream());
+        /*
         do {
             try {
                 Thread.sleep(400);
@@ -316,7 +317,7 @@ public class Controller extends VacoomProtocol {
             //System.exit(-2);
         }
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("authorization");
-
+*/
         /*Получаем друзей*/
         getFriendThread();
 
@@ -966,7 +967,7 @@ public class Controller extends VacoomProtocol {
         configImg.put("api_secret", ThreadClientInfoSingleton.getInstance().getClientMsgThread().getCloudinaryConfig().getApi_secret());
 
         chooser = new ImageChooser();
-        chooser.setAvailableFormats("*.png"); // Указываем форматы для FileChooser.
+        chooser.setAvailableFormats("*.png","*.jpg"); // Указываем форматы для FileChooser.
 
         String image = chooser.openImage(); // Выбираем изображение.
         if (image != null) {
@@ -1004,7 +1005,7 @@ public class Controller extends VacoomProtocol {
             }).start();
         }else
         {
-            setFriend("ff","false",null,"","");
+            //setFriend("ff","false",null,"","");
         }
     }
 

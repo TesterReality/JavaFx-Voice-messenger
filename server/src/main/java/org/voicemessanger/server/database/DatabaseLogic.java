@@ -540,7 +540,8 @@ public class DatabaseLogic {
         Cloudinary cloudinary = new Cloudinary(config);
         //https://res.cloudinary.com/diplomaimgdpi/image/upload/k2tx9q47isouxxfnvdbr.png
 
-        File outputfile = new File("/img/temp_"+login+".png");
+        File outputfile = new File("./temp_"+login+".png");
+
         try {
             ImageIO.write(buffImage, "png", outputfile);
             load_img_info =cloudinary.uploader().upload(outputfile.getPath(), ObjectUtils.emptyMap());

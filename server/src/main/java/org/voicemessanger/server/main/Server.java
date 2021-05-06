@@ -213,6 +213,7 @@ public class Server extends Thread {
                                 }
                             }catch (NullPointerException nu)//не удастся расшифровать сообщение только 1 случае - если оно были либо неверно зашифрованно, либо не было зашифрованно
                             {
+                                nu.getMessage();
                                 System.out.println("[СЕРВЕР] ОШИБКА AES ключей");
                                 System.out.println("[Сервер] Клиент !!НЕ!! отправил AES-OK");
                                 resetFlags();

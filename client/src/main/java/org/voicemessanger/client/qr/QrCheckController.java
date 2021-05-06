@@ -170,7 +170,10 @@ public class QrCheckController extends VacoomProtocol {
             InputStream isImage = (InputStream) new FileInputStream(img);
             qrInside.setImage(new Image(isImage));
             visibleQrLabel(false);
+            isImage.close();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -191,7 +194,6 @@ public class QrCheckController extends VacoomProtocol {
                 drugs.setFill(new ImagePattern(imgOk));
 
             }
-
         }
 
 
@@ -213,19 +215,26 @@ public class QrCheckController extends VacoomProtocol {
                     }
                 } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("checkCode"));
                 ErrorMsg t = new ErrorMsg();
-                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCode")) == 0) {
+                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCode"),false) == 0) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
-                            // login.loadWorkrArea(input.getText());
+                             //ThreadClientInfoSingleton.getInstance().getClientMsgThread().setUserLogin(true);
+                            //login. loadWorkrArea(input.getText());
+                            try {
+                                System.out.println("[Клиент] Все прошло хорошо. QR проверен. Загрузка основной формы");
+                                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("checkCode");
+
+                                login.getParents().loadWorkArea(login.input.getText(),false);
+                            } catch (IOException e) {
+                                System.out.println("[Клиент] Ошибка загрузка основной формы");
+                                e.printStackTrace();
+                            }
                             //loadQrCheck();
                             // loginXML.getChildren().add(qrCheck);
-                            System.out.println("[Клиент] Все прошло хорошо. QR проверен. Загрузка основной формы");
                         }
                     });
                 }
-                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("checkCode");
 
 
             }).start();
@@ -247,7 +256,7 @@ public class QrCheckController extends VacoomProtocol {
                     }
                 } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("checkCode"));
                 ErrorMsg t = new ErrorMsg();
-                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCode")) == 0) {
+                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCode"),true) == 0) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -280,7 +289,7 @@ public class QrCheckController extends VacoomProtocol {
                     }
                 } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("checkCodeRefresh"));
                 ErrorMsg t = new ErrorMsg();
-                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCodeRefresh")) == 0) {
+                if (t.checkCode(ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("checkCodeRefresh"),true) == 0) {
                     ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("checkCodeRefresh");
 
                     //Если Qr подошел, возьмем имя пользователя
@@ -327,7 +336,7 @@ public class QrCheckController extends VacoomProtocol {
                 new ChangePasswordController(username);
         changePasswordController.setParent(thisNode);
         changePasswordController.setThisNode(changePasswordController);
-        loader = new FXMLLoader(getClass().getResource("../fxml/changePassword.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/fxml/changePassword.fxml"));
         loader.setController(changePasswordController);
 
         try {
@@ -344,7 +353,7 @@ public class QrCheckController extends VacoomProtocol {
                 new RegistrationUserController();
         register.setParent(thisNode);
         register.setThisNode(register);
-        loader = new FXMLLoader(getClass().getResource("../fxml/registrationUser.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/fxml/registrationUser.fxml"));
         loader.setController(register);
 
         try {
@@ -354,6 +363,7 @@ public class QrCheckController extends VacoomProtocol {
             e.printStackTrace();
         }
     }
+
     public void toLoginPage(MouseEvent mouseEvent) {
         /*
         if(thisAnchorPane.getChildren().size()>1)
@@ -388,6 +398,10 @@ public class QrCheckController extends VacoomProtocol {
             RefreshingPasswordController refreshingPasswordController = (RefreshingPasswordController) parents;
             refreshingPasswordController.toLoginPage();
         }
+        if(parents instanceof RegistrationController) {
 
+            RegistrationController registrationController = (RegistrationController) parents;
+            registrationController.toLoginPage();
+        }
     }
 }

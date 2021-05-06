@@ -10,6 +10,7 @@ public class ErrorMsg {
 
     private void showErrorWindow(Alert.AlertType type,String title, String header, String content)
     {
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -60,13 +61,14 @@ public class ErrorMsg {
         return 1;
     }
 
-    public int checkCode(int number)
+    public int checkCode(int number,boolean needSay)
     {
         switch (number) {
             case 1:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка кода подтверждения","Неверный код регистрации! (возможно устарел)");
                 return 1;
             case 0:
+                if(needSay)
                 showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Код регистрации","Данные из QR-кода верные");
                 return 0;
         }

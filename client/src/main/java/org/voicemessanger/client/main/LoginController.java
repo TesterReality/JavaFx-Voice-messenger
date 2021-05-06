@@ -102,6 +102,10 @@ public class LoginController extends VacoomProtocol {
         parents = ctr;
     }
 
+    public StartWindowController getParents() {
+        return parents;
+    }
+
     public void setNode (LoginController control)
     {
           thisNode = control;

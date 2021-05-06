@@ -31,9 +31,9 @@ public class ServerMain {
                 int i = 0; // Счётчик подключений
                 // Подключение сокета к localhost
                 InetAddress ia;
-                ia = InetAddress.getByName("localhost");
-                //ia = InetAddress.getByName("185.156.41.8");
-                System.out.println("ip "+ ia.getHostAddress() + " and " + "185.156.41.8");
+                //ia = InetAddress.getByName("localhost");
+                ia = InetAddress.getByName("94.228.117.231");
+                System.out.println("ip "+ ia.getHostAddress() + " and " + "SERVER");
                 srvSocket = new ServerSocket(port, 0, ia);
                 System.out.println("Server started\n\n");
                 while (true) {

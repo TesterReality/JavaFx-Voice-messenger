@@ -6,8 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
@@ -69,6 +72,7 @@ public class Main extends Application {
 
         testStage = primaryStage;*/
         System.out.println("Конец");
+       // openCallWindow();
     }
 
     public Stage getTestStage() {
@@ -82,4 +86,44 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+    private static void openCallWindow()
+    {
+        FXMLLoader loader = new FXMLLoader();
+        LoadingController loadingController =
+                new LoadingController();
+
+        loader = new FXMLLoader(
+                Main.class.getResource(
+                        "/fxml/loading.fxml"
+                )
+        );
+        loader.setController(loadingController);
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        Stage stage = new Stage();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.setScene(scene);
+
+        //stage.setResizable(false);
+        stage.setMinWidth(300);
+        stage.setMinHeight(400);
+        stage.setWidth(351);
+        stage.setHeight(455);
+        ResizeHelper.addResizeListener(stage);
+        stage.setTitle("Hello World");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+    }
+
 }

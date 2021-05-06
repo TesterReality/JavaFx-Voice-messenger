@@ -8,6 +8,7 @@ import org.voicemessanger.server.serverxmlprotocol.ServerVacoomProtocol;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
+import javax.mail.MessagingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.HashMap;
@@ -47,6 +48,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
             System.out.println(m.group(1));
             howNeedString++;
         }
+        System.out.println("------------");
         while (m1.find()) {
             System.out.println(m1.group(0));
             howNeeds++;
@@ -91,7 +93,11 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
         String random = new RandomStringGenerator().generateString();
         byte[] aesByte = objServer.getAes256Serv().makeAes(random.getBytes(), Cipher.ENCRYPT_MODE);
         byte[] encoded = Base64.getEncoder().encode(aesByte);
-        //mail.sendCode(new String(encoded));
+        try {
+            mail.sendCode(new String(encoded));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
 
         return random;
     }
@@ -114,7 +120,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
 
     }
     private String setCommads(String[] commands,String[] suffix) {
-
+        System.out.println("Начинаем распознавать команду");
         switch (protocolMsg.get("action"))//содержит код запроса
         {
             case "authorization": {
@@ -122,6 +128,7 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
                     String mailUser;
                     try {
                         USER_NAME = commands[4];
+                        System.out.println("На сервере теперь "+ USER_NAME);;
                         objServer.userThreadRename(USER_NAME);
 
                         mailUser = checkLogin(commands[4]);

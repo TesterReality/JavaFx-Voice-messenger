@@ -1,18 +1,29 @@
 package org.voicemessanger.server.main;
 
+import com.sun.mail.smtp.SMTPTransport;
 import org.voicemessanger.server.database.DatabaseLogic;
 import org.voicemessanger.server.database.DatabaseUser;
 import org.voicemessanger.server.mail.MailUser;
 import org.voicemessanger.server.qrcodegenerator.QRgenerate;
 
+import javax.activation.DataHandler;
 import javax.crypto.NoSuchPaddingException;
 import javax.imageio.ImageIO;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
+import java.util.Properties;
 
 public class TampleTestMain {
     public static void main(String[] args) {
@@ -54,6 +65,7 @@ public class TampleTestMain {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        MailUser mail = new MailUser();
+       // MailUser mail = new MailUser();
     }
+
 }

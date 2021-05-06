@@ -155,11 +155,14 @@ public class StartWindowController extends VacoomProtocol {
     }
 
     public void test(MouseEvent mouseEvent) {
+
     }
 
-    public void loadWorkArea(String user_name) throws IOException {
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser(user_name,new SHA256Class().getSHA256("qwertyuiop")));
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+    public void loadWorkArea(String user_name,boolean isTest) throws IOException {
+        if(isTest) {
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser(user_name, new SHA256Class().getSHA256("qwertyuiop")));
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+        }
 
         Stage stage1 = (Stage) Exit.getScene().getWindow();
         firstWindow.getChildren().clear();
@@ -205,8 +208,10 @@ public class StartWindowController extends VacoomProtocol {
         stage.setWidth(800);
         stage.setHeight(600);
         ResizeHelper.addResizeListener(stage);
-        stage.setTitle("Hello World");
-      stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setTitle("Vacoom Messanger ["+user_name+"]");
+        stage.getIcons().add(new Image("/img/TrayLogo.png"));
+
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
 
     }
@@ -214,7 +219,7 @@ public class StartWindowController extends VacoomProtocol {
 
     public void openTestWindow(MouseEvent mouseEvent) {
         try {
-            loadWorkArea("Vladik");
+           loadWorkArea("Vladik",true);
             //loadWorkArea("testerOk");
 
         } catch (IOException e) {

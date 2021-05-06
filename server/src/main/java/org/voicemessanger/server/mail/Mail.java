@@ -5,10 +5,7 @@ import org.voicemessanger.server.qrcodegenerator.QRgenerate;
 
 import javax.activation.DataHandler;
 import javax.imageio.ImageIO;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Session;
+import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.util.ByteArrayDataSource;
 import java.awt.image.BufferedImage;
@@ -45,8 +42,9 @@ public class Mail {
             e.printStackTrace();
         }
     }*/
-    public String sendCode(String codeMsg) throws MessagingException {
+    public String OldsendCode(String codeMsg) throws MessagingException {
         Properties props = System.getProperties();
+        System.out.println("Начинаю отправлять письмо по емейлу "+mailServer);
         props.put("mail.smtps.host", "smtp.mail.ru");
         props.put("mail.smtps.auth","true");
         Session session = Session.getInstance(props, null);
@@ -99,7 +97,69 @@ public class Mail {
                 (SMTPTransport)session.getTransport("smtps");
         t.connect("smtp.mail.ru", mailServer,mailPswd);
         t.sendMessage(msg,msg.getAllRecipients());
+        System.out.println("Письмо получилось отправить!");
 
+        return Integer.toString(randomNum);
+    }
+    public String sendCode(String codeMsg) throws MessagingException {
+        System.out.println("Начали отправку сообщения от "+mailServer +" к "+mailTo);
+        Properties pro = new Properties();
+        pro.put("mail.smtp.host", "smtp.gmail.com");
+        pro.put("mail.smtp.starttls.enable", "true");
+        pro.put("mail.smtp.auth", "true");
+        pro.put("mail.smtp.port", "587");
+        Session ss = Session.getInstance(pro, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(mailServer, mailPswd);
+            }
+        });
+
+        try {
+            Message msg = new MimeMessage(ss);
+            msg.setFrom(new InternetAddress(mailServer));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
+            msg.setSubject("Тест кода активации");
+            msg.setSentDate(new Date());
+
+            // Содержимое сообщения
+            Multipart mmp = new MimeMultipart();
+            // Текст сообщения
+            MimeBodyPart bodyPart = new MimeBodyPart();
+
+            QRgenerate qr=  new QRgenerate();
+            qr.createQR(codeMsg);
+
+            BufferedImage img = qr.getQrCode();
+
+            byte[] imageBytes=null;
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            try {
+                ImageIO.write(img, "png", baos);
+                baos.flush();
+                imageBytes= baos.toByteArray();
+                baos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            ByteArrayDataSource bds = new ByteArrayDataSource(imageBytes, "image/png");
+            bodyPart.setDataHandler(new DataHandler(bds));
+            bodyPart.setFileName("code.png");
+            bodyPart.setHeader("Content-ID", "<image>");
+            mmp.addBodyPart(bodyPart);
+
+            msg.setContent(mmp);
+
+            Transport trans = ss.getTransport("smtp");
+            Transport.send(msg);
+
+            System.out.println("Письмо получилось отправить!");
+            return Integer.toString(randomNum);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return Integer.toString(randomNum);
     }
 }

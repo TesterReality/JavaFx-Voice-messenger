@@ -78,8 +78,7 @@ public class RegistrationUserController extends VacoomProtocol {
         }
 
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(registrationUser(user_login.getText(),new SHA256Class().getSHA256(password.getText()),parent.codeInput.getText()));
-        ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
-
+       // ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
         //допиши тут ошибка и все такое, тестируй на другом мыле
 
         new Thread(() -> {
@@ -92,12 +91,14 @@ public class RegistrationUserController extends VacoomProtocol {
                 }
             } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("registration"));
             ErrorMsg t = new ErrorMsg();
+
             if( t.registration()==0 )
             {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
                         System.out.println("[Клиент] Пользователь зареган. Можно открывать новое окно");
+                        parent.toStartPage();
                         //parent.toStartPages();
 
                     }

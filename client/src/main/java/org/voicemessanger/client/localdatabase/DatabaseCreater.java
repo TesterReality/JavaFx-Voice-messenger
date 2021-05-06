@@ -1,4 +1,5 @@
 package org.voicemessanger.client.localdatabase;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -6,14 +7,23 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.voicemessanger.client.main.LoadingController;
 import org.voicemessanger.client.main.ResizeHelper;
 import org.voicemessanger.client.main.SHA256Class;
 import org.voicemessanger.client.main.VoiceCallController;
 
 
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.sql.*;
+import java.util.Date;
+import java.util.Properties;
 
 public class DatabaseCreater {
     public static void createNewDatabase(String fileName) {
@@ -93,46 +103,29 @@ public class DatabaseCreater {
             }
         });*/
         //openCallWindow();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
 
-        createCryptoSmile();
-    }
-    private static void createCryptoSmile()
-    {
-        String DH1SHA =new SHA256Class().getSHA256("test");
-        for (int i=0; i<DH1SHA.length();i+=16)
-        {
+                openCallWindow();
+            }
+        });
 
-            String smileString = DH1SHA.substring(i, i+16);
-            byte[] smileByte = smileString.getBytes();
-            long stringToLong =  bytesToLong(smileByte);;
-            stringToLong = stringToLong%(58*58);
-            int x = (int) (stringToLong%58);
-            int y = (int) (stringToLong/58);
-            System.out.println("Число "+stringToLong);
-            System.out.println(" index "+i);
-        }
     }
-    public static long bytesToLong(final byte[] b) {
-        long result = 0;
-        for (int i = 0; i < Long.BYTES; i++) {
-            result <<= Byte.SIZE;
-            result |= (b[i] & 0xFF);
-        }
-        return result;
-    }
+
     private static void openCallWindow()
     {
         FXMLLoader loader = new FXMLLoader();
-        VoiceCallController voiceCallController =
-                new VoiceCallController("test");
-        voiceCallController.setThisNode(voiceCallController);
+        LoadingController loadingController =
+                new LoadingController();
 
         loader = new FXMLLoader(
                 DatabaseCreater.class.getResource(
-                        "../../../../../resources/fxml/voiceCall.fxml"
+                        "/fxml/loading.fxml"
                 )
         );
-        loader.setController(voiceCallController);
+        loader.setController(loadingController);
+
         Parent root = null;
         try {
             root = loader.load();
@@ -148,13 +141,15 @@ public class DatabaseCreater {
         stage.setScene(scene);
 
         //stage.setResizable(false);
-        stage.setMinWidth(400);
+        stage.setMinWidth(300);
         stage.setMinHeight(400);
-        stage.setWidth(471);
+        stage.setWidth(351);
         stage.setHeight(455);
         ResizeHelper.addResizeListener(stage);
         stage.setTitle("Hello World");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
+
+
 }
