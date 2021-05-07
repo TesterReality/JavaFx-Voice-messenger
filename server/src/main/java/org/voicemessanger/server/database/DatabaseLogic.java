@@ -71,7 +71,7 @@ public class DatabaseLogic {
                     }
                 }
             }
-           refreshConnect();
+            refreshConnect();
             try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
                 CallableStatement cstmt = conn.prepareCall("{? = CALL test(?)}");
                 cstmt.setString(1, mail);
@@ -84,14 +84,14 @@ public class DatabaseLogic {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-       // refreshConnect();
-       // SingletonDatabaseConnection.getInstance().closeConncetion();
+        // refreshConnect();
+        // SingletonDatabaseConnection.getInstance().closeConncetion();
         return true;
     }
 
     /*Вернет true если в таблице незарегестрированных пользователей код соответствует нужному мейлу*/
     public boolean checkUserUnregisterCode(String code, String mail) {
-       refreshConnect();
+        refreshConnect();
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode(?)}");
             cstmt.setString(1, mail);
@@ -136,7 +136,7 @@ public class DatabaseLogic {
     }
 
     public boolean checkUserCode(String code, String mail) {
-      refreshConnect();
+        refreshConnect();
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode(?)}");
             cstmt.setString(1, mail);
@@ -204,8 +204,7 @@ public class DatabaseLogic {
         return false;
     }
 
-    public String getAvatarFromUsername(String username)
-    {
+    public String getAvatarFromUsername(String username) {
         refreshConnect();
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL get_img_url_login}");
@@ -215,8 +214,8 @@ public class DatabaseLogic {
             String answer = cstmt.getString(1);
             //SingletonDatabaseConnection.getInstance().closeConncetion();
 
-            if(answer==null) return "default";
-            if(answer.equals("")) return "default";
+            if (answer == null) return "default";
+            if (answer.equals("")) return "default";
             return answer;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -487,27 +486,25 @@ public class DatabaseLogic {
     }
 */
 
-    public boolean changeAvatar(String login, String newAvatar)
-    {
+    public boolean changeAvatar(String login, String newAvatar) {
         refreshConnect();
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
 
-        Map configImg = new HashMap();
-        CloudinaryConfig confCloud = new CloudinaryConfig();
-        configImg.put("cloud_name",confCloud.getCloud_name());
-        configImg.put("api_key", confCloud.getApi_key());
-        configImg.put("api_secret",confCloud.getApi_secret() );
+            Map configImg = new HashMap();
+            CloudinaryConfig confCloud = new CloudinaryConfig();
+            configImg.put("cloud_name", confCloud.getCloud_name());
+            configImg.put("api_key", confCloud.getApi_key());
+            configImg.put("api_secret", confCloud.getApi_secret());
 
-        Cloudinary cloudinary = new Cloudinary(configImg);
+            Cloudinary cloudinary = new Cloudinary(configImg);
 
             CallableStatement cstmt = conn.prepareCall("{? = CALL get_img_url_login}");
             cstmt.setString(1, login);
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.execute();
             String user_img_public_id = cstmt.getString(1);
-            if(!user_img_public_id.equals("default"))
-            {
-                cloudinary.uploader().destroy(user_img_public_id,ObjectUtils.emptyMap());
+            if (!user_img_public_id.equals("default")) {
+                cloudinary.uploader().destroy(user_img_public_id, ObjectUtils.emptyMap());
             }
 
 
@@ -529,8 +526,8 @@ public class DatabaseLogic {
         }
         return false;
     }
-    private boolean loadAvatarToCloud(BufferedImage buffImage,String login)
-    {
+
+    private boolean loadAvatarToCloud(BufferedImage buffImage, String login) {
         CloudinaryConfig cloudinaryConfig = new CloudinaryConfig();
         Map config = new HashMap();
         Map load_img_info = null;
@@ -539,25 +536,28 @@ public class DatabaseLogic {
         config.put("api_secret", cloudinaryConfig.getApi_secret());
         Cloudinary cloudinary = new Cloudinary(config);
         //https://res.cloudinary.com/diplomaimgdpi/image/upload/k2tx9q47isouxxfnvdbr.png
-
-        File outputfile = new File("./temp_"+login+".png");
+        File outputfile = new File("./temp_" + login + ".png");
 
         try {
             ImageIO.write(buffImage, "png", outputfile);
-            load_img_info =cloudinary.uploader().upload(outputfile.getPath(), ObjectUtils.emptyMap());
+            load_img_info = cloudinary.uploader().upload(outputfile.getPath(), ObjectUtils.emptyMap());
             outputfile.delete();
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
         refreshConnect();
+        System.out.println("Генерирую аватрку для человека с ником " + login);
+        System.out.println("URL: " + load_img_info.get("public_id"));
 
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL insert_img_url_login(?)}");
             cstmt.setString(1, login);
             cstmt.setString(2, (String) load_img_info.get("public_id"));
             cstmt.execute();
-           // SingletonDatabaseConnection.getInstance().closeConncetion();
+            // SingletonDatabaseConnection.getInstance().closeConncetion();
+
+            System.out.println("Аватарка была добавлена, возвращаю ТРУ");
 
             return true;
         } catch (SQLException e) {
@@ -569,21 +569,21 @@ public class DatabaseLogic {
         }
         return false;
     }
+
     private void createFirstAvatar(String login) {
-        URLConnection uc=null;
+        URLConnection uc = null;
         URL url = null;
-        InputStream urlStream=null;
+        InputStream urlStream = null;
         try {
             url = new URL("https://api.multiavatar.com/" + login + ".png");
             uc = url.openConnection();
             uc.setRequestProperty("User-Agent",
                     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
             uc.connect();
-            urlStream= uc.getInputStream();
+            urlStream = uc.getInputStream();
             BufferedImage image1 = ImageIO.read(urlStream);
             image1 = new ImageTransformer().scale(image1, 50, 50);
-           if(!loadAvatarToCloud(image1,login));
-            {
+            if (loadAvatarToCloud(image1, login) == false) {
                 System.out.println("[Сервер] Не удалось создать автарку для пользователя1");
             }
         } catch (MalformedURLException e) {
@@ -640,7 +640,7 @@ public class DatabaseLogic {
             cstmt.execute();
 
             createFirstAvatar(login);
-           // SingletonDatabaseConnection.getInstance().closeConncetion();
+            // SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -662,7 +662,7 @@ public class DatabaseLogic {
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.execute();
             String user_mail = cstmt.getString(1);
-           // SingletonDatabaseConnection.getInstance().closeConncetion();
+            // SingletonDatabaseConnection.getInstance().closeConncetion();
 
             if (user_mail == null) return "";
             return user_mail;
@@ -689,6 +689,7 @@ public class DatabaseLogic {
     }
 
     public boolean getFriend(String login, FriendsHelper frh) {
+        System.out.println("[Сервер] Получаю друзей из БД");
         refreshConnect();
         try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
             PreparedStatement ps = conn.prepareStatement(" SELECT id_friend,status FROM contacts WHERE id_user = ( SELECT id_user FROM users WHERE user_name=?)");
@@ -705,47 +706,49 @@ public class DatabaseLogic {
                 status.add(rs.getString("status"));
             }
             int i = 0;
-            PreparedStatement ps1 = conn.prepareStatement(" SELECT user_name FROM users WHERE id_user = ?");
-            do {
-                ps1.setInt(1, id_friend.get(i));
-                rs = ps1.executeQuery();
-                while (rs.next()) {
-                    name_friends.add(rs.getString("user_name"));
-                }
-                i++;
-            } while (i < id_friend.size());
-            i = 0;
-            refreshConnect();
-            Connection conn1 = SingletonDatabaseConnection.getInstance().getConnection();
-            CallableStatement cstmt = conn1.prepareCall("{? = CALL user_now_is_online}");
-            do {
-                cstmt.setString(1, name_friends.get(i));
-                cstmt.registerOutParameter(1, Types.BOOLEAN);
-                cstmt.execute();
-                statusOnline.add(cstmt.getBoolean(1));
-                i++;
-            } while (i < id_friend.size());
-            i=0;
-            cstmt = conn1.prepareCall("{? = CALL get_img_url_login}");
-            do{
-                cstmt.setString(1, name_friends.get(i));
-                cstmt.registerOutParameter(1, Types.VARCHAR);
-                cstmt.execute();
-                String img = cstmt.getString(1);
-                if(img==null)
-                {
-                    imgFriend.add("default");
-                }else
-                {
-                    imgFriend.add(img);
-                }
-                i++;
-            }while(i<name_friends.size());
-            frh.setStatusOnline(statusOnline);
-            frh.setFriend_name(name_friends);
-            frh.setStatus(status);
-            frh.setAvatars(imgFriend);
-            conn1.close();
+            if (id_friend.size() > 0) {
+
+
+                PreparedStatement ps1 = conn.prepareStatement(" SELECT user_name FROM users WHERE id_user = ?");
+                do {
+                    ps1.setInt(1, id_friend.get(i));
+                    rs = ps1.executeQuery();
+                    while (rs.next()) {
+                        name_friends.add(rs.getString("user_name"));
+                    }
+                    i++;
+                } while (i < id_friend.size());
+                i = 0;
+                refreshConnect();
+                Connection conn1 = SingletonDatabaseConnection.getInstance().getConnection();
+                CallableStatement cstmt = conn1.prepareCall("{? = CALL user_now_is_online}");
+                do {
+                    cstmt.setString(1, name_friends.get(i));
+                    cstmt.registerOutParameter(1, Types.BOOLEAN);
+                    cstmt.execute();
+                    statusOnline.add(cstmt.getBoolean(1));
+                    i++;
+                } while (i < id_friend.size());
+                i = 0;
+                cstmt = conn1.prepareCall("{? = CALL get_img_url_login}");
+                do {
+                    cstmt.setString(1, name_friends.get(i));
+                    cstmt.registerOutParameter(1, Types.VARCHAR);
+                    cstmt.execute();
+                    String img = cstmt.getString(1);
+                    if (img == null) {
+                        imgFriend.add("default");
+                    } else {
+                        imgFriend.add(img);
+                    }
+                    i++;
+                } while (i < name_friends.size());
+                frh.setStatusOnline(statusOnline);
+                frh.setFriend_name(name_friends);
+                frh.setStatus(status);
+                frh.setAvatars(imgFriend);
+                conn1.close();
+            }
             //SingletonDatabaseConnection.getInstance().closeConncetion();
 
             return true;
@@ -756,6 +759,7 @@ public class DatabaseLogic {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         return false;

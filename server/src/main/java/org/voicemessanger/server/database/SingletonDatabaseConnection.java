@@ -53,6 +53,7 @@ public class SingletonDatabaseConnection {
         }
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
+
             return connection;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

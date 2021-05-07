@@ -132,6 +132,9 @@ public class FriendsRefreshThread extends Thread {
                 }
 
                 if (err.checkFriend() == 2) {
+                    if( parent.users_list.getChildren().size()>0)
+                    parent.users_list.getChildren().clear();
+
                     System.out.println("Нет друзей :(");
                 }
                 ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("getFriend");

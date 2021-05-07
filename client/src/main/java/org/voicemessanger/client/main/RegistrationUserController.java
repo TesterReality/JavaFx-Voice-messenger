@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import org.voicemessanger.client.clientxmlporocol.VacoomProtocol;
 import org.voicemessanger.client.qr.QrCheckController;
 
+import java.io.IOException;
+
 
 public class RegistrationUserController extends VacoomProtocol {
     public AnchorPane loginXML;
@@ -92,19 +94,52 @@ public class RegistrationUserController extends VacoomProtocol {
             } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("registration"));
             ErrorMsg t = new ErrorMsg();
 
-            if( t.registration()==0 )
+            if( t.registration(false)==0 )
             {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        System.out.println("[Клиент] Пользователь зареган. Можно открывать новое окно");
-                        parent.toStartPage();
-                        //parent.toStartPages();
+                System.out.println("[Клиент] Пользователь зареган. Можно открывать новое окно");
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("registration");
+
+
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(authorizationUser(user_login.getText(),new SHA256Class().getSHA256(password.getText())));
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
+                // loginXML.getChildren().add(qrCheck);
+
+                new Thread(() -> {
+
+                    do {
+                        try {
+                            Thread.sleep(400);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("authorization"));
+                    ErrorMsg t1 = new ErrorMsg();
+                    if( t1.checkLogin(false)==0 )
+                    {
+                        ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("authorization");
+
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                if(parent.getParents() instanceof RegistrationController)
+                                {
+                                    RegistrationController back = (RegistrationController) parent.getParents();
+                                    try {
+                                        back.parents.getParents().loadWorkArea(user_login.getText(),false);
+                                        System.out.println("[Клиент] Успешная регистрация. Открытие нового окна");
+
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        });
 
                     }
-                });
+
+                }).start();
             }
-            ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("registration");
 
 
         }).start();

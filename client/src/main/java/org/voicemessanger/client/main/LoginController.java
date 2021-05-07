@@ -150,7 +150,7 @@ public class LoginController extends VacoomProtocol {
                 }
             } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("authorization"));
             ErrorMsg t = new ErrorMsg();
-            if( t.checkLogin()==0 )
+            if( t.checkLogin(true)==0 )
             {
                 Platform.runLater(new Runnable() {
                     @Override

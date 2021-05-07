@@ -48,13 +48,14 @@ public class ErrorMsg {
         return 1;
     }
 
-    public int checkLogin()
+    public int checkLogin(boolean needSay)
     {
         switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("authorization")) {
             case 1:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка отправки","Не удалось отправить код регистрации");
                 return 1;
             case 0:
+                if(needSay)
                 showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Отправка кода подтверждения","На Ваш email выслан код подтверждения действия");
                 return 0;
         }
@@ -95,13 +96,14 @@ public class ErrorMsg {
         return 1;
     }
 
-    public int registration()
+    public int registration(boolean isView)
     {
         switch (ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().get("registration")) {
             case 1:
                 showErrorWindow(Alert.AlertType.ERROR,"Ошибка","Ошибка регистрации","Пользователь с таким логином уже существует. Выберите другой логин.");
                 return 1;
             case 0:
+                if(isView)
                 showErrorWindow(Alert.AlertType.INFORMATION,"Успех","Регистрация","Поздравляем! Вы успешно зарегистрированы");
                 return 0;
         }

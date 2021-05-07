@@ -227,8 +227,11 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
             }
             case"registration":
             {
-                if (registrationUser(commands[4], commands[5], commands[6]))
+                if (registrationUser(commands[4], commands[5], commands[6])) {
+                    //USER_NAME =  commands[5];
+                    //System.out.println("На сервере теперь "+ USER_NAME);;
                     return sendAnswer(commands[3], "ok");
+                }
                 else
                     return sendAnswer(commands[3], "error_user");
             }
@@ -261,10 +264,14 @@ public class ParseServerVacoomProtocol extends DatabaseLogic {
             }
             case"getFriend":
             {
+                System.out.println("[Сервер] Запрос друзей у сервера" + USER_NAME);
                 if(!commands[4].equals(USER_NAME)) return sendAnswer(commands[3], "error");
                 FriendsHelper friend = new FriendsHelper();
+                System.out.println("[Сервер] Начинаю поиск друзей");
                 if (getFriend(commands[4], friend)) {
-                    if(friend.getFriend_name().get(0)==null) return sendAnswer(commands[3], "noFriend");
+                    if(friend.getFriend_name()==null||
+                            friend.getFriend_name().size()==0)
+                        return sendAnswer(commands[3], "noFriend");
                     return serverVacoomProtocol.sendAnswerFriends( friend.getFriend_name(), friend.getStatus(), friend.getStatusOnline(),friend.getAvatars());
                 } else return sendAnswer(commands[3], "error");
             }

@@ -78,6 +78,9 @@ public class QrCheckController extends VacoomProtocol {
         parents = refreshing;
     }
 
+    public Object getParents() {
+        return parents;
+    }
 
     public void setNode (QrCheckController qr)
     {

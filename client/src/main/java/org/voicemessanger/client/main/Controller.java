@@ -261,6 +261,8 @@ public class Controller extends VacoomProtocol {
 
 
         userName.setText(userNameString);
+        startCallButton.setDisable(true);
+
 /*
          URL url = new URL("https://api.multiavatar.com/"+userNameString+".png");
         uc = url.openConnection();
