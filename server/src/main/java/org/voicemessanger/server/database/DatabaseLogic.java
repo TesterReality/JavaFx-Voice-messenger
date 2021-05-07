@@ -3,7 +3,6 @@ package org.voicemessanger.server.database;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.voicemessanger.server.main.CloudinaryConfig;
 import org.voicemessanger.server.main.FriendsHelper;
 import org.voicemessanger.server.main.ImageTransformer;
@@ -28,41 +27,27 @@ public class DatabaseLogic {
     Statement stmt;
     ResultSet rs;
     String sql;
-
+    DatabaseConnection databaseConnection;
 
     public DatabaseLogic() {
         try {
-            refreshConnect();
-            stmt = SingletonDatabaseConnection.getInstance().getConnection().createStatement();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
+            
+            databaseConnection = new DatabaseConnection();
+            stmt = databaseConnection. getDBConnection().createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void refreshConnect() {
-        try {
-            SingletonDatabaseConnection.getInstance().getDBConnection();
-            stmt = SingletonDatabaseConnection.getInstance().getConnection().createStatement();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+  
 
     public boolean addCodeAnonymusDatabase(String code, String mail) throws NoSuchPaddingException, NoSuchAlgorithmException {
         try {
-            refreshConnect();
+            
             rs = stmt.executeQuery("SELECT * FROM activated_unregister");
             while (rs.next()) {
                 if (rs.getString("email").equals(mail)) {
-                    try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+                    try (Connection conn = databaseConnection. getDBConnection()) {
                         CallableStatement cstmt = conn.prepareCall("{? = CALL del_repeat_unregister_code}");
                         cstmt.setString(1, mail);
                         cstmt.executeUpdate();
@@ -71,8 +56,8 @@ public class DatabaseLogic {
                     }
                 }
             }
-            refreshConnect();
-            try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+            
+            try (Connection conn = databaseConnection. getDBConnection()) {
                 CallableStatement cstmt = conn.prepareCall("{? = CALL test(?)}");
                 cstmt.setString(1, mail);
                 cstmt.setString(2, code);
@@ -84,167 +69,140 @@ public class DatabaseLogic {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // refreshConnect();
-        // SingletonDatabaseConnection.getInstance().closeConncetion();
+        // 
+        // DatabaseConnection.getInstance().closeConncetion();
         return true;
     }
 
     /*Вернет true если в таблице незарегестрированных пользователей код соответствует нужному мейлу*/
     public boolean checkUserUnregisterCode(String code, String mail) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+        
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode(?)}");
             cstmt.setString(1, mail);
             cstmt.setString(2, code);
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean isOk = cstmt.getBoolean(1);
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return isOk;
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+        } 
         return false;
     }
 
     public boolean checkMailIsUnregister(String mail)
             throws NoSuchPaddingException, NoSuchAlgorithmException {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+        
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL check_mail_unregister}");
             cstmt.setString(1, mail);
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
+
             boolean canRegisterThisMail = cstmt.getBoolean(1);
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             if (canRegisterThisMail) return true;
             else return false;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return false;
     }
 
     public boolean checkUserCode(String code, String mail) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode(?)}");
             cstmt.setString(1, mail);
             cstmt.setString(2, code);
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.executeUpdate();
             String answer = cstmt.getString(1);
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             if (answer == null) return false;
             if (answer.equals(code)) return true;
             else return false;
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
         }
         return false;
     }
 
     public boolean checkUserActivatedMailCode(String code, String mail) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode_active_mail(?)}");
             cstmt.setString(1, mail);
             cstmt.setString(2, code);
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean isCodeEquals = cstmt.getBoolean(1);
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return isCodeEquals;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return false;
     }
 
     public boolean checkUserActivatedCode(String code, String login) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL checkcode_activated(?)}");
             cstmt.setString(1, login);
             cstmt.setString(2, code);
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean isCodeEquals = cstmt.getBoolean(1);
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             if (isCodeEquals) return true;
             else return false;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return false;
     }
 
     public String getAvatarFromUsername(String username) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL get_img_url_login}");
             cstmt.setString(1, username);
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.executeUpdate();
             String answer = cstmt.getString(1);
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             if (answer == null) return "default";
             if (answer.equals("")) return "default";
             return answer;
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
         }
         return "default";
     }
 
     public boolean checkUser(String login, String pswd) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL checkUser(?)}");
             cstmt.setString(1, login);
             cstmt.setString(2, pswd);
             cstmt.registerOutParameter(1, Types.BOOLEAN);
             cstmt.execute();
             boolean ok = cstmt.getBoolean(1);
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             if (ok) return true;
             else return false;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return false;
@@ -252,9 +210,9 @@ public class DatabaseLogic {
 
     /*
         public boolean getFriend(String login, FriendsList fl) {
-            refreshConnect();
-            try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
-                PreparedStatement ps = SingletonDatabaseConnection.getInstance().getDBConnection().prepareStatement(" SELECT id_friend,status FROM contacts WHERE id_user = ( SELECT id_user FROM users WHERE user_name=?)");
+
+            try (Connection conn = databaseConnection. getDBConnection()) {
+                PreparedStatement ps = DatabaseConnection.getInstance().getDBConnection().prepareStatement(" SELECT id_friend,status FROM contacts WHERE id_user = ( SELECT id_user FROM users WHERE user_name=?)");
                 ps.setString(1, login);
                 ArrayList<Integer> id_friend = new ArrayList<Integer>();
                 ArrayList<String> status = new ArrayList<String>();
@@ -267,7 +225,7 @@ public class DatabaseLogic {
                 }
                 int i = 0;
                 do {
-                    PreparedStatement ps1 = SingletonDatabaseConnection.getInstance().
+                    PreparedStatement ps1 = DatabaseConnection.getInstance().
                             getDBConnection().prepareStatement(" SELECT user_name FROM users WHERE id_user = ?");
                     ps1.setInt(1, id_friend.get(i));
                     rs = ps1.executeQuery();
@@ -303,23 +261,19 @@ public class DatabaseLogic {
 
     */
     public boolean setOnline(String login) {
-        refreshConnect();
 
 
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL update_online}");
             cstmt.setString(1, login);
             cstmt.execute();
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+        }catch (Exception e) {
             return false;
         }
         return false;
@@ -327,50 +281,42 @@ public class DatabaseLogic {
 
 
     public boolean changePswd(String login, String newPswd) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL update_user_pswd (?)}");
             cstmt.setString(1, login);
             cstmt.setString(2, newPswd);
             cstmt.execute();
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return false;
     }
 
     public String getUserLoginFromMail(String mail) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL get_user_login_from_mail}");
             cstmt.setString(1, mail);
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.executeUpdate();
             String answer = cstmt.getString(1);
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return answer;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return "";
     }
 
     public boolean updateFriendStatus(String userName, String friendName, byte statusFrom, byte StatusTO) {
-        refreshConnect();
+
         try {
-            Connection conn = SingletonDatabaseConnection.getInstance().getConnection();
+            Connection conn = databaseConnection. getDBConnection();
             CallableStatement cstmt = conn.prepareCall("{?= CALL addFriendRequest(?,?,?) }");
             cstmt.setString(1, userName);
             cstmt.setString(2, friendName);
@@ -379,24 +325,20 @@ public class DatabaseLogic {
             cstmt.execute();
             cstmt.close();
             conn.close();
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
 
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
         }
         return false;
     }
 
     public boolean friendManipulator(String userName, String friendName, byte status) {
-        refreshConnect();
+
         try {
-            Connection conn = SingletonDatabaseConnection.getInstance().getConnection();
+            Connection conn = databaseConnection. getDBConnection();
             CallableStatement cstmt = conn.prepareCall("{?= CALL addfriend(?,?) }");
             cstmt.setString(1, userName);
             cstmt.setString(2, friendName);
@@ -404,14 +346,10 @@ public class DatabaseLogic {
             cstmt.execute();
             cstmt.close();
             conn.close();
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return false;
@@ -423,8 +361,8 @@ public class DatabaseLogic {
         ArrayList<String> status = new ArrayList<String>();
         ArrayList<Boolean> statusOnline = new ArrayList<>();
         int idUser;
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL searchnewuser}");
             cstmt.setString(1, name);
             rs = cstmt.executeQuery();
@@ -487,8 +425,8 @@ public class DatabaseLogic {
 */
 
     public boolean changeAvatar(String login, String newAvatar) {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
 
             Map configImg = new HashMap();
             CloudinaryConfig confCloud = new CloudinaryConfig();
@@ -512,14 +450,10 @@ public class DatabaseLogic {
             cstmt.setString(1, login);
             cstmt.setString(2, newAvatar);
             cstmt.execute();
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -546,25 +480,21 @@ public class DatabaseLogic {
             e.printStackTrace();
             return false;
         }
-        refreshConnect();
+
         System.out.println("Генерирую аватрку для человека с ником " + login);
         System.out.println("URL: " + load_img_info.get("public_id"));
 
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL insert_img_url_login(?)}");
             cstmt.setString(1, login);
             cstmt.setString(2, (String) load_img_info.get("public_id"));
             cstmt.execute();
-            // SingletonDatabaseConnection.getInstance().closeConncetion();
+            // DatabaseConnection.getInstance().closeConncetion();
 
             System.out.println("Аватарка была добавлена, возвращаю ТРУ");
 
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return false;
@@ -596,9 +526,9 @@ public class DatabaseLogic {
     }
 
     public boolean registrationUser(String code, String login, String pswd) {
-        refreshConnect();
 
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
 
             CallableStatement cstmt = conn.prepareCall("{? = CALL check_free_username}");
             cstmt.setString(1, login);
@@ -640,29 +570,24 @@ public class DatabaseLogic {
             cstmt.execute();
 
             createFirstAvatar(login);
-            // SingletonDatabaseConnection.getInstance().closeConncetion();
+            // DatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
         }
-        return false;
     }
 
     public String checkLogin(String login) throws NoSuchPaddingException, NoSuchAlgorithmException {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL get_user_mail_from_login}");
             cstmt.setString(1, login);
             cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.execute();
             String user_mail = cstmt.getString(1);
-            // SingletonDatabaseConnection.getInstance().closeConncetion();
+            // DatabaseConnection.getInstance().closeConncetion();
 
             if (user_mail == null) return "";
             return user_mail;
@@ -673,13 +598,13 @@ public class DatabaseLogic {
     }
 
     public boolean upadteCodeActivated(String mail, String code) throws NoSuchPaddingException, NoSuchAlgorithmException {
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             CallableStatement cstmt = conn.prepareCall("{? = CALL update_code_activated(?)}");
             cstmt.setString(1, mail);
             cstmt.setString(2, code);
             cstmt.execute();
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
@@ -690,8 +615,8 @@ public class DatabaseLogic {
 
     public boolean getFriend(String login, FriendsHelper frh) {
         System.out.println("[Сервер] Получаю друзей из БД");
-        refreshConnect();
-        try (Connection conn = SingletonDatabaseConnection.getInstance().getConnection()) {
+
+        try (Connection conn = databaseConnection. getDBConnection()) {
             PreparedStatement ps = conn.prepareStatement(" SELECT id_friend,status FROM contacts WHERE id_user = ( SELECT id_user FROM users WHERE user_name=?)");
             ps.setString(1, login);
             ArrayList<Integer> id_friend = new ArrayList<Integer>();
@@ -719,8 +644,8 @@ public class DatabaseLogic {
                     i++;
                 } while (i < id_friend.size());
                 i = 0;
-                refreshConnect();
-                Connection conn1 = SingletonDatabaseConnection.getInstance().getConnection();
+
+                Connection conn1 = databaseConnection. getDBConnection();
                 CallableStatement cstmt = conn1.prepareCall("{? = CALL user_now_is_online}");
                 do {
                     cstmt.setString(1, name_friends.get(i));
@@ -749,14 +674,10 @@ public class DatabaseLogic {
                 frh.setAvatars(imgFriend);
                 conn1.close();
             }
-            //SingletonDatabaseConnection.getInstance().closeConncetion();
+            //DatabaseConnection.getInstance().closeConncetion();
 
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();

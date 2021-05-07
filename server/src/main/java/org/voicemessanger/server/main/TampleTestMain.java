@@ -1,7 +1,6 @@
 package org.voicemessanger.server.main;
 
 import com.sun.mail.smtp.SMTPTransport;
-import org.voicemessanger.server.database.DatabaseLogic;
 import org.voicemessanger.server.database.DatabaseUser;
 import org.voicemessanger.server.mail.MailUser;
 import org.voicemessanger.server.qrcodegenerator.QRgenerate;

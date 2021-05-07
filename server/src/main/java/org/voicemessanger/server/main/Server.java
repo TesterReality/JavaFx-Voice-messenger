@@ -19,6 +19,7 @@ public class Server extends Thread {
     private String TEMPL_CONN =
             "The client '%d' closed the connection";
 
+    boolean isActive = true;
     private Socket socket;
     private static int num;
     private byte[] inputMsg;
@@ -116,7 +117,7 @@ public class Server extends Thread {
         this.socket = socket;
         setDaemon(true);
         setPriority(NORM_PRIORITY);
-        start();
+       // start();
     }
 /*
     public void sendMsgNow(String msg) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
@@ -142,7 +143,15 @@ public class Server extends Thread {
 
             parseServerVacoomProtocol = new ParseServerVacoomProtocol(thisObj);
             String line = null;
-            while (true) {
+            //Как только сервер смог принять на обработку пользователя. Он просто отправляем ему сообщение
+            //которое чисто символическое и означает что мы готовы с ним общаться
+            System.out.println("Сервер принял нового клиента");
+
+            outputMsg = String.valueOf("ready").getBytes(); //Сервер отправляет клиенту свой публичный DH (DH2)
+            dos.writeInt(outputMsg.length);
+            dos.write(outputMsg, 0, outputMsg.length);
+
+            while (isActive) {
                 if (sin.available() > 0) { //если есть что считывать
                     System.out.println("[Пришли данные от клиента]:");
                     int num = dis.readInt();
@@ -254,7 +263,13 @@ public class Server extends Thread {
             }
 
         }
-        catch (Exception e) {
+        catch (SocketException e)
+        {
+            System.out.println("[СЕРВЕР] Клиент отключился");
+            userThreadDel();
+            this.interrupt();
+            isActive=false;
+        } catch (Exception e) {
             System.out.println("ЭТО В ПОТОКЕ ГДЕ ЧИТАЮ : " + e);
         }
     }
@@ -273,6 +288,8 @@ public class Server extends Thread {
             System.out.println("[СЕРВЕР] Клиент отключился");
             userThreadDel();
             this.interrupt();
+            isActive=false;
+
         }
         catch (IOException e) {
             System.out.println("[СЕРВЕР] Ошибка отправки сообщения");

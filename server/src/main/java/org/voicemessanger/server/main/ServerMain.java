@@ -21,12 +21,15 @@ public class ServerMain {
           /*  SingletonServerCryproRSA.getInstance().firstRun();
             SingletonServerCryproRSA.getInstance().generateKeys();
             try {
-                SingletonDatabaseConnection.getInstance().getDBConnection();
+                DatabaseConnection.getInstance().getDBConnection();
             } catch (Exception e) {
                 e.printStackTrace();
 
                 System.exit(0);
             }*/
+
+
+          /*
             try {
                 int i = 0; // Счётчик подключений
                 // Подключение сокета к localhost
@@ -50,7 +53,17 @@ public class ServerMain {
                 }
             } catch (Exception e) {
                 System.out.println("Exception : " + e);
+            }*/
+
+              ThreadPoolServer server = new ThreadPoolServer(30003);
+              Thread myServ = new Thread(server);
+              myServ.start();
+             try {
+                myServ.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
         } finally {
             try {
                 if (srvSocket != null)
@@ -60,5 +73,8 @@ public class ServerMain {
             }
         }
         System.exit(0);
+
+
+
     }
 }

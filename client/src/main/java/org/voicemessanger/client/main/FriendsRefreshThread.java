@@ -60,13 +60,13 @@ public class FriendsRefreshThread extends Thread {
             String lastFriendStr = "";
 
             do {
-                Thread.sleep(5000);
+                Thread.sleep(10*1000);
 
                 ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(getFriend(USER_NAME));
                 ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
                 do {
                     try {
-                        Thread.sleep(300);
+                        Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

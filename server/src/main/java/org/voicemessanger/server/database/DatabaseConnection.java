@@ -5,37 +5,34 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.concurrent.Executors;
 
 
-public class SingletonDatabaseConnection {
+public class DatabaseConnection {
    // static final String DB_URL = "jdbc:postgresql://127.0.0.1:5432/vacoommessanger";
     static String DB_URL = "";
 
     static String USER = "";
     static String PASS = "";
     Connection connection = null;
-    private static SingletonDatabaseConnection instance;
+
 
     public  Connection getConnection() {
         return connection;
+    }
+
+    public DatabaseConnection() {
+        DatabaseUser databaseUser = new DatabaseUser();
+        USER = databaseUser.getUSER();
+        PASS = databaseUser.getPASS();
+        DB_URL=databaseUser.getDB_URL();
+
     }
 
     public  void setConnection(Connection connection) {
         this.connection = connection;
     }
 
-    public static SingletonDatabaseConnection getInstance() throws NoSuchAlgorithmException,
-            NoSuchPaddingException {
-        if(instance == null){
-
-            instance = new SingletonDatabaseConnection();
-            DatabaseUser databaseUser = new DatabaseUser();
-            USER = databaseUser.getUSER();
-            PASS = databaseUser.getPASS();
-            DB_URL=databaseUser.getDB_URL();
-        }
-        return instance;
-    }
 
     public Connection getDBConnection() {
         if(connection !=null)
@@ -53,6 +50,9 @@ public class SingletonDatabaseConnection {
         }
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            //connection.setNetworkTimeout();
+            connection.setNetworkTimeout(Executors.newFixedThreadPool(10), 60*1000);
 
             return connection;
         } catch (SQLException e) {

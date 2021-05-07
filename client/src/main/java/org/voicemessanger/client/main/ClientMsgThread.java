@@ -44,7 +44,7 @@ public class ClientMsgThread extends Thread {
     private volatile boolean userLogin = false;//пользлватель зашел?
     private volatile String user_name = "";
     private int sec = 30;// каждые 30 сек отправляем статус онлайн
-
+    private boolean isCanConnceted =false;//Сервер дал знать о том, что он может с нами связаться?
 
     private boolean isDHFully = false; // значит что нет полной пары ключей DH
     private DH diffie;
@@ -166,8 +166,8 @@ public class ClientMsgThread extends Thread {
    // private static final String localhost = "localhost";
 
     private static final int serverPort = 30003;
-    private static final String localhost = "94.228.117.231";
-    //private static final String localhost = "localhost";
+    //private static final String localhost = "94.228.117.231";
+    private static final String localhost = "localhost";
 
     public boolean starting() {
 
@@ -205,7 +205,7 @@ public class ClientMsgThread extends Thread {
                     in = new DataInputStream(sin);
                     out = new DataOutputStream(sout);
                     sha256Class = new SHA256Class();
-                    sendDHStartKey();
+                    //sendDHStartKey();
                 } catch (Exception e) {
                     return false;
                 }
@@ -333,6 +333,11 @@ public class ClientMsgThread extends Thread {
 
                             if (!isDHFully)//если ключи не были получены от сервера
                             {
+                                if(!isCanConnceted)
+                                {
+                                    sendDHStartKey();
+                                    isCanConnceted=true;
+                                }else
                                 if (!firstStep) { //якобы первый шаг. Означает что отправили хеш DH, но не отправили сам ключ
                                     //  isDHFully = true;
                                     diffie.setPublicB(new BigInteger(msgFromServer));
@@ -399,7 +404,13 @@ public class ClientMsgThread extends Thread {
 
 
                         }
-                    } catch (IOException e) {
+                    }
+                    catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Сервер прекратил с нами связь");
+                        e.printStackTrace();
+                        System.exit(-2);
+                    }
+                    catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else {
