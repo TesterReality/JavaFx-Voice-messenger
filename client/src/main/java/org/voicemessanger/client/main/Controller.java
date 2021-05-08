@@ -303,7 +303,9 @@ public class Controller extends VacoomProtocol {
       //  InputStream input = uc.getInputStream();
 
       //  BufferedImage img = ImageIO.read(uc.getInputStream());
-        /*
+
+        //локальный тест локалка
+
         do {
             try {
                 Thread.sleep(400);
@@ -312,14 +314,14 @@ public class Controller extends VacoomProtocol {
             }
         } while (!ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().containsKey("authorization"));
         ErrorMsg t = new ErrorMsg();
-        if( t.checkLogin()!=0 )
+        if( t.checkLogin(false)!=0 )
         {
 
             System.out.println("error");
             //System.exit(-2);
         }
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().getStatesProtocol().remove("authorization");
-*/
+
         /*Получаем друзей*/
         getFriendThread();
 

@@ -142,6 +142,7 @@ public class ClientParseProtocol extends VacoomProtocol {
             }
             case "DHstatus":
             {
+                System.out.println("При приеме протокола поняли что это DHstatus");
                 CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
                 CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
                 break;
@@ -155,6 +156,12 @@ public class ClientParseProtocol extends VacoomProtocol {
                        newCall(protocolMsg.get("friend"),protocolMsg.get("login"),false);
                     }
                 });
+            }
+            case "stopCall":
+            {
+                CallingAnswerSaver callingAnswer = new CallingAnswerSaver(protocolMsg.get("login"),lastRequest);
+                CallingAnswerSaver.callingAnswerSavers.add(callingAnswer);
+                break;
             }
             case "default":
                 break;

@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.voicemessanger.client.clientxmlporocol.VacoomProtocol;
 
 public class VoiceCallController {
     public AnchorPane stageWindow;
@@ -133,16 +134,29 @@ public class VoiceCallController {
     private void stopCall()
     {
         Stage stage = (Stage) Exit.getScene().getWindow();
+        VacoomProtocol protocol = new VacoomProtocol();
         if(callingParent!=null)
         {
+
+            System.out.println("Отправил собще о том, что я завершил звонок другу");
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.stopCall("set",callingParent.getUserName(),srtingFriendName));
+
             callingParent.setCalling(false);
             callingParent.stopCalling();
         }
         if(receivingParent!=null)
         {
+            System.out.println("Отправил собще о том, что я завершил звонок инициатору");
+            ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.stopCall("set",receivingParent.getMyLogin(),srtingFriendName));
             receivingParent.setCalling(false);
             receivingParent.stopCalling();
         }
+        timer.stopTimer();
+        stage.close();
+    }
+    public void closeWin()
+    {
+        Stage stage = (Stage) Exit.getScene().getWindow();
         timer.stopTimer();
         stage.close();
     }

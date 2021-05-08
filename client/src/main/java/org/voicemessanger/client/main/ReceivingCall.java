@@ -1,7 +1,6 @@
 package org.voicemessanger.client.main;
 
 
-
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +42,7 @@ public class ReceivingCall extends Thread {
     private DHReceiving dhReceiving;
     int Port;
     DatagramSocket s = null;
-    private  int BUFFER_SIZE = 1000;
+    private int BUFFER_SIZE = 1000;
     private AudioFormat AUDIO_FORMAT = new AudioFormat(8000.0f, 16, 1, true, true);
     InetAddress addrFriend;
     private volatile FloatControl gainControl;
@@ -51,21 +50,25 @@ public class ReceivingCall extends Thread {
     private volatile SourceDataLine audioOutputStream;
 
     private SmileCreater smileCreater;
-    private volatile boolean isCalling=true;
+    private volatile boolean isCalling = true;
+    private volatile boolean isAnswer = false;
+
     private Thread voiceThread;
     private Thread soundThread;
+    private Thread stopWaitingThred;
+    private VoiceCallController voiceCallController;
 
     public ReceivingCall() {
     }
 
-    public ReceivingCall(String loginFriend, String ip, String portUserUDP,String myLogin) {
+    public ReceivingCall(String loginFriend, String ip, String portUserUDP, String myLogin) {
         this.loginFriend = loginFriend;
         this.ip = ip;
-        this.FriendPort =Integer.parseInt(portUserUDP);
+        this.FriendPort = Integer.parseInt(portUserUDP);
         this.myLogin = myLogin;
         protocol = new VacoomProtocol();
         protocolMsg = new HashMap<>();
-        smileCreater= ThreadClientInfoSingleton.getInstance().getSmileCreater();
+        smileCreater = ThreadClientInfoSingleton.getInstance().getSmileCreater();
         this.start();
     }
 
@@ -73,35 +76,43 @@ public class ReceivingCall extends Thread {
         return isCalling;
     }
 
+    public String getMyLogin() {
+        return myLogin;
+    }
+
     public void setCalling(boolean calling) {
         isCalling = calling;
     }
 
-    private void waitAnswer()
-    {
-        boolean isAnswer = false;
+    private void waitAnswer() {
         try {
             CallingAnswerSaver answer = null;
             do {
                 sleep(333);
 
-                System.out.println("СООБЩЕНИЕ ОТ ДРУГА РАЗМЕР:"+CallingAnswerSaver.callingAnswerSavers.size());
+                if (!isAnswer) {
+                    System.out.println("СООБЩЕНИЕ ОТ ДРУГА РАЗМЕР:" + CallingAnswerSaver.callingAnswerSavers.size());
 
-                for (int i = 0; i < CallingAnswerSaver.callingAnswerSavers.size(); i++) {
-                    answer = CallingAnswerSaver.callingAnswerSavers.get(i);
-                    System.out.println("КТО ПРИСЛАЛ СООБЩЕНИЕ:" + answer.getFriendLogin());
-                    System.out.println("Кого ждем :" + loginFriend);
+                    for (int i = 0; i < CallingAnswerSaver.callingAnswerSavers.size(); i++) {
+                        answer = CallingAnswerSaver.callingAnswerSavers.get(i);
+                        System.out.println("КТО ПРИСЛАЛ СООБЩЕНИЕ:" + answer.getFriendLogin());
+                        System.out.println("Кого ждем :" + loginFriend);
 
-                    if (answer.getFriendLogin().equals(loginFriend)) {
-                        isAnswer = true;
-                        answerFriend = CallingAnswerSaver.callingAnswerSavers.get(i).getFrinedAnswer();
-                        parseRequest(answerFriend);
-                        CallingAnswerSaver.callingAnswerSavers.remove(i);
+                        if (answer.getFriendLogin().equals(loginFriend)) {
+
+                            answerFriend = CallingAnswerSaver.callingAnswerSavers.get(i).getFrinedAnswer();
+                            parseRequest(answerFriend);
+
+                            if(!isAnswer)
+                            CallingAnswerSaver.callingAnswerSavers.remove(i);
+
+                            isAnswer = true;
+                        }
                     }
                 }
             } while (!isAnswer);
-        }catch (InterruptedException ie)
-        {
+            isAnswer=false;
+        } catch (InterruptedException ie) {
             ie.printStackTrace();
         }
     }
@@ -121,7 +132,7 @@ public class ReceivingCall extends Thread {
             Port = clientUDPAccess.getPorts();
         } while (Port == -1);
 
-        //myIp = "localhost";
+        myIp = "localhost";
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.startCall("result", myLogin, loginFriend, myIp, String.valueOf(Port)));
         ThreadClientInfoSingleton.getInstance().getClientMsgThread().setNeedSend(true);
         System.out.println("[КЛИЕНТ] ОТВЕТИЛ на startCall");
@@ -132,6 +143,13 @@ public class ReceivingCall extends Thread {
         waitAnswer();//Ждем публичный ключ DH
 
         waitAnswer();// Ждем подтверждения DH
+        waitAnswer();// Ожидаем сообщение о том, что все верно
+
+        stopWaitingThred = new Thread(
+                this::waitAnswer,
+                "waitStopThread");//ждем ответ о том, что другой завершил звонок
+        stopWaitingThred.start();
+
 
 /*
         try {
@@ -155,9 +173,10 @@ public class ReceivingCall extends Thread {
             e.printStackTrace();
         }*/
     }
+
     public void parseRequest(String request) {
-        int howNeedString =0;
-        int howNeeds =0;
+        int howNeedString = 0;
+        int howNeeds = 0;
 
         String[] strings1;
         String[] strings2;
@@ -197,29 +216,27 @@ public class ReceivingCall extends Thread {
             strings2[numOfNow1++] = m1.group(0);
         }
 
-        if(protocolMsg.size()>0)
+        if (protocolMsg.size() > 0)
             protocolMsg.clear();
 
-        for (int i=0; i<strings1.length;i++)
-        {
-            protocolMsg.put(strings2[i],strings1[i]);
+        for (int i = 0; i < strings1.length; i++) {
+            protocolMsg.put(strings2[i], strings1[i]);
         }
 
         parseAnswerAccessUDP(strings1);
     }
+
     private void parseAnswerAccessUDP(String[] commands) {
         switch (protocolMsg.get("actionClient"))//содержит код запроса
         {
-            case "sendKey":
-            {
+            case "sendKey": {
                 System.out.println("[КЛИЕНТ] ОТВЕТИЛ на sendKey");
                 myKey = new RandomString().randomString(12);
                 friendKey = protocolMsg.get("key");
-                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.sendKeyFriend("result",myLogin,loginFriend,myKey));
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.sendKeyFriend("result", myLogin, loginFriend, myKey));
                 break;
             }
-            case "firstDH":
-            {
+            case "firstDH": {
                 System.out.println("Иниициатор прислал ключи firstDH");
                 sha256DH1 = protocolMsg.get("hash");
                 System.out.println("SHA256(DH1): " + sha256DH1);
@@ -230,31 +247,28 @@ public class ReceivingCall extends Thread {
                     e.printStackTrace();
                     System.out.println("Ошибка ключей DH принимающего. Невозможно установить присланные ключи");
                 }
-                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.clientDHstart("result",myLogin,loginFriend,null,null,null,String.valueOf( dhReceiving.getPublicB())));
+                ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.clientDHstart("result", myLogin, loginFriend, null, null, null, String.valueOf(dhReceiving.getPublicB())));
                 break;
             }
-            case "publicDH":
-            {
+            case "publicDH": {
                 System.out.println("publicDH Проверяет подлинность DH1 ");
-                if (dhReceiving.setPublicA(new BigInteger(protocolMsg.get("public")),sha256DH1))
-                {
+                if (dhReceiving.setPublicA(new BigInteger(protocolMsg.get("public")), sha256DH1)) {
                     String halfSharedkeyBytes = dhReceiving.getSHA256(dhReceiving.getSharedKeyB().toString());
-                    System.out.println("[КЛИЕНТ] SHA256(общий ключ) ="+ halfSharedkeyBytes);
-                    halfSharedkeyBytes = halfSharedkeyBytes.substring(0,halfSharedkeyBytes.length()/2);
-                    System.out.println("[КЛИЕНТ] SHA256(общий ключ)/2 ="+ halfSharedkeyBytes);
+                    System.out.println("[КЛИЕНТ] SHA256(общий ключ) =" + halfSharedkeyBytes);
+                    halfSharedkeyBytes = halfSharedkeyBytes.substring(0, halfSharedkeyBytes.length() / 2);
+                    System.out.println("[КЛИЕНТ] SHA256(общий ключ)/2 =" + halfSharedkeyBytes);
                     System.out.println("Отправили половину общего секрета");
-                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.halfDHhash("set",myLogin,loginFriend,halfSharedkeyBytes));
+                    ThreadClientInfoSingleton.getInstance().getClientMsgThread().setProtocolMsg(protocol.halfDHhash("set", myLogin, loginFriend, halfSharedkeyBytes));
 
                 }
                 break;
             }
-            case "DHstatus":
-            {
+            case "DHstatus": {
+                System.out.println("Распознал DHstatus");
                 String status = protocolMsg.get("status");
-                switch (status)
-                {
-                    case "ok":
-                    {
+                System.out.println(status);
+                switch (status) {
+                    case "ok": {
                         startVoiceUDP();
                         break;
                     }
@@ -266,61 +280,94 @@ public class ReceivingCall extends Thread {
 
                 break;
             }
+            case "stopCall": {
+                if(s==null)
+                {
+                    if (isAnswer)
+                    {
+                        CallingAnswerSaver.callingAnswerSavers.remove( CallingAnswerSaver.callingAnswerSavers.size()-2);
+                    }
+                    break;
+                }
+                System.out.println("Завершаем звонок");
+                try {
+                    stopWaitingThred.interrupt();
+                }catch (NullPointerException npe)
+                {
+                    npe.getMessage();
+                }
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        voiceCallController.closeWin();
+                    }
+                });
+
+                setCalling(false);
+                stopCalling();
+                this.interrupt();
+                break;
+            }
             case "default":
                 break;
         }
     }
 
-    public void startVoiceUDP()
-    {
-        String voiceKey =keyManipulation();
+    public void startVoiceUDP() {
+
+        String voiceKey = keyManipulation();
         startVoice();
     }
 
-    public String keyManipulation()
-    {
+    public String keyManipulation() {
         String secretKey1 = "NaN";
         try {
             //добавлю ключи (keyBob keyAlice) в локальную бд
-            LocalDbHandler.getInstance().addVoiceKey(myKey,friendKey,null,null,loginFriend);
+            LocalDbHandler.getInstance().addVoiceKey(myKey, friendKey, null, null, loginFriend);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String newSercertKey = new StringXORer().encode(new StringXORer().encode(dhReceiving.getSharedKeyB().toString(),friendKey),myKey);
+        String newSercertKey = new StringXORer().encode(new StringXORer().encode(dhReceiving.getSharedKeyB().toString(), friendKey), myKey);
         String newSercertKeyHash = new SHA256Class().getSHA256(newSercertKey);
         try {
             //добавлю новый секретный ключ в бд для обеспечения непрерывности ключегового материала
-            LocalDbHandler.getInstance().addNewSecretKey(newSercertKeyHash,loginFriend);
+            LocalDbHandler.getInstance().addNewSecretKey(newSercertKeyHash, loginFriend);
             secretKey1 = LocalDbHandler.getInstance().getSecretKeyOne(loginFriend);
-            if(secretKey1==null)
-            {
+            if (secretKey1 == null) {
                 secretKey1 = " ";
             }
-            if(secretKey1.equals(""))
-            {
+            if (secretKey1.equals("")) {
                 secretKey1 = " ";
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        String newCryptoVoiceKey = new StringXORer().encode(new StringXORer().encode(dhReceiving.getSharedKeyB().toString(),secretKey1),newSercertKeyHash);
+        String newCryptoVoiceKey = new StringXORer().encode(new StringXORer().encode(dhReceiving.getSharedKeyB().toString(), secretKey1), newSercertKeyHash);
         String voiceKey = new SHA256Class().getSHA256(newCryptoVoiceKey);
         System.out.println("VOICE KEY " + voiceKey);
         return voiceKey;
 
     }
-    public void stopCalling()
-    {
-        voiceThread.interrupt();
-        soundThread.interrupt();
+
+    public void stopCalling() {
+        try {
+            voiceThread.interrupt();
+            soundThread.interrupt();
+        }catch (NullPointerException npe)
+        {
+            npe.getMessage();
+        }
         s.disconnect();
         s.close();
+        isAnswer=true;
         System.out.println("Все порты закрыты. Звонок прекращен");
     }
-    private void startVoice()
-    {
-       // InetAddress addrFriend;
+
+    private void startVoice() {
+        // InetAddress addrFriend;
+        System.out.println("Открываю окно звонка");
         try {
             Platform.runLater(new Runnable() {
                 @Override
@@ -333,15 +380,15 @@ public class ReceivingCall extends Thread {
             clientConnection(addrFriend);
 
             Mixer mixer = Mixer.createDefault();
-            String[] inputList= mixer.getInputNameList();
-            String[] outputList= mixer.getOutputNameList();
+            String[] inputList = mixer.getInputNameList();
+            String[] outputList = mixer.getOutputNameList();
 
-            setupAudio(inputList[0],mixer,outputList[1]);
+            setupAudio(inputList[0], mixer, outputList[1]);
 
-           voiceThread= new Thread(this::inputLoop, "Input loop");
-           voiceThread.start();
-           soundThread= new Thread(this::outputLoop, "Output loop");
-           soundThread.start();
+            voiceThread = new Thread(this::inputLoop, "Input loop");
+            voiceThread.start();
+            soundThread = new Thread(this::outputLoop, "Output loop");
+            soundThread.start();
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -351,19 +398,22 @@ public class ReceivingCall extends Thread {
 
 
     }
+
     private void clientConnection(InetAddress addr) throws IOException {
         try {
             s = new DatagramSocket(Port);
             s.send(new DatagramPacket(new byte[0], 0, addr, FriendPort));
-        } catch(SocketException e) {
+        } catch (SocketException e) {
             e.printStackTrace();
         }
     }
-    private void setupAudio(String input,Mixer mixer,String output) {
-        setupInput(input,mixer);
-        setupOutput(output,mixer);
+
+    private void setupAudio(String input, Mixer mixer, String output) {
+        setupInput(input, mixer);
+        setupOutput(output, mixer);
     }
-    private void setupInput(String inputItem,Mixer mixer) {
+
+    private void setupInput(String inputItem, Mixer mixer) {
 
         Line.Info input;
         String inputSelectedName = inputItem;
@@ -375,10 +425,10 @@ public class ReceivingCall extends Thread {
             e.printStackTrace();
         }
     }
-    private void openCallWindow()
-    {
+
+    private void openCallWindow() {
         FXMLLoader loader = new FXMLLoader();
-        VoiceCallController voiceCallController =
+        voiceCallController =
                 new VoiceCallController(loginFriend);
         voiceCallController.setThisNode(voiceCallController);
         voiceCallController.setParent(this);
@@ -415,28 +465,26 @@ public class ReceivingCall extends Thread {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
-    private void createCryptoSmile(VoiceCallController voiceCallController)
-    {
-        String DH1SHA =new SHA256Class().getSHA256(dhReceiving.getPublicA().toString());
-        for (int i=0; i<DH1SHA.length();i+=16)
-        {
-            String smileString = DH1SHA.substring(i, i+16);
+
+    private void createCryptoSmile(VoiceCallController voiceCallController) {
+        String DH1SHA = new SHA256Class().getSHA256(dhReceiving.getPublicA().toString());
+        for (int i = 0; i < DH1SHA.length(); i += 16) {
+            String smileString = DH1SHA.substring(i, i + 16);
             byte[] smileByte = smileString.getBytes();
-            long stringToLong =  bytesToLong(smileByte);;
-            stringToLong = stringToLong%(58*58);
-            int x = (int) (stringToLong%58);
-            int y = (int) (stringToLong/58);
-            System.out.println("Число "+stringToLong +" x="+x + " y="+y);
+            long stringToLong = bytesToLong(smileByte);
+            ;
+            stringToLong = stringToLong % (58 * 58);
+            int x = (int) (stringToLong % 58);
+            int y = (int) (stringToLong / 58);
+            System.out.println("Число " + stringToLong + " x=" + x + " y=" + y);
             Image image;
             try {
                 image = SwingFXUtils.toFXImage(smileCreater.getEmojiFromIndex(x, y), null);
-            }catch (NullPointerException npe)
-            {
+            } catch (NullPointerException npe) {
                 image = SwingFXUtils.toFXImage(smileCreater.getEmojiFromIndex(33, 33), null);
             }
 
-            switch (i)
-            {
+            switch (i) {
                 case 0:
                     voiceCallController.smile0.setImage(image);
                     break;
@@ -452,6 +500,7 @@ public class ReceivingCall extends Thread {
             }
         }
     }
+
     public long bytesToLong(final byte[] b) {
         long result = 0;
         for (int i = 0; i < Long.BYTES; i++) {
@@ -460,7 +509,8 @@ public class ReceivingCall extends Thread {
         }
         return result;
     }
-    private void setupOutput(String outputItem,Mixer mixer) {
+
+    private void setupOutput(String outputItem, Mixer mixer) {
 
         Line.Info output;
         String outputSelectedName = outputItem;
@@ -471,28 +521,31 @@ public class ReceivingCall extends Thread {
             e.printStackTrace();
         }
     }
+
     private void inputLoop() {
-        TargetDataLine currentLine = null;
-        byte[] buffer = new byte[BUFFER_SIZE];
-        boolean wasMuted = false;
-        while (isCalling) {
-            if (currentLine != targetLine) {
-                if (currentLine != null) {
-                    currentLine.stop();
-                    currentLine.drain();
-                    currentLine.close();
-                }
-                currentLine = targetLine;
-                if (currentLine != null) {
-                    try {
-                        currentLine.open(AUDIO_FORMAT);
-                        currentLine.start();
-                    } catch (LineUnavailableException e) {
-                        currentLine = null;
-                        e.printStackTrace();
+        try {
+            TargetDataLine currentLine = null;
+            byte[] buffer = new byte[BUFFER_SIZE];
+            boolean wasMuted = false;
+
+            while (isCalling) {
+                if (currentLine != targetLine) {
+                    if (currentLine != null) {
+                        currentLine.stop();
+                        currentLine.drain();
+                        currentLine.close();
+                    }
+                    currentLine = targetLine;
+                    if (currentLine != null) {
+                        try {
+                            currentLine.open(AUDIO_FORMAT);
+                            currentLine.start();
+                        } catch (LineUnavailableException e) {
+                            currentLine = null;
+                            e.printStackTrace();
+                        }
                     }
                 }
-            }
             /*
             if (wasMuted != muted) {
                 wasMuted = muted;
@@ -505,24 +558,29 @@ public class ReceivingCall extends Thread {
                     }
                 }
             }*/
-            if (currentLine == null) {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else if (!wasMuted) {
-                try {
-                    int total = currentLine.read(buffer, 0, buffer.length);
-                    s.send(new DatagramPacket(buffer, 0, total, addrFriend, FriendPort));
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (currentLine == null) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else if (!wasMuted) {
+                    try {
+                        int total = currentLine.read(buffer, 0, buffer.length);
+                        s.send(new DatagramPacket(buffer, 0, total, addrFriend, FriendPort));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+            System.out.println("Теперь закрываю каналы считывания голоса");
+            currentLine.stop();
+            currentLine.drain();
+            currentLine.close();
+        } catch (Exception e) {
+            System.out.println("Ошибка в потоке голоса");
+            e.printStackTrace();
         }
-        currentLine.stop();
-        currentLine.drain();
-        currentLine.close();
     }
 
     private void outputLoop() {
@@ -572,6 +630,7 @@ public class ReceivingCall extends Thread {
                 }
             }
         }
+        System.out.println("Закрываю каналы прослушивания голоса");
         currentOutput.drain();
         currentOutput.close();
     }

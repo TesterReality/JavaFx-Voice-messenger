@@ -47,8 +47,9 @@ public class CallStartController {
         this.parent = parent;
         thisClass = this;
     }
-    private void waitAnswer()
+    private void waitAnswer()//НЕ ЗАХОДИТ СЮДА????
     {
+        System.err.println("Запустил поток ожидание ответа звонка");
         boolean isAnswer = false;
         try {
             CallingAnswerSaver answer = null;
@@ -58,8 +59,12 @@ public class CallStartController {
                 for (int i = 0; i < CallingAnswerSaver.callingAnswerSavers.size(); i++) {
                     answer = CallingAnswerSaver.callingAnswerSavers.get(i);
                     if (answer.getFriendLogin().equals(friendNameStr)) {
+                        System.err.println("Тут");
+
                         isAnswer = true;
                         String answerFriend = CallingAnswerSaver.callingAnswerSavers.get(i).getFrinedAnswer();
+                        System.err.println(answerFriend);
+
                         parseRequest(answerFriend);
                         CallingAnswerSaver.callingAnswerSavers.remove(i);
                     }
@@ -182,10 +187,12 @@ public class CallStartController {
     }
 
     private void parseAnswerAccessUDP(String[] commands) {
+        boolean isParse = false;
         switch (protocolMsg.get("actionClient"))//содержит код запроса
         {
             case "firstCall":
             {
+                isParse=true;
                 String answer = protocolMsg.get("status");
                 System.out.println("[КЛИЕНТ] Получил ответ firstCall");
                 switch (answer)
@@ -203,6 +210,7 @@ public class CallStartController {
 
                         break;
                     case "cancel":
+                        isParse=true;
                         Stage stage1 = (Stage) Exit.getScene().getWindow();
                         stage1.close();
                         break;
@@ -212,5 +220,10 @@ public class CallStartController {
             case "default":
                 break;
         }
+        if(!isParse) {
+            CallingAnswerSaver.callingAnswerSavers.remove(CallingAnswerSaver.callingAnswerSavers.size() - 1);
+            waitAnswer();
+        }
+
     }
 }
