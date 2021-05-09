@@ -101,7 +101,7 @@ public class ReceivingCall extends Thread {
                         if (answer.getFriendLogin().equals(loginFriend)) {
 
                             answerFriend = CallingAnswerSaver.callingAnswerSavers.get(i).getFrinedAnswer();
-                            parseRequest(answerFriend);
+                            parseRequest(answerFriend,answer);
 
                             if(!isAnswer)
                             CallingAnswerSaver.callingAnswerSavers.remove(i);
@@ -174,7 +174,7 @@ public class ReceivingCall extends Thread {
         }*/
     }
 
-    public void parseRequest(String request) {
+    public void parseRequest(String request, CallingAnswerSaver answer) {
         int howNeedString = 0;
         int howNeeds = 0;
 
@@ -223,10 +223,10 @@ public class ReceivingCall extends Thread {
             protocolMsg.put(strings2[i], strings1[i]);
         }
 
-        parseAnswerAccessUDP(strings1);
+        parseAnswerAccessUDP(strings1,answer);
     }
 
-    private void parseAnswerAccessUDP(String[] commands) {
+    private void parseAnswerAccessUDP(String[] commands,CallingAnswerSaver answer) {
         switch (protocolMsg.get("actionClient"))//содержит код запроса
         {
             case "sendKey": {
@@ -285,7 +285,9 @@ public class ReceivingCall extends Thread {
                 {
                     if (isAnswer)
                     {
-                        CallingAnswerSaver.callingAnswerSavers.remove( CallingAnswerSaver.callingAnswerSavers.size()-2);
+                       // CallingAnswerSaver.callingAnswerSavers.remove( CallingAnswerSaver.callingAnswerSavers.size()-2);
+                        CallingAnswerSaver.callingAnswerSavers.remove( answer);
+
                     }
                     break;
                 }
